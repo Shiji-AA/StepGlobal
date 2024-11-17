@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { setUserInfo } from "../../../../Redux/Slices/AuthSlice";
 import logoArcite from "../../../assets/logoArcite.png";
 import admin1 from '../../../assets/admin1.jpg'
+import {GoogleOAuthProvider,GoogleLogin} from '@react-oauth/google'
 
 function Login() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const user = useSelector((state) => state.auth.userdata);
+  const client_id=import.meta.env.VITE_CLIENT_ID || "";
 
   useEffect(() => {
     if (user) {
@@ -42,16 +44,16 @@ function Login() {
 
   return (
     <section>   
-
-      <div className="flex min-h-screen justify-center items-center bg-blue-50"style={{ backgroundImage: `url(${admin1})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', width: '100vw' }}>
+<GoogleOAuthProvider clientId={client_id} >
+<div className="flex min-h-screen justify-center items-center bg-blue-50"style={{ backgroundImage: `url(${admin1})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', width: '100vw' }}>
       <div className="bg-white rounded-lg border border-gray-300 shadow-md overflow-hidden sm:max-w-sm sm:w-full">
         <div className="px-6 py-8">
           <img
-            className="mx-auto h-20 w-auto"
+            className="mx-auto h-8 w-30"
             src={logoArcite}
             alt="Arcite logo"
           />
-          <h2 className="mt-6 text-center text-2xl font-bold leading-9 text-gray-900">
+          <h2 className="mt-6 text-center text-xl font-bold leading-9 text-gray-900">
             Login to your account
           </h2>
 
@@ -80,11 +82,7 @@ function Login() {
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                   Password
                 </label>
-                {/* <div className="text-sm">
-                  <a href="/" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
-                  </a>
-                </div> */}
+              
               </div>
               <div className="mt-1">
                 <input
@@ -99,8 +97,10 @@ function Login() {
                   className="block w-full px-4 py-3 rounded-md border border-gray-300 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
               </div>
-            </div>
-
+              <a href="/forgotpassword" className=" flex justify-end text-xs pt-2 font-semibold text-indigo-600 hover:text-indigo-500">
+               Forgot password?
+              </a>
+            </div> 
             <div>
               <button
                 type="submit"
@@ -123,9 +123,36 @@ function Login() {
                 </Link>
               </p>
 
+                  {/* Google Authentication */}
+                  <div id="signInButton">
+                <GoogleLogin
+                  type='standard'
+                  theme='filled_black'
+                  size='large'
+                  onSuccess={response => {
+                    axiosInstance.post('/google/login', response)
+                      .then((res) => {
+                        console.log(res, 'google @')
+                        if (res.data.message) {
+                          localStorage.setItem("token", res.data.token);                        
+                          dispatch(setUserInfo(res.data.userData));
+                          toast.success(res.data.message);
+                          navigate('/home');
+                        }
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                        toast.error(error.response.data.error);
+                      });
+                  }}
+                />
+              </div>
+
         </div>
       </div>
     </div>
+</GoogleOAuthProvider>
+   
     </section>
   );
 }

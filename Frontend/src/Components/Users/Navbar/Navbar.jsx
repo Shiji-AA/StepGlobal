@@ -53,6 +53,14 @@ function Navbar() {
           <Link to="/" className="text-black font-semibold hover:text-blue-500">
             Home
           </Link>
+
+          <Link
+            to="/profile"
+            className="text-black font-semibold hover:text-blue-500"
+          >
+            Profile
+          </Link>
+
           <Link
             to="/findjobs"
             className="text-black font-semibold hover:text-blue-500"

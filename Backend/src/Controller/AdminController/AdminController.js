@@ -9,7 +9,7 @@ const adminLogin = async (req,res) => {
         const adminPassword = "Admin@123";
         const id = new mongoose.Types.ObjectId("67347106a2bddffaf51dbd7d")
         const { email, password } = req.body;  
-        console.log(email, "admincontroller")          
+               
         if (adminEmail === email && adminPassword === password) {
 
             const token = generateToken(id);

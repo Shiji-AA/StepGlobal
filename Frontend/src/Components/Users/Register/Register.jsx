@@ -3,7 +3,9 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import {axiosInstance} from '../../../api/axiosInstance/'
 import logoArcite from "../../../assets/logoArcite.png";
-import tutor6 from '../../../assets/tutor6.jpg'
+import tutor6 from '../../../assets/tutor6.jpg';
+
+import {GoogleOAuthProvider,GoogleLogin} from '@react-oauth/google'
  
 function Register() {
   const navigate = useNavigate();
@@ -11,6 +13,9 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
+
+  const client_id=import.meta.env.VITE_CLIENT_ID || "";
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,9 +33,7 @@ function Register() {
       return toast.error(
         "Password must contain at least 6 characters including at least one uppercase letter, one lowercase letter, one digit, and one special character."
       );
-    }
-
-  
+    }  
     axiosInstance.post('/register',{name,email,password})
     .then((response)=>{
         console.log(response.data)
@@ -43,21 +46,20 @@ function Register() {
   return (
   
       <section>
+        <GoogleOAuthProvider clientId={client_id}  >
         <div className="flex min-h-full flex-1 flex-col px-6 py-12 lg:px-8 bg-gray-500 "style={{ backgroundImage: `url(${tutor6})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '120vh', width: '100vw' }}>
-          <div className="flex flex-col items-center px-6 py-4 md:h-screen lg:py-0">
-           
-
-            <div className="w-full bg-white border border-customColor lg:mt-0 sm:max-w-lg xl:p-0">
+          <div className="flex flex-col items-center px-6 py-4 md:h-screen lg:py-0">          
+           <div className="w-full bg-white border border-customColor lg:mt-0 sm:max-w-lg xl:p-0">
               <div className="p-6 space-y-4 md:space-y-2 sm:p-8">
               <div className="flex justify-center items-center">
                 <img
                   src={logoArcite}
-                  className="h-12 w-120"
+                  className="h-9 w-110"
                   alt="ACME"
                   width="120"
                 />
               </div>
-                <h1 className="font-semibold text-2xl">Sign up To your account</h1>
+                <h1 className="font-semibold text-xl">Sign up To your account</h1>
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
                   <div>
                     <input
@@ -130,13 +132,39 @@ function Register() {
                     Login
                   </Link>
                 </p>
+
+                  {/* //GOOGLE Authentication */}
+            <div id="signInButton">
+              <GoogleLogin
+                type="standard"
+                theme="filled_black"
+                size="large"
+                ux_mode="popup"
+                onSuccess={(response) => {
+                  axiosInstance
+                    .post("/google/register", response)
+                    .then((res) => {
+                      console.log(res);
+                      if (res.data.message) {
+                        toast.success(res.data.message);
+                        navigate("/login");
+                      }
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                      toast.error(error.response.data.error);
+                    });
+                }}
+              />
+            </div>
+
               </div>
             </div>
           </div>
         </div>
+        </GoogleOAuthProvider>     
       </section>
- 
-  );
+   );
 }
 
 export default Register;

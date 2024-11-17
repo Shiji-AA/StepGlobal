@@ -14,8 +14,8 @@ const axiosInstanceAdmin = axios.create({
   baseURL: "http://localhost:3000/api/admin"
 })
 
-
-// Request interceptor
+// *********************************************************************************
+// Request interceptor User
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -46,6 +46,40 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+// *********************************************************************************
+// Request interceptor for Recruiter
+axiosInstanceRecruiter.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("recruiterToken");
+    console.log(token,"interceptor page token")
+    if (token !== null) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+ // Response interceptor for Recruiter
+axiosInstanceRecruiter.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    if (
+      error.response &&
+      error.response.data.status === 401 &&
+      error.response.data.error === "Unauthorized - No token found"
+    ) {
+      console.log("Unauthorized access - no token found");
+    }
+    return Promise.reject(error);
+  }
+);
+// *********************************************************************************
 
 
 export { axiosInstance,axiosInstanceRecruiter,axiosInstanceAdmin};

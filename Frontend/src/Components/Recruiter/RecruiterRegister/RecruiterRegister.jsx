@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import {axiosInstanceRecruiter} from '../../../api/axiosInstance/'
 import logoArcite from "../../../assets/logoArcite.png";
 import tutor6 from '../../../assets/tutor6.jpg'
+import {GoogleOAuthProvider,GoogleLogin} from '@react-oauth/google'
  
 function RecruiterRegister() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function RecruiterRegister() {
   const [recruiterEmail, setrecruiterEmail] = useState("");
   const [recruiterPassword, setrecruiterPassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
+  const client_id=import.meta.env.VITE_CLIENT_ID || "";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,6 +45,7 @@ function RecruiterRegister() {
   return (
   
       <section>
+        <GoogleOAuthProvider clientId={client_id} >
         <div className="flex min-h-full flex-1 flex-col px-6 py-12 lg:px-8 bg-gray-500"style={{ backgroundImage: `url(${tutor6})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '120vh', width: '100vw' }}>
           <div className="flex flex-col items-center px-6 py-4 md:h-screen lg:py-0">
            
@@ -52,12 +55,12 @@ function RecruiterRegister() {
               <div className="flex justify-center items-center">
                 <img
                   src={logoArcite}
-                  className="h-12 w-120"
+                  className="h-9 w-110"
                   alt="ACME"
                   width="120"
                 />
               </div>
-                <h1 className="font-semibold text-2xl">Sign up To your account</h1>
+                <h1 className="font-semibold text-xl">Sign up To your account</h1>
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
                   <div>
                     <input
@@ -130,10 +133,38 @@ function RecruiterRegister() {
                     Login
                   </Link>
                 </p>
+
+    {/* //GOOGLE Authentication */}
+            <div id="signInButton">
+              <GoogleLogin
+                type="standard"
+                theme="filled_black"
+                size="large"
+                ux_mode="popup"
+                onSuccess={(response) => {
+                  axiosInstanceRecruiter
+                    .post("/google/recruiterregister", response)
+                    .then((res) => {
+                      console.log(res);
+                      if (res.data.message) {
+                        toast.success(res.data.message);
+                        navigate("/recruiterlogin");
+                      }
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                      toast.error(error.response.data.error);
+                    });
+                }}
+              />
+            </div>
+
               </div>
             </div>
           </div>
         </div>
+        </GoogleOAuthProvider>
+      
       </section>
  
   );

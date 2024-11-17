@@ -11,18 +11,25 @@ import AboutUs from "./Pages/Users/AboutUs/AboutUs";
 import ContactUs from "./Pages/Users/ContactUs/ContactUs";
 import FindJobs from "./Pages/Users/FindJobs/FindJobs";
 import Page from "./Pages/Users/Page/Page";
+import ForgotPassword from "./Components/Users/Login/ForgotPassword";
+import ResetPassword from "./Components/Users/Login/ResetPassword";
+import Profile from "./Components/Users/Profile/Profile";
 
 //Recruiter side
 
 import RecruiterRegister from "./Components/Recruiter/RecruiterRegister/RecruiterRegister";
 import RecruiterLogin from "./Components/Recruiter/RecruiterLogin/RecruiterLogin";
 import RecruiterDashBoard from "./Pages/Recruiter/RecruiterDashBoard/RecruiterDashBoard";
-
+import ForgotPasswordRecruiter from "./Components/Recruiter/RecruiterLogin/ForgotPasswordRecruiter";
+import ResetPasswordRecruiter from "./Components/Recruiter/RecruiterLogin/ResetPasswordRecruiter";
 //Admin side
 
 import AdminLogin from "./Components/Admin/AdminLogin/AdminLogin";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import PrivatePageAdmin from "./Components/PrivatePages/PrivatePageAdmin";
+
+
+
 
 
 function App() {
@@ -34,8 +41,12 @@ function App() {
      <Route path="/" element={<LandingPage/>} />
      <Route path="/register" element={<Register/>} />
      <Route path="/login" element={<Login/>} />
+     <Route path="/forgotpassword" element={<ForgotPassword/>} />
+     <Route path="/reset_password/:id/:token" element={<ResetPassword/>} />
+  
      <Route element={<PrivatePages isStudent={true}/>}> 
      <Route path="/home" element={<HomePage/>} />
+     <Route path="/profile" element={<Profile/>} />
      <Route path="/aboutus" element={<AboutUs/>} />
      <Route path="/contactus" element={<ContactUs/>} />
      <Route path="/findjobs" element={<FindJobs/>} />
@@ -45,8 +56,10 @@ function App() {
       {/* RecruiterSide   */}     
 
        <Route path="/recruiterlogin" element={<RecruiterLogin />} />
-       <Route path="/recruiterregister" element={<RecruiterRegister />} />   
-        <Route  element={<PrivatePages isStudent={false}/>}>
+       <Route path="/recruiterregister" element={<RecruiterRegister />} />  
+       <Route path="/forgotpasswordrecruiter" element={<ForgotPasswordRecruiter/>} /> 
+       <Route path="/reset_password-recruiter/:id/:token" element={<ResetPasswordRecruiter/>} />
+       <Route element={<PrivatePages isStudent={false}/>}>
         <Route path="/recruiterdashboard" element={<RecruiterDashBoard/>} />
         </Route>
       
