@@ -14,6 +14,8 @@ import Page from "./Pages/Users/Page/Page";
 import ForgotPassword from "./Components/Users/Login/ForgotPassword";
 import ResetPassword from "./Components/Users/Login/ResetPassword";
 import Profile from "./Components/Users/Profile/Profile";
+import EditProfile from "./Components/Users/Profile/Editprofile";
+
 
 //Recruiter side
 
@@ -32,6 +34,7 @@ import PrivatePageAdmin from "./Components/PrivatePages/PrivatePageAdmin";
 
 
 
+
 function App() {
   return (
     <Router>
@@ -43,7 +46,7 @@ function App() {
      <Route path="/login" element={<Login/>} />
      <Route path="/forgotpassword" element={<ForgotPassword/>} />
      <Route path="/reset_password/:id/:token" element={<ResetPassword/>} />
-  
+     <Route path="/editprofile/:id" element={<EditProfile />} />
      <Route element={<PrivatePages isStudent={true}/>}> 
      <Route path="/home" element={<HomePage/>} />
      <Route path="/profile" element={<Profile/>} />

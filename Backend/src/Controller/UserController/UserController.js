@@ -50,7 +50,10 @@ const loginUser = async (req, res) => {
       const user = await User.findOne({ email });
   
       if (!user) {
-        return res.status(401).json({ error: "Invalid email or password" });
+        return res.status(404).json({error: "User does not exist."});
+      }
+      if (user.status === 'blocked') {
+        return res.status(403).json({ error: "Your account has been blocked." }); 
       }
       if (await user.matchPassword(password)) {
         const userData = {
@@ -62,15 +65,15 @@ const loginUser = async (req, res) => {
         return res.json({
           userData,
           token,
-          message: "Success",
+          message: "Login successful",
         });
       } else {
-        return res.status(400).json({ error: "Invalid email or password" });
+        return res.status(401).json({error: "Incorrect password."});
       }
     } catch (error) {
       return res
         .status(500)
-        .json({ error: "An error occurred. Please try again later." });
+        .json({error: "An error occurred. Please try again later." });
     }
   };
 
@@ -222,5 +225,92 @@ const resetPassword = async (req, res) => {
 };
 
 
+//to get student profile
 
-export {registerUser,loginUser,googleRegister,googleLogin,sendPasswordResetEmail,resetPassword}
+const getStudentProfile = async (req, res) => {
+  try {
+    const user =   req.user    
+    const userData = await User.findOne({ _id: user._id});   
+    if (!userData) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+    res.status(200).json({ userData });
+  } catch (error) {
+    console.error("Error during password reset:", error);
+    return res.status(500).json({ message: "Server error", error: error.message });
+    }
+};
+
+
+//to get data in the editprofile page
+const getProfileById =async(req,res)=>{
+  const user =   req.user    
+
+  try{  
+    const studentDetails = await User.findById(user._id).exec();
+    console.log(studentDetails, "studentDetails controllerpagel")
+    if (studentDetails) {
+      res.status(200).json({
+        studentDetails,
+        message: "Student found successfully",
+      });
+    } else {
+      return res.status(404).json({
+        message: "Student not found",
+      });
+    }
+  } catch (error) {
+    console.error("Error during password reset:", error);
+    return res.status(500).json({ message: "Server error", error: error.message });
+    
+  }
+  }
+
+
+  const updateProfile = async (req, res) => {
+    try {
+      const user =   req.user 
+      console.log(user,"user") //from middleware
+        
+      const { studentName, studentEmail, phone,photo } = req.body;
+  
+      const student = await User.findById(user._id);
+       
+      if (!student) {
+        return res.status(404).json({ error: "Invalid category" });
+      }
+  
+      student.studentName = studentName || student.studentName;
+      student.studentEmail = studentEmail || student.studentEmail;
+      student.phone = phone || student.phone;
+      student.photo=photo;
+  
+      const updateStudentData = await student.save();
+      //updating store 
+      const userData = {
+        name: updateStudentData.studentName,
+        email: updateStudentData.studentEmail,
+        id: updateStudentData._id,
+        phone: updateStudentData.phone,
+        image:updateStudentData.photo,
+        //photo : updateStudentData.photo,
+        
+      };
+      console.log(updateStudentData)
+  
+      if (updateStudentData) {
+        return res.status(200).json({  userData,message: "Student updated successfully" });
+      } else {
+        return res.status(404).json({ error: "Failed to update student" });
+      }
+    } catch (error) {
+      console.error("Error during password reset:", error);
+      return res.status(500).json({ message: "Server error", error: error.message });
+    }
+  }
+
+
+
+export {registerUser,loginUser,googleRegister,googleLogin,
+  sendPasswordResetEmail,resetPassword,getStudentProfile,
+  getProfileById,updateProfile}

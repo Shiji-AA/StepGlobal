@@ -45,6 +45,9 @@ const loginRecruiter= async (req, res) => {
       if (!recruiter) {
         return res.status(401).json({ error: "Invalid email or password" });
       }
+      if (recruiter.status === 'blocked') {
+        return res.status(403).json({ error: "Your account has been blocked." });
+      }
       if (await recruiter.matchPassword(recruiterPassword)) {
         const recruiterData = {
             recruiterName: recruiter.recruiterName,
@@ -55,15 +58,14 @@ const loginRecruiter= async (req, res) => {
         return res.json({
             recruiterData,
           token,
-          message: "Success",
+          message: "Login successful",
         });
       } else {
-        return res.status(400).json({ error: "Invalid email or password" });
+        return res.status(401).json({ error: "Invalid email or password" });
       }
     } catch (error) {
-      return res
-        .status(500)
-        .json({ error: "An error occurred. Please try again later." });
+      console.error(error);  
+    return res.status(500).json({ error: "An error occurred. Please try again later." });
     }
   };
 

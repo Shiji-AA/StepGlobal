@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosInstanceRecruiter } from "../../../api/axiosInstance/";
 import toast from "react-hot-toast";
@@ -7,43 +7,68 @@ import { setRecruiterInfo } from "../../../../Redux/Slices/RecruiterSlice";
 import logoArcite from "../../../assets/logoArcite.png";
 import admin1 from "../../../assets/admin1.jpg";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { useFormik } from 'formik';
 
 function RecruiterLogin() {
+  const recruiter = useSelector((state) => state.recruiter.recruiterdata);
+  const client_id = import.meta.env.VITE_CLIENT_ID || "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [recruiterEmail, setrecruiterEmail] = useState("");
-  const [recruiterPassword, setrecruiterPassword] = useState("");
-  const recruiter = useSelector((state) => state.recruiter.recruiterdata);
-  const client_id = import.meta.env.VITE_CLIENT_ID || "";
+  const validate=values=>{
+    const errors={};
+    if (!values.recruiterEmail) {
+      errors.recruiterEmail = 'Required';
+    } 
+    if (!values.recruiterPassword) {
+      errors.recruiterPassword = 'Required';
+    } 
+    return errors;
+  }
 
+  const formik = useFormik({
+    initialValues: {
+      recruiterEmail: '',
+      recruiterPassword: ''
+    },
+    validate, 
+    onSubmit: (values) => {
+      axiosInstanceRecruiter
+        .post('/recruiterlogin', values)
+        .then((response) => {
+          if (response.data.message) {
+            dispatch(setRecruiterInfo(response.data.recruiterData));        
+            localStorage.setItem("recruiterToken", response.data.token);     
+            toast.success(response.data.message);          
+            navigate("/recruiterdashboard");
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.data.error) {
+            switch (error.response.data.error) {
+              case 'Your account has been blocked.':
+                toast.error("Your account has been blocked.");
+                break;
+              case 'Invalid email or password':
+                toast.error("Invalid email or password.");
+                break;
+              default:
+                toast.error("An unexpected error occurred.");
+            }
+          } else {
+            toast.error(error.message);
+          }
+        });     
+    }
+  });
+  
+  
   useEffect(() => {
     if (recruiter) {
       navigate("/recruiterdashboard");
     }
   }, [recruiter, navigate]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axiosInstanceRecruiter.post("/recruiterlogin", {
-        recruiterEmail,
-        recruiterPassword,
-      });
-      if (response.data.message) {
-        dispatch(setRecruiterInfo(response.data.recruiterData));
-        localStorage.setItem("recruiterToken", response.data.token);
-        toast.success(response.data.message);
-        navigate("/recruiterdashboard");
-      }
-    } catch (error) {
-      if (error.response && error.response.data.error) {
-        toast.error(error.response.data.error);
-      } else {
-        toast.error("An unexpected error occurred.");
-      }
-    }
-  };
 
   return (
     <section>
@@ -70,7 +95,7 @@ function RecruiterLogin() {
               </h2>
 
               <form
-                onSubmit={handleSubmit}
+                onSubmit={formik.handleSubmit}
                 className="mt-6 space-y-6"
                 action="#"
                 method="POST"
@@ -85,15 +110,17 @@ function RecruiterLogin() {
                   <div className="mt-1">
                     <input
                       id="recruiterEmail"
-                      name="email"
+                      name="recruiterEmail"
                       type="email"
-                      value={recruiterEmail}
-                      onChange={(e) => setrecruiterEmail(e.target.value)}
+                      value={formik.values.recruiterEmail}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
                       placeholder="Enter your mail"
                       autoComplete="email"
                       required
                       className="block w-full px-4 py-3 rounded-md border border-gray-300 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
+                     {formik.touched.recruiterEmail && formik.errors.recruiterEmail ? <div className="text-red-600 text-sm mt-1 font-medium">{formik.errors.recruiterEmail}</div> : null}
                   </div>
                 </div>
 
@@ -110,15 +137,17 @@ function RecruiterLogin() {
                   <div className="mt-1">
                     <input
                       id="password"
-                      name="password"
+                      name="recruiterPassword"
                       type="password"
-                      value={recruiterPassword}
-                      onChange={(e) => setrecruiterPassword(e.target.value)}
+                      value={formik.values.recruiterPassword}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
                       placeholder="Enter your password"
                       autoComplete="current-password"
                       required
                       className="block w-full px-4 py-3 rounded-md border border-gray-300 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
+                     {formik.touched.recruiterPassword && formik.errors.recruiterPassword? <div className="text-red-600 text-sm mt-1 font-medium">{formik.errors.recruiterPassword}</div> : null}
                   </div>
                   <a href="/forgotpasswordrecruiter" className=" flex justify-end text-sm pt-1 font-semibold text-indigo-600 hover:text-indigo-500">
                Forgot password?

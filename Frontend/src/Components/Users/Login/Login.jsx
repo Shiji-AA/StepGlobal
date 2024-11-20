@@ -1,46 +1,76 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../api/axiosInstance/";
 import toast from "react-hot-toast";
 import { setUserInfo } from "../../../../Redux/Slices/AuthSlice";
 import logoArcite from "../../../assets/logoArcite.png";
 import admin1 from '../../../assets/admin1.jpg'
-import {GoogleOAuthProvider,GoogleLogin} from '@react-oauth/google'
+import {GoogleOAuthProvider,GoogleLogin} from '@react-oauth/google';
+import { useFormik } from 'formik';
+
 
 function Login() {
+  const client_id=import.meta.env.VITE_CLIENT_ID || "";
+  const user = useSelector((state) => state.auth.userdata);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const user = useSelector((state) => state.auth.userdata);
-  const client_id=import.meta.env.VITE_CLIENT_ID || "";
+  const validate=values=>{
+    const errors={};
+    if (!values.email) {
+      errors.email = 'Required';
+    } 
+    if (!values.password) {
+      errors.password = 'Required';
+    } 
+    return errors;
+  }
 
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validate, 
+    onSubmit: (values) => {
+      axiosInstance
+        .post('/login', values)
+        .then((response) => {
+          if (response.data.message) {
+            dispatch(setUserInfo(response.data.userData));        
+            localStorage.setItem("token", response.data.token);     
+            toast.success(response.data.message);          
+            navigate("/home");
+          }
+        })
+        .catch((error) => {
+         if (error.response && error.response.data.error){        
+            switch (error.response.data.error) {
+              case 'Your account has been blocked.':
+                toast.error("Your account has been blocked.");
+                break;
+                case 'User does not exist.':
+                toast.error("User does not exist.");
+                break;
+                case 'Incorrect password.':
+                toast.error("Incorrect password.");
+                break;
+              default:
+                toast.error("An unexpected error occurred.");
+            }
+          }else{
+            toast.error(error.message);
+          }
+        });     
+    }
+  });
+  
   useEffect(() => {
     if (user) {
       navigate("/home");
     }
   }, [user, navigate]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axiosInstance.post("/login", { email, password });
-      if (response.data.message) {
-        dispatch(setUserInfo(response.data.userData));
-        localStorage.setItem("token", response.data.token);
-        toast.success(response.data.message);
-        navigate("/home");
-      }
-    } catch (error) {
-      if (error.response && error.response.data.error) {
-        toast.error(error.response.data.error);
-      } else {
-        toast.error("An unexpected error occurred.");
-      }
-    }
-  };
 
   return (
     <section>   
@@ -57,7 +87,7 @@ function Login() {
             Login to your account
           </h2>
 
-          <form onSubmit ={handleSubmit} className="mt-8 space-y-6" action="#" method="POST">
+          <form onSubmit ={formik.handleSubmit} className="mt-8 space-y-6" action="#" method="POST">
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
@@ -67,13 +97,15 @@ function Login() {
                   id="email"
                   name="email"
                   type="email"
-                  value={email}
-                  onChange={(e)=>setEmail(e.target.value)}
+                  value={formik.values.email}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
                   placeholder="Enter your username"
                   autoComplete="email"
                   required
                   className="block w-full px-4 py-3 rounded-md border border-gray-300 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
+                 {formik.touched.email && formik.errors.email ? <div className="text-red-600 text-sm mt-1 font-medium">{formik.errors.email}</div> : null}
               </div>
             </div>
 
@@ -89,13 +121,15 @@ function Login() {
                   id="password"
                   name="password"
                   type="password"
-                  value={password}
-                  onChange={(e)=>setPassword(e.target.value)}
+                  value={formik.values.password}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
                   placeholder="Enter your password"
                   autoComplete="current-password"
                   required
                   className="block w-full px-4 py-3 rounded-md border border-gray-300 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
+                 {formik.touched.password && formik.errors.password ? <div className="text-red-600 text-sm mt-1 font-medium">{formik.errors.password}</div> : null}
               </div>
               <a href="/forgotpassword" className=" flex justify-end text-xs pt-2 font-semibold text-indigo-600 hover:text-indigo-500">
                Forgot password?

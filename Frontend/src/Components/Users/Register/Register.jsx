@@ -1,50 +1,70 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import toast from "react-hot-toast";
 import {axiosInstance} from '../../../api/axiosInstance/'
 import logoArcite from "../../../assets/logoArcite.png";
 import tutor6 from '../../../assets/tutor6.jpg';
-
+import { useFormik } from 'formik';
 import {GoogleOAuthProvider,GoogleLogin} from '@react-oauth/google'
  
 function Register() {
-  const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmpassword] = useState("");
-
   const client_id=import.meta.env.VITE_CLIENT_ID || "";
+  const navigate = useNavigate();
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (password !== confirmpassword) {
-      return toast.error("Passwords do not match");
-    }
-    if (!name.trim() || !email.trim() || !password.trim() || !confirmpassword.trim()) {
-      return toast.error("All fields are required");
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      return toast.error("Invalid email address");
-    }
+  const validate= values =>{
+    const errors={}
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{6,}$/;
-    if (!passwordRegex.test(password)) {
-      return toast.error(
-        "Password must contain at least 6 characters including at least one uppercase letter, one lowercase letter, one digit, and one special character."
-      );
-    }  
-    axiosInstance.post('/register',{name,email,password})
-    .then((response)=>{
-        console.log(response.data)
-        toast.success(response.data.message)
-        navigate("/login")
-    })
-      
-  }; 
+    if(!values.name){
+      errors.name='Required';
+    }else if(values.name.length<3){
+      errors.name='Must be 3 characters or more'
+    }
+    if (!values.email) {
+      errors.email = 'Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      errors.email = 'Invalid email address';
+    }
+    if (!values.password) {
+      errors.password = 'Required';
+    } else if (values.password.length<6) {
+      errors.password = 'Must be 6 characters or more';
+    }else if(!passwordRegex.test(values.password)){
+      errors.password='Password must contain at least 6 characters, including one uppercase letter, one lowercase letter, one digit, and one special character.'
+    }
+    if (!values.confirmpassword) {
+      errors.confirmpassword = 'Required';
+    } else if (values.confirmpassword!==values.password) {
+      errors.confirmpassword = 'Password does not match';
+    }
+    return errors;
+  }
 
-  return (
-  
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmpassword: ''
+    },
+    validate,
+    onSubmit: (values) => {
+      axiosInstance
+        .post('/register', values)
+        .then((response) => {
+          console.log(response.data);
+          toast.success(response.data.message);
+          navigate("/login");
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error(error.response?.data?.message || "Registration failed");
+        });
+        //toast.success(`Form Submitted: ${JSON.stringify(values, null, 2)}`);
+    }
+  });
+
+ 
+
+  return (  
       <section>
         <GoogleOAuthProvider clientId={client_id}  >
         <div className="flex min-h-full flex-1 flex-col px-6 py-12 lg:px-8 bg-gray-500 "style={{ backgroundImage: `url(${tutor6})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '120vh', width: '100vw' }}>
@@ -60,18 +80,21 @@ function Register() {
                 />
               </div>
                 <h1 className="font-semibold text-xl">Sign up To your account</h1>
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
+                <form onSubmit={formik.handleSubmit} className="space-y-4 md:space-y-5">
                   <div>
                     <input
                       type="text"
                       name="name"
                       id="name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      value={formik.values.name}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
                       className="bg-white border border-gray-400 text-gray-900 text-sm block w-full p-2.5"
                       placeholder="Name"
                       required
-                    />
+                    />            
+                     {formik.touched.name && formik.errors.name ? <div className="text-red-600 text-sm mt-1 font-medium">{formik.errors.name}</div> : null}
+
                   </div>
 
                   <div>
@@ -79,12 +102,14 @@ function Register() {
                       type="email"
                       name="email"
                       id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={formik.values.email}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
                       placeholder="Email"
                       className="bg-white border border-gray-400 text-gray-900 text-sm block w-full p-2.5"
                       required
                     />
+                     {formik.touched.email && formik.errors.email ? <div className="text-red-600 text-sm mt-1 font-medium">{formik.errors.email}</div>:null}
                   </div>
 
                   <div>
@@ -92,12 +117,14 @@ function Register() {
                       type="password"
                       name="password"
                       id="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={formik.values.password}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
                       placeholder="Password"
                       className="bg-white border border-gray-400 text-gray-900 text-sm block w-full p-2.5"
                       required
                     />
+                    {formik.touched.password && formik.errors.password ? <div className="text-red-600 text-sm mt-1 font-medium">{formik.errors.password}</div>:null}
                   </div>
 
                   <div>
@@ -105,12 +132,14 @@ function Register() {
                       type="password"
                       name="confirmpassword"
                       id="confirmpassword"
-                      value={confirmpassword}
-                      onChange={(e) => setConfirmpassword(e.target.value)}
+                      value={formik.values.confirmpassword}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
                       placeholder="Confirm Password"
                       className="bg-white border border-gray-400 text-gray-900 text-sm block w-full p-2.5"
                       required
                     />
+                     {formik.touched.confirmpassword && formik.errors.confirmpassword ? <div className="text-red-600 text-sm mt-1 font-medium">{formik.errors.confirmpassword}</div>:null}
                   </div>
 
                   <button

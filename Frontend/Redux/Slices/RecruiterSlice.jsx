@@ -15,8 +15,13 @@ const recruiterSlice = createSlice({
             localStorage.removeItem("recruiterToken")
             state.recruiterdata = null;
         },
+        updateRecruiterProfile: (state,action)=>{
+            if(state.recruiterdata !==null){
+                state.recruiterdata=action.payload;
+            }
+        }
     },
 });
 
-export const { setRecruiterInfo ,logout} = recruiterSlice.actions;
+export const { setRecruiterInfo ,logout,updateRecruiterProfile} = recruiterSlice.actions;
 export default recruiterSlice.reducer;
