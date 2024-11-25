@@ -10,6 +10,7 @@ const authSlice = createSlice({
     reducers: {
         setUserInfo: (state, action) => {
             state.userdata = action.payload;
+            
         },
         logout:(state)=>{
             localStorage.removeItem("token")
@@ -19,8 +20,11 @@ const authSlice = createSlice({
             if(state.userdata !==null){
                 state.userdata=action.payload;
             }
-        }
-    },
+        },  
+               
+      
+
+}
 });
 
 export const { setUserInfo ,logout,updateProfile} = authSlice.actions;

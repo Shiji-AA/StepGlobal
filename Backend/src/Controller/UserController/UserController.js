@@ -68,7 +68,7 @@ const loginUser = async (req, res) => {
           message: "Login successful",
         });
       } else {
-        return res.status(401).json({error: "Incorrect password."});
+        return res.status(401).json({error: "Incorrect-password."});
       }
     } catch (error) {
       return res
@@ -244,19 +244,17 @@ const getStudentProfile = async (req, res) => {
 
 //to get data in the editprofile page
 const getProfileById =async(req,res)=>{
-  const user =   req.user    
-
+  const user =   req.user   
   try{  
-    const studentDetails = await User.findById(user._id).exec();
-    console.log(studentDetails, "studentDetails controllerpagel")
+    const studentDetails = await User.findById(user._id).exec();  
     if (studentDetails) {
       res.status(200).json({
         studentDetails,
-        message: "Student found successfully",
+        message: "User found successfully",
       });
     } else {
       return res.status(404).json({
-        message: "Student not found",
+        message: "User not found",
       });
     }
   } catch (error) {
@@ -269,48 +267,103 @@ const getProfileById =async(req,res)=>{
 
   const updateProfile = async (req, res) => {
     try {
-      const user =   req.user 
-      console.log(user,"user") //from middleware
-        
-      const { studentName, studentEmail, phone,photo } = req.body;
+      // Get the user from middleware
+      const user = req.user; 
+      console.log(user, "Authenticated user from middleware");
   
+      // Extract fields from the request body
+      const { studentName, studentEmail, phone, photo } = req.body;
+  
+      // Find the student in the database by ID
       const student = await User.findById(user._id);
-       
+      console.log(student, "Student fetched from the database");
+  
       if (!student) {
-        return res.status(404).json({ error: "Invalid category" });
+        return res.status(404).json({ error: "Student not found" });
       }
   
-      student.studentName = studentName || student.studentName;
-      student.studentEmail = studentEmail || student.studentEmail;
+      // Update the student's fields
+      student.name = studentName || student.name;
+      student.email = studentEmail || student.email;
       student.phone = phone || student.phone;
-      student.photo=photo;
+      student.photo = photo || student.photo;
   
-      const updateStudentData = await student.save();
-      //updating store 
+      // Save the updated student data
+      const updatedStudent = await student.save();
+  
+      // Prepare user data to return
       const userData = {
-        name: updateStudentData.studentName,
-        email: updateStudentData.studentEmail,
-        id: updateStudentData._id,
-        phone: updateStudentData.phone,
-        image:updateStudentData.photo,
-        //photo : updateStudentData.photo,
-        
+        name: updatedStudent.name,
+        email: updatedStudent.email,
+        id: updatedStudent._id,
+        phone: updatedStudent.phone,
+        photo: updatedStudent.photo,
       };
-      console.log(updateStudentData)
   
-      if (updateStudentData) {
-        return res.status(200).json({  userData,message: "Student updated successfully" });
-      } else {
-        return res.status(404).json({ error: "Failed to update student" });
-      }
+      console.log(updatedStudent, "Updated student data");
+  
+      // Return the updated data to the client
+      return res.status(200).json({ userData, message: "Profile updated successfully" });
+  
     } catch (error) {
-      console.error("Error during password reset:", error);
+      console.error("Error updating profile:", error);
       return res.status(500).json({ message: "Server error", error: error.message });
     }
+  };
+ 
+
+
+const studentChangePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    const userId = req.user.id; // Assume `isLogin` middleware adds user info to `req.user`
+
+    // Validate input
+    if (!oldPassword || !newPassword) {
+      return res.status(400).json({ error: 'All fields are required.' });
+    }
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+
+    // Verify the old password
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Incorrect old password.' });
+    }
+
+    // Hash the new password and update
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await User.findByIdAndUpdate(userId, { password: hashedPassword });
+
+    // Generate a new token
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    // Send the updated user data (excluding sensitive fields) and token
+    const updatedUser = {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    };
+
+    return res.status(200).json({
+      message: 'Password updated successfully.',
+      user: updatedUser,
+      token,
+    });
+  } catch (error) {
+    console.error('Error in change password:', error);
+    return res.status(500).json({ error: 'Server error. Please try again later.' });
   }
+};
 
 
+   
 
+  
 export {registerUser,loginUser,googleRegister,googleLogin,
   sendPasswordResetEmail,resetPassword,getStudentProfile,
-  getProfileById,updateProfile}
+  getProfileById,updateProfile,studentChangePassword}

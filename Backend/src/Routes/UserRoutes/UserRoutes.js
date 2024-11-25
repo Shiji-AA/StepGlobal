@@ -2,7 +2,8 @@ import express from 'express';
 
 const router= express.Router()
 import {getProfileById, getStudentProfile, googleLogin,
-     googleRegister, loginUser, registerUser, resetPassword,sendPasswordResetEmail, updateProfile} from '../../Controller/UserController/UserController.js'
+     googleRegister, loginUser, registerUser, resetPassword,sendPasswordResetEmail, 
+     studentChangePassword, updateProfile} from '../../Controller/UserController/UserController.js'
 import { isLogin } from '../../../Middleware/userAuth.js';
 
 router.post('/register',registerUser)
@@ -15,6 +16,7 @@ router.get("/userprofile",isLogin, getStudentProfile);
 //StudentEditProfile
 router.get("/editprofile", isLogin, getProfileById);
 router.put("/updateprofile", isLogin, updateProfile);
+router.patch('/changePassword',isLogin,studentChangePassword)
 
 
 

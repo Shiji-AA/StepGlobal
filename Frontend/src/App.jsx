@@ -15,7 +15,7 @@ import ForgotPassword from "./Components/Users/Login/ForgotPassword";
 import ResetPassword from "./Components/Users/Login/ResetPassword";
 import Profile from "./Components/Users/Profile/Profile";
 import EditProfile from "./Components/Users/Profile/Editprofile";
-
+// import ProfilePhoto from "./Components/Users/Profile/ProfilePhoto";
 
 //Recruiter side
 
@@ -29,11 +29,7 @@ import ResetPasswordRecruiter from "./Components/Recruiter/RecruiterLogin/ResetP
 import AdminLogin from "./Components/Admin/AdminLogin/AdminLogin";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import PrivatePageAdmin from "./Components/PrivatePages/PrivatePageAdmin";
-
-
-
-
-
+import ChangePassword from "./Components/Users/Profile/ChangePassword";
 
 function App() {
   return (
@@ -46,14 +42,16 @@ function App() {
      <Route path="/login" element={<Login/>} />
      <Route path="/forgotpassword" element={<ForgotPassword/>} />
      <Route path="/reset_password/:id/:token" element={<ResetPassword/>} />
-     <Route path="/editprofile/:id" element={<EditProfile />} />
      <Route element={<PrivatePages isStudent={true}/>}> 
-     <Route path="/home" element={<HomePage/>} />
-     <Route path="/profile" element={<Profile/>} />
+     <Route path="/home" element={<HomePage/>} />    
      <Route path="/aboutus" element={<AboutUs/>} />
      <Route path="/contactus" element={<ContactUs/>} />
      <Route path="/findjobs" element={<FindJobs/>} />
-     <Route path="/page" element={<Page/>} />
+     <Route path="/page" element={<Page/>} />     
+     <Route path="/profile" element={<Profile/>} />
+     <Route path="/editprofile/:id" element={<EditProfile />} />
+     <Route path="/changePassword" element={<ChangePassword />} />
+
      </Route> 
 
       {/* RecruiterSide   */}     
@@ -64,8 +62,7 @@ function App() {
        <Route path="/reset_password-recruiter/:id/:token" element={<ResetPasswordRecruiter/>} />
        <Route element={<PrivatePages isStudent={false}/>}>
         <Route path="/recruiterdashboard" element={<RecruiterDashBoard/>} />
-        </Route>
-      
+        </Route>      
 
       {/* AdminSide   */}  
       <Route path="/admin" element={<AdminLogin />} />   

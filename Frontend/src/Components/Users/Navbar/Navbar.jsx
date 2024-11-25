@@ -1,121 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logoArcite from "../../../assets/logoArcite.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../Redux/Slices/AuthSlice";
 
 function Navbar() {
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.userdata);
   const dispatch = useDispatch();
+
   const handleLogout = () => {
     dispatch(logout());
+    navigate("/login");
   };
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
-  };
-
-  const toggleDropdown = () => {
-    setDropdownOpen((prev) => !prev);
-  };
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-white shadow-md">
+    <nav className="flex items-center justify-between p-4 bg-blue-600 shadow-md">
       {/* Logo */}
       <img src={logoArcite} alt="ARCITE" width="120" className="mr-4" />
 
-      {/* Center Navigation Links */}
-      <div className="flex-1 hidden md:flex justify-center space-x-6">
-        <Link to="/" className="text-black font-semibold hover:text-blue-500">
-          Home
-        </Link>
-       
-        <Link
-          to="/findjobs"
-          className="text-black font-semibold hover:text-blue-500"
-        >
-          Find Jobs
-        </Link>
-        <Link
-          to="/aboutus"
-          className="text-black font-semibold hover:text-blue-500"
-        >
-          About Us
-        </Link>
-        <Link
-          to="/contactus"
-          className="text-black font-semibold hover:text-blue-500"
-        >
-          Contact Us
-        </Link>
-      </div>
-
-      {/* Right Section: User Dropdown or Guest Buttons */}
-      <div className="flex items-center space-x-3 pr-10">
-        {user ? (
-          <div className="relative">
-            <button
-              onClick={toggleDropdown}
-              className="px-6 py-2 font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition duration-300 ease-in-out"
-            >
-              {user?.name}
-            </button>
-            {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-10">
-                <Link
-                  to="/profile"
-                  className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white rounded-t-lg"
-                >
-                  Profile
-                </Link>
-                <Link
-                  to="/myjobs"
-                  className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
-                >
-                  My Jobs
-                </Link>
-                <Link
-                  to="/accountsettings"
-                  className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
-                >
-                  Account Settings
-                </Link>
-                <hr />
-                <button
-                  onClick={handleLogout}
-                  className="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-100"
-                >
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="flex space-x-3">
-            <Link to="/register">
-              <button className="px-6 py-2 font-semibold text-white bg-red-500 hover:bg-red-600 rounded-lg transition duration-300 ease-in-out">
-                Register
-              </button>
-            </Link>
-            <Link to="/login">
-              <button className="px-6 py-2 font-semibold text-gray-800 bg-white hover:bg-red-600 rounded-lg border border-gray-300 transition duration-300 ease-in-out">
-                Login
-              </button>
-            </Link>
-            <Link to="/recruiterlogin">
-              <button className="px-6 py-2 font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition duration-300 ease-in-out">
-                Recruiter?
-              </button>
-            </Link>
-          </div>
-        )}
-      </div>
-
       {/* Mobile Menu Toggle */}
-      <div className="md:hidden">
+      <div className="flex md:hidden">
         <button onClick={toggleMenu} className="focus:outline-none">
           <img
             className={menuOpen ? "hidden" : "block"}
@@ -133,8 +44,102 @@ function Navbar() {
           />
         </button>
       </div>
+
+      {/* Nav Links and Buttons */}
+      <div
+        className={`w-full md:flex md:items-center md:w-auto transition-all duration-300 ease-in-out ${
+          menuOpen ? "block" : "hidden"
+        }`}
+      >
+        <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
+          <Link to="/" className="text-white font-semibold hover:text-yellow-400">
+            Home
+          </Link>
+          <Link to="/aboutus" className="text-white font-semibold hover:text-yellow-400">
+            About Us
+          </Link>
+          <Link to="/findjobs" className="text-white font-semibold hover:text-yellow-400">
+            Find Job
+          </Link>
+        
+          <Link to="/contactus" className="text-white font-semibold hover:text-yellow-400">
+            Contact Us
+          </Link>
+
+          {/* Buttons Section */}
+          {user ? (
+            <>
+              {/* User Name with Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={toggleProfileMenu}
+                  className="px-6 py-2 font-semibold text-white bg-green-500 hover:bg-green-600 rounded-lg transition duration-300 ease-in-out"
+                >
+                  {user?.name}
+                </button>
+
+                {/* Dropdown Menu */}
+                {profileMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                    <Link
+                      to="/profile"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                      onClick={() => setProfileMenuOpen(false)}
+                    >
+                      Profile
+                    </Link>
+                    <Link
+                      to="/changePassword"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                      onClick={() => setProfileMenuOpen(false)}
+                    >
+                      Account Settings
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            </>
+          ) : (
+            <div className="flex space-x-3">
+              <Link to="/register">
+                <button className="px-6 py-2 font-semibold text-white bg-red-500 hover:bg-red-600 rounded-lg transition duration-300 ease-in-out">
+                  Register
+                </button>
+              </Link>
+              <Link to="/login">
+                <button className="px-6 py-2 font-semibold text-gray-800 bg-white hover:bg-red-600 rounded-lg border border-gray-300 transition duration-300 ease-in-out">
+                  Login
+                </button>
+              </Link>
+              <Link to="/recruiterlogin">
+                <button className="px-6 py-2 font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition duration-300 ease-in-out">
+                  Recruiter?
+                </button>
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
     </nav>
   );
 }
 
 export default Navbar;
+
+
+{/* <div className="flex items-center  px-2">
+<img
+  className="object-cover mx-2 rounded-full h-9 w-9"
+  src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+  alt="avatar"
+/>
+<h4 className="mx-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">
+  John Doe
+</h4>
+</div> */}

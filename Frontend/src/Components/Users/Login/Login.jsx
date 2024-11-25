@@ -37,9 +37,9 @@ function Login() {
       axiosInstance
         .post('/login', values)
         .then((response) => {
-          if (response.data.message) {
-            dispatch(setUserInfo(response.data.userData));        
-            localStorage.setItem("token", response.data.token);     
+          if (response.data.message) {                
+            localStorage.setItem("token", response.data.token);   
+            dispatch(setUserInfo(response.data.userData));    
             toast.success(response.data.message);          
             navigate("/home");
           }
