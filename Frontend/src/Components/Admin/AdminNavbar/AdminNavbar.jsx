@@ -59,16 +59,16 @@ function AdminNavbar() {
               Job Listings
             </a>
             <a
-              href="/applicants"
+              href="/users"
               className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
             >
               Applicants
             </a>
             <a
-              href="/employers"
+              href="/recruiters"
               className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
             >
-              Employers
+              Recruiters
             </a>
             <a
               href="/settings"

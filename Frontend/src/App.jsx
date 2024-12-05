@@ -15,7 +15,7 @@ import ForgotPassword from "./Components/Users/Login/ForgotPassword";
 import ResetPassword from "./Components/Users/Login/ResetPassword";
 import Profile from "./Components/Users/Profile/Profile";
 import EditProfile from "./Components/Users/Profile/Editprofile";
-// import ProfilePhoto from "./Components/Users/Profile/ProfilePhoto";
+import ChangePassword from "./Components/Users/Profile/ChangePassword";
 
 //Recruiter side
 
@@ -24,12 +24,21 @@ import RecruiterLogin from "./Components/Recruiter/RecruiterLogin/RecruiterLogin
 import RecruiterDashBoard from "./Pages/Recruiter/RecruiterDashBoard/RecruiterDashBoard";
 import ForgotPasswordRecruiter from "./Components/Recruiter/RecruiterLogin/ForgotPasswordRecruiter";
 import ResetPasswordRecruiter from "./Components/Recruiter/RecruiterLogin/ResetPasswordRecruiter";
+import PostJobs from "./Components/Recruiter/PostJobs/PostJobs";
+import RecruiterProfile from "./Components/Recruiter/RecruitrProfile/RecruiterProfile";
+import RecruiterEditProfile from "./Components/Recruiter/RecruitrProfile/RecruiterEditProfile.";
+import ChangePasswordRecruiter from "./Components/Recruiter/RecruitrProfile/ChangePasswordRecruiter";
+
 //Admin side
 
 import AdminLogin from "./Components/Admin/AdminLogin/AdminLogin";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import PrivatePageAdmin from "./Components/PrivatePages/PrivatePageAdmin";
-import ChangePassword from "./Components/Users/Profile/ChangePassword";
+import UsersTable from "./Components/Admin/UsersList/UsersTable";
+import RecruitersTable from "./Components/Admin/RecruitersList/RecruitersTable";
+import Next from "./Components/Recruiter/PostJobs/Next";
+
+
 
 function App() {
   return (
@@ -61,13 +70,22 @@ function App() {
        <Route path="/forgotpasswordrecruiter" element={<ForgotPasswordRecruiter/>} /> 
        <Route path="/reset_password-recruiter/:id/:token" element={<ResetPasswordRecruiter/>} />
        <Route element={<PrivatePages isStudent={false}/>}>
-        <Route path="/recruiterdashboard" element={<RecruiterDashBoard/>} />
-        </Route>      
+       <Route path="/recruiterdashboard" element={<RecruiterDashBoard/>} />
+       <Route path="/recruiterprofile" element={<RecruiterProfile/>} />
+       <Route path="/recruitereditprofile/:id" element={<RecruiterEditProfile/>} />
+       <Route path="/recruiterchangepassword" element={<ChangePasswordRecruiter/>} />   
+       <Route path="/postjobs" element={<PostJobs/>} />    
+       <Route path="/postjobs/next" element={<Next/>} />  
+        
+       </Route>      
 
       {/* AdminSide   */}  
       <Route path="/admin" element={<AdminLogin />} />   
       <Route element={<PrivatePageAdmin/>}> 
       <Route path="/admindashboard" element={<AdminDashboard />} />
+      <Route path="/users" element={<UsersTable />} />
+      <Route path="/recruiters" element={<RecruitersTable />} />
+
       </Route>          
       </Routes>       
       </Router>

@@ -212,6 +212,142 @@ const resetPasswordRecruiter = async (req, res) => {
   }
 };
 
+//to get student profile
+
+const getRecruiterProfile = async (req, res) => {
+  try {
+    const recruiter =   req.user    
+    const recruiterData = await Recruiter.findOne({ _id: recruiter._id});   
+    if (!recruiterData ) {
+      return res.status(404).json({ message: "Recruiter  not found" });
+    }
+    res.status(200).json({ recruiterData });
+  } catch (error) {
+    console.error("Error during password reset:", error);
+    return res.status(500).json({ message: "Server error", error: error.message });
+    }
+};
+
+//to get data in the editprofile page
+const getRecruiterProfileById=async(req,res)=>{
+  const recruiter=   req.user   
+  try{  
+    const recruiterDetails = await Recruiter.findOne({_id:recruiter._id})    
+    if (recruiterDetails) {
+      res.status(200).json({
+        recruiterDetails,
+        message: "Recruiter found successfully",
+      });
+    } else {
+      return res.status(404).json({
+        message: "Recruiter not found",
+      });
+    }
+  } catch (error) {
+    console.error("Error during password reset:", error);
+    return res.status(500).json({ message: "Server error", error: error.message });
+    }
+  }
+
+const updateRecruiterProfile= async (req, res) => {
+    try {
+      // Get the user from middleware
+      const user= req.user; 
+      console.log(user, "Authenticated user from middleware");
+      if (!req.user) {
+        return res.status(401).json({ error: "Unauthorized: User not authenticated" });
+      }
+      // Extract fields from the request body
+      const { recruiterName, recruiterEmail, phone, photo } = req.body;
+  
+      // Find the student in the database by ID
+      const recruiter = await Recruiter.findById(user._id);
+      console.log(recruiter, "Recruiter fetched from the database");
+  
+      if (!recruiter) {
+        return res.status(404).json({ error: "Recruiter not found" });
+      }
+  
+      // Update the student's fields
+      recruiter.recruiterName = recruiterName || recruiter.recruiterName;
+      recruiter.recruiterEmail = recruiterEmail || recruiter.recruiterEmail;
+      recruiter.phone = phone || recruiter.phone;
+      recruiter.photo = photo || recruiter.photo;
+  
+      // Save the updated student data
+      const updatedRecruiter = await recruiter.save();
+  
+      // Prepare user data to return
+      const recruiterData = {
+        recruiterName: updatedRecruiter.recruiterName,
+        recruiterEmail: updatedRecruiter.recruiterEmail,
+        id: updatedRecruiter._id,
+        phone: updatedRecruiter.phone,
+        photo: updatedRecruiter.photo,
+      };
+  
+      console.log(updatedRecruiter, "Updated Recruiter data");
+  
+      // Return the updated data to the client
+      return res.status(200).json({ recruiterData, message: "Profile updated successfully" });
+  
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      return res.status(500).json({ message: "Server error", error: error.message });
+    }
+  };
+
+  
+const recruiterChangePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+   
+    const userId = req.user.id; // Assume `isLogin` middleware adds user info to `req.user`
+  
+    // Validate input
+    if (!oldPassword || !newPassword) {
+      return res.status(400).json({ error: 'All fields are required.' });
+    }
+
+    // Find the user by ID
+    const recruiter = await Recruiter.findById(userId);
+    console.log(recruiter,"mxbcdbc")
+    if (!recruiter) {
+      return res.status(404).json({ error: 'recruiter not found.' });
+    }
+
+    // Verify the old password
+    const isMatch = await bcrypt.compare(oldPassword, recruiter.recruiterPassword);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Incorrect old password.' });
+    }
+
+    // Hash the new password and update
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await Recruiter.findByIdAndUpdate(userId, { recruiterPassword: hashedPassword });
+
+    // Generate a new token
+    const recruiterToken = jwt.sign({ id: recruiter._id }, process.env.JWT_SECRET, { expiresIn: '1 day' });
+
+    // Send the updated user data (excluding sensitive fields) and token
+    const updatedRecruiter = {
+      id: recruiter._id,
+      recruiterName: recruiter.recruiterName,
+      recruiterEmail: recruiter.recruiterEmail,
+    };
+
+    return res.status(200).json({
+      message: 'Password updated successfully.',
+      recruiter: updatedRecruiter,
+      recruiterToken,
+    });
+  } catch (error) {
+    console.error('Error in change password:', error);
+    return res.status(500).json({ error: 'Server error. Please try again later.' });
+  }
+};
  
 
-export {registerRecruiter,loginRecruiter,googleRegisterRecruiter,googleLoginRecruiter,sendPasswordResetEmailRecruiter,resetPasswordRecruiter}
+export {registerRecruiter,loginRecruiter,googleRegisterRecruiter,googleLoginRecruiter,
+  sendPasswordResetEmailRecruiter,resetPasswordRecruiter,getRecruiterProfile,getRecruiterProfileById,
+  updateRecruiterProfile,recruiterChangePassword}
