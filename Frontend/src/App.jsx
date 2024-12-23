@@ -37,8 +37,12 @@ import PrivatePageAdmin from "./Components/PrivatePages/PrivatePageAdmin";
 import UsersTable from "./Components/Admin/UsersList/UsersTable";
 import RecruitersTable from "./Components/Admin/RecruitersList/RecruitersTable";
 import Next from "./Components/Recruiter/PostJobs/Next";
-
-
+import JobListingRecruiter from "./Components/Recruiter/PostJobs/JobListingRecruiter";
+import EditJob from "./Components/Recruiter/PostJobs/EditJob";
+import JobPostsList from "./Components/Admin/JobPostsList/JobPostsList";
+import CategoryList from "./Components/Admin/CategoryList/CategoryList";
+import AddCategory from "./Components/Admin/CategoryList/AddCategory";
+import EditCategory from "./Components/Admin/CategoryList/EditCategory";
 
 function App() {
   return (
@@ -76,6 +80,9 @@ function App() {
        <Route path="/recruiterchangepassword" element={<ChangePasswordRecruiter/>} />   
        <Route path="/postjobs" element={<PostJobs/>} />    
        <Route path="/postjobs/next" element={<Next/>} />  
+       <Route path="/viewjobs" element={<JobListingRecruiter/>} /> 
+       <Route path="/editjob/:id" element={<EditJob />} /> 
+      
         
        </Route>      
 
@@ -85,6 +92,10 @@ function App() {
       <Route path="/admindashboard" element={<AdminDashboard />} />
       <Route path="/users" element={<UsersTable />} />
       <Route path="/recruiters" element={<RecruitersTable />} />
+      <Route path="/getallcategory" element={< CategoryList/>} />
+      <Route path="/adminjoblist" element={<JobPostsList />} />
+      <Route path="/addcategory" element={<AddCategory/>} />
+      <Route path="/editcategory/:id" element={<EditCategory/>} />
 
       </Route>          
       </Routes>       

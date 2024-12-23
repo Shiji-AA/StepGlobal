@@ -1,10 +1,10 @@
 import express from "express";
 const adminRouter = express.Router();
-//import { isLogin } from "../../../Middleware/userAuth.js";
+import { isLogin } from "../../../Middleware/userAuth.js";
 
 
-import { adminLogin, getAllrecruiters, getAllstudents, relistRecruiter, relistStudent, searchRecruiter,
-     searchStudent, unlistrecruiter, unlistStudent } from "../../Controller/AdminController/AdminController.js";
+import { addCategory, adminLogin, deleteCategory, editCategory, getAdminJobList, getAllCategory, getAllrecruiters, getAllstudents, getCategoryById, relistRecruiter, relistStudent, searchRecruiter,
+     searchStudent, toggleJobStatus, unlistrecruiter, unlistStudent } from "../../Controller/AdminController/AdminController.js";
 
 
 adminRouter.post("/admin",adminLogin);
@@ -13,10 +13,18 @@ adminRouter.post("/unliststudent/:id", unlistStudent);
 adminRouter.post("/reliststudent/:id",  relistStudent);
 adminRouter.get("/searchstudent", searchStudent);
 
-
 adminRouter.get("/getallrecruiters", getAllrecruiters);
 adminRouter.post("/unlistrecruiter/:id", unlistrecruiter);
 adminRouter.post("/relistrecruiter/:id",  relistRecruiter);
 adminRouter.get("/searchrecruiter",  searchRecruiter);
+
+adminRouter.post("/addcategory", addCategory);
+adminRouter.get("/getallcategory", getAllCategory);
+adminRouter.get("/getallcategory1/:id", getCategoryById);
+adminRouter.put("/editcategory/:id", editCategory);
+adminRouter.delete("/deletecategory/:id", deleteCategory);
+
+adminRouter.get("/adminjoblist", getAdminJobList);
+adminRouter.post("/toggleJobStatus/:id", toggleJobStatus)
 
 export default adminRouter;

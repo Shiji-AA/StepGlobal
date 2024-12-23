@@ -21,7 +21,7 @@ function Navbar() {
   const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-blue-600 shadow-md">
+    <nav className="flex items-center justify-between p-4 bg-gray-400 shadow-md">
       {/* Logo */}
       <img src={logoArcite} alt="ARCITE" width="120" className="mr-4" />
 

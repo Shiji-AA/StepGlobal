@@ -22,7 +22,7 @@ function AdminNavbar() {
 
   return (
     <div>
-      <nav className="flex flex-wrap items-center justify-between p-3 bg-blue-700">
+      <nav className="flex flex-wrap items-center justify-between p-3 bg-gray-400">
         <img src={logoArcite} className="h-10 w-36" alt="Job Portal" width="120" />
         
         <div className="flex md:hidden">
@@ -47,13 +47,19 @@ function AdminNavbar() {
         >
           <div className="ml-40 text-right text-bold mt-5 md:mt-0 border-t-2 border-white-900 md:border-none">
             <a
-              href="/admin-dashboard"
+              href="/admindashboard"
               className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
             >
               Dashboard
             </a>
             <a
-              href="/job-listings"
+              href="/getallcategory"
+              className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
+            >
+              Job Category
+            </a>
+            <a
+              href="/adminjoblist"
               className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
             >
               Job Listings

@@ -22,7 +22,7 @@ function RecruiterNavbar() {
   const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-blue-600 shadow-md">
+    <nav className="flex items-center justify-between p-4 bg-gray-500 shadow-md">
       {/* Logo */}
       <img src={logoArcite} alt="ARCITE" width="120" className="mr-4" />
 
@@ -53,17 +53,20 @@ function RecruiterNavbar() {
         }`}
       >
         <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
-          <Link to="/" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="/recruiterdashboard" className="text-white font-semibold hover:text-yellow-400">
             Home
           </Link>
-          <Link to="/aboutus" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="" className="text-white font-semibold hover:text-yellow-400">
             About Us
           </Link>
           <Link to="/postjobs" className="text-white font-semibold hover:text-yellow-400">
             Post Job
           </Link>
+          <Link to="/viewjobs" className="text-white font-semibold hover:text-yellow-400">
+            JOBS
+          </Link>
         
-          <Link to="/contactus" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="" className="text-white font-semibold hover:text-yellow-400">
             Contact Us
           </Link>
 

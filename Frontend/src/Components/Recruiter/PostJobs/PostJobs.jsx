@@ -1,26 +1,82 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import RecruiterNavbar from "../RecruiterNavbar/RecruiterNavbar";
 import jobpost from "../../../assets/jobpost.jpg";
-import {Link} from 'react-router-dom'
+import { axiosInstanceRecruiter } from "../../../api/axiosinstance";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 function PostJobs() {
+  const navigate = useNavigate();
+  const [categoryDetails, setCategoryDetails] = useState([]);
+  const [companyName, setCompanyName] = useState("");
+  const [companyDescription, setCompanyDescription] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [jobLocationType, setJobLocationType] = useState("");
+  const [city, setCity] = useState("");
+  const [pincode, setPincode] = useState("");
+  const [street, setStreet] = useState("");
+  const [state, setState] = useState("");
+  const [salary, setSalary] = useState("");
+  const [selectcategory, setSelectcategory] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axiosInstanceRecruiter.post("/addJobPost", {
+        category: selectcategory,
+        companyName,
+        companyDescription,
+        jobTitle,
+        jobLocationType,
+        jobLocation: {
+          street,
+          city,
+          state,
+          pincode,
+        },
+        salary,
+      });
+
+      if (response.data) {
+        toast.success("Job posted successfully!");
+        navigate("/viewjobs");
+      }
+    } catch (error) {
+      console.error("Error posting job:", error);
+      toast.error("An unexpected error occurred. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    axiosInstanceRecruiter
+      .get("/categories")
+      .then((response) => {
+        if (response.data.categoryDetails) {
+          setCategoryDetails(response.data.categoryDetails);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        toast("Error fetching data. Please try again later.");
+      });
+  }, []);
+
   return (
     <>
       <RecruiterNavbar />
       <div className="flex justify-center p-5">
-        {/* Parent container with reduced width */}
         <div className="flex flex-col w-full max-w-4xl bg-white p-6 rounded-lg shadow-lg gap-8">
-
-          {/* First section: Add Job Basics */}
+          {/* Header Section */}
           <div className="flex flex-col md:flex-row gap-8">
-            {/* Left side div (Text) */}
             <div className="flex-1">
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">Add Job Basics</h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                Add Job Basics
+              </h2>
               <p className="text-gray-600 mb-6">
                 Enter the essential details of the job you are posting.
               </p>
             </div>
-
-            {/* Right side div (Image) */}
             <div className="flex-1">
               <img
                 src={jobpost}
@@ -31,116 +87,192 @@ function PostJobs() {
             </div>
           </div>
 
-          {/* Form Fields Container below the first section */}
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full">
+          {/* Form Section */}
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-6 rounded-lg shadow-lg w-full"
+          >
             <div className="space-y-6">
-              
-              {/* Company Industry Dropdown */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Companys Industry *
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Companys Category
                 </label>
-                <select className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>IT Services</option>
-                  <option>Finance</option>
-                  <option>Healthcare</option>
-                  <option>Manufacturing</option>
+
+                <select
+                  value={selectcategory}
+                  onChange={(e) => setSelectcategory(e.target.value)}
+                >
+                  <option value="">Select Category</option>
+                  {categoryDetails?.map((category) => (
+                    <option key={category?._id} value={category?._id}>
+                      {category?.title}
+                    </option>
+                  ))}
                 </select>
               </div>
 
-              {/* Company Description Text Area */}
+              {/* Company Name */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Company Name *
+                </label>
+                <input
+                  type="text"
+                  name="companyName"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter company name"
+                  required
+                />
+              </div>
+
+              {/* Company Description */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Company Description
                   <span className="block text-xs text-gray-500">
-                    Introduce your company to people in a few lines.
+                    Introduce your company in a few lines.
                   </span>
                 </label>
                 <textarea
+                  name="companyDescription"
+                  value={companyDescription}
+                  onChange={(e) => setCompanyDescription(e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   rows="4"
                 ></textarea>
               </div>
 
-              {/* Job Title Input */}
+              {/* Job Title */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Job Title *
                 </label>
                 <input
                   type="text"
+                  name="jobTitle"
+                  value={jobTitle}
+                  onChange={(e) => setJobTitle(e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Enter job title"
+                  required
                 />
               </div>
-            </div>
 
-            {/* Job Posting Location */}
-            <div className="mt-6 space-y-4">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Job Posting Location</h2>
+              {/* Job Location Details */}
+              <h2 className="text-2xl font-bold text-gray-800 mt-6">
+                Job Location
+              </h2>
 
-              {/* Location Description */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Which option best describes this job's location? *
+                  Job Location Type *
                 </label>
-                <select className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>On-site</option>
-                  <option>Remote</option>
+                <select
+                  name="jobLocationType"
+                  value={jobLocationType}
+                  onChange={(e) => setJobLocationType(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                >
+                  <option value="">Select location type</option>
+                  <option value="On-site">On-site</option>
+                  <option value="Hybrid">Hybrid</option>
+                  <option value="Remote">Remote</option>
                 </select>
               </div>
 
               {/* City */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">City *</label>
-                <select className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>City 1</option>
-                  <option>City 2</option>
-                </select>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  City *
+                </label>
+                <input
+                  type="text"
+                  name="city"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter city"
+                  required
+                />
               </div>
 
-              {/* Area */}
+              {/* State */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Area</label>
-                <select className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>Area 1</option>
-                  <option>Area 2</option>
-                </select>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  State *
+                </label>
+                <input
+                  type="text"
+                  name="state"
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter state"
+                  required
+                />
               </div>
 
               {/* Pincode */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Pincode</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Pincode *
+                </label>
                 <input
                   type="text"
+                  name="pincode"
+                  value={pincode}
+                  onChange={(e) => setPincode(e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Enter pincode"
+                  required
                 />
               </div>
 
-              {/* Street Address */}
+              {/* Street */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Street Address</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Street Address *
+                </label>
                 <input
                   type="text"
+                  name="street"
+                  value={street}
+                  onChange={(e) => setStreet(e.target.value)}
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Enter street address"
+                  required
                 />
               </div>
+            </div>
+
+            {/* Salary */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Salary
+              </label>
+              <input
+                type="text"
+                name="salary"
+                value={salary}
+                onChange={(e) => setSalary(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter salary"
+              />
             </div>
 
             {/* Submit Button */}
             <div className="mt-8 text-right">
-            <Link to="/postjobs/next">
-  <button
-    className="bg-blue-500 text-white px-6 py-3 rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-  >
-    Continue &rarr;
-  </button>
-</Link>
-            
+              <button
+                type="submit"
+                className="bg-blue-500 text-white px-6 py-3 rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Submit
+              </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>

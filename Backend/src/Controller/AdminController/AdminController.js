@@ -3,7 +3,9 @@ import jwt from 'jsonwebtoken';
 import generateToken from '../../../Utils/generateToken.js'
 import mongoose from "mongoose";
 import User from '../../model/UserModel.js';
-import Recruiter from '../../model/RecruiterModel.js'
+import Recruiter from '../../model/RecruiterModel.js';
+import Category from '../../model/CategoryModel.js';
+import Job from '../../model/JobModel.js';
 
 const adminLogin = async (req,res) => {      
     try {
@@ -180,7 +182,154 @@ const unlistrecruiter = async (req, res) => {
           return res.status(500).json({ message: "An error occurred. Please try again later." });  
         }
     }
+
+
+    const addCategory= async(req,res)=>{
+      try{
+          const {title,description} = req.body;         
+      const categoryExist= await Category.findOne({
+          title: { $regex: new RegExp(title, 'i') },
+        });
     
+        if (categoryExist) {
+          console.log('Category already exists');
+          return res.status(400).json({ error: 'Category already exists' });
+        }        
+        const newCategory = await Category.create({
+          title,
+          description,
+        });
+    
+        if (newCategory) {
+            console.log(title, 'new Title');
+            res.status(201).json({
+              title,
+              description,
+              message :"Category added successfully"
+            });
+          } else {
+            res.status(400).json({ error: 'Invalid category data' });
+          }
+            }
+      catch(error){
+        return res.status(500).json({ message: "An error occurred. Please try again later." });  
+      }}
+
+      const getAllCategory = async (req, res) => {
+        try {
+          const categoryDetails = await Category.find().exec();
+          if (categoryDetails) {      
+           res.status(200).json({
+              categoryDetails,
+              message:"categoryDetails"
+            });
+          } else {
+            return res.status(400).json({
+              message: "no users in this table",
+            });
+          }
+        } catch (error) {
+          return res.status(500).json({ message: "An error occurred. Please try again later." });  
+        }
+      };
+  
+      //to get category details as per id
+const getCategoryById =async (req,res)=>{
+  const categoryId=req.params.id;
+  try{  
+    const categoryDetails = await Category.findById(categoryId).exec();
+    if (categoryDetails) {
+      res.status(200).json({
+        categoryDetails,
+        message: "Category found successfully",
+      });
+    } else {
+      return res.status(404).json({
+        message: "Category not found",
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: "An error occurred. Please try again later." });    
+  }
+  }
+
+  
+  const editCategory =async(req,res)=>{
+    try{
+      const {id}= req.params;      
+      const {title,description} =req.body;
+      const category = await Category.findById(id);
+      if(!category){
+        return res.status(404).json({error:"Invalid category"})
+      }
+  
+      category.title =title || category.title;
+      category.description= description || category.description;
+      const updateCategory = await category.save();  
+      if(updateCategory){
+        return res.status(200).json(
+          {message:"Category updated successfully"}
+          )
+      }else{
+        return res.status(404).json({error:"Failed to update category"})
+      }
+    }
+    catch(error){
+      return res.status(500).json({ message: "An error occurred. Please try again later." });  
+      }
+  }
+  const deleteCategory = async(req,res)=>{
+    try{
+      const {id}=req.params;
+      const category = await Category.findById(id);
+      if(!category){
+        return res.status(400).json({error:"Category not found"})
+      }
+   await Category.findByIdAndDelete(id)
+   res.status(200).json({message:"category deleted successfully"})
+      }  
+    catch(error){    
+      return res.status(500).json({ message: "An error occurred. Please try again later." });  
+    }  
+  }
+
+
+  const getAdminJobList = async(req,res)=>{
+    try{
+      const jobDetails = await Job.find().populate('category', 'title').exec();
+      //console.log(jobDetails,"jobDetails")
+            if(jobDetails){
+          res.status(200).json({
+          jobDetails,message:"JobDetails"
+        })
+      }else{
+        return res.status(400).json({
+          error:"no job available"
+        })
+      }
+    }
+    catch(error){
+      return res.status(500).json({ message: "An error occurred. Please try again later." });  
+    }
+  }
+ //For admin approval of course
+ const toggleJobStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const job = await Job.findById(id);  
+    if (!job) {
+      return res.status(404).json({ message: 'Job not found' });
+    } 
+    job.isApproved = !job.isApproved;
+    await job.save();
+
+    return res.status(200).json({ message: 'Job status toggled successfully', job });
+  } catch (error) {
+    return res.status(500).json({ message: "An error occurred. Please try again later." }); 
+  }
+};
+
       
 export {adminLogin,getAllstudents,unlistStudent,relistStudent,searchStudent,getAllrecruiters,
-  unlistrecruiter,relistRecruiter,searchRecruiter}
+  unlistrecruiter,relistRecruiter,searchRecruiter,addCategory,getAllCategory,getCategoryById,
+  editCategory,deleteCategory,getAdminJobList,toggleJobStatus}

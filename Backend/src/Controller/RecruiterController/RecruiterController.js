@@ -3,6 +3,8 @@ import generateToken from "../../../Utils/generateToken.js";
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
+import Job from '../../model/JobModel.js';
+import Category from "../../model/CategoryModel.js";
 
 
 
@@ -346,8 +348,167 @@ const recruiterChangePassword = async (req, res) => {
     return res.status(500).json({ error: 'Server error. Please try again later.' });
   }
 };
- 
+
+const addJobPost = async (req, res) => {
+  try {   
+    const recruiterId = req.user && req.user._id; 
+    const {
+      category,jobTitle,companyDescription,companyName,jobLocation,jobLocationType,
+      salary,} = req.body;
+
+    if (!jobTitle || !companyName || !jobLocationType || !category) {
+      return res.status(400).json({
+        error: "Job title, company name, job location type, and category are required.",
+      });
+    }
+    if (
+      !jobLocation ||
+      !jobLocation.street ||
+      !jobLocation.city ||
+      !jobLocation.state ||
+      !jobLocation.pincode
+    ) {
+      return res.status(400).json({
+        error: "Complete job location details are required (street, city, state, pincode).",
+      });
+    }
+
+    if (!recruiterId) {
+      return res.status(401).json({
+        error: "Unauthorized. Recruiter ID is missing.",
+      });
+    }
+    const newJob = new Job({
+      jobTitle,
+      companyDescription: companyDescription || "No description provided", // Default description
+      companyName,
+      jobLocation,
+      jobLocationType,
+      salary: salary || "Not specified", // Default value if salary is not provided
+      category,
+      recruiterId, // Retrieved from req.user
+    });
+    await newJob.save();
+    res.status(201).json({
+      message: "Job posted successfully!",
+      job: newJob,
+    });
+  } catch (error) {
+    console.error("Error posting job:", error);
+    res.status(500).json({
+      error: "Failed to post job.",
+      details: error.message,
+    });
+  }
+};
+
+const viewAllJobs = async (req, res) => {
+  try {
+    const recruiterId = req.user && req.user._id; 
+    const jobDetails = await Job.find({ recruiterId: recruiterId }).populate('category', 'title').exec();
+    if (!jobDetails.length) {
+      return res.status(404).json({
+        error: "No jobs found for this recruiter.",
+      });
+    }
+    return res.status(200).json({
+      jobDetails,
+      message: "Jobs retrieved successfully.",
+    });
+  } catch (error) {
+    console.error("Error retrieving jobs:", error);
+    res.status(500).json({
+      error: "Failed to retrieve jobs.",
+      details: error.message,
+    });
+  }
+};
+
+const editJob = async (req, res) => {
+  try {
+    const jobId = req.params.id;  
+   const jobDetails = await Job.findById(jobId).populate('category', 'title').exec();
+   
+    if (jobDetails) {
+      return res.status(200).json({
+        jobDetails,
+        message: "Job details found successfully",
+      });
+    } else {
+      return res.status(404).json({
+        message: "Job not found",
+      });
+    }
+  } catch (error) {
+    console.error("Error retrieving job:", error);
+    res.status(500).json({
+      error: "Failed to retrieve job.",
+      details: error.message,
+    });
+  }
+};
+const updateJob = async (req, res) => {
+  try {
+    const jobId = req.params.id;
+    const updatedJobData = req.body;
+
+    // Update the job in the database
+    const job = await Job.findByIdAndUpdate(
+      jobId,
+      { $set: updatedJobData },
+      { new: true }
+    );
+
+    if (job) {
+      res.status(200).json({
+        job, 
+        message: "Job Updated Successfully",
+      });
+    } else {
+      res.status(404).json({ message: "Job not found" });
+    }
+  } catch (error) {
+    console.error("Error updating job:", error);
+    res.status(500).json({
+      error: "Failed to update job.",
+      details: error.message,
+    });
+  }
+};
+
+const deleteJob=async(req,res)=>{
+  const { id } = req.params; 
+    try {
+    const deletedJob = await Job.findByIdAndDelete(id);
+    if (!deletedJob) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+    res.status(200).json({ message: "Job deleted successfully", deletedJob });
+  } catch (error) {
+    console.error("Error deleting job:", error);
+    res.status(500).json({ message: "An error occurred while deleting the job", error });
+  }
+};
+const getAllCategory = async (req, res) => {
+  try {
+    const categoryDetails = await Category.find().exec();
+    if (categoryDetails) {      
+     res.status(200).json({
+        categoryDetails,
+        message:"categoryDetails"
+      });
+    } else {
+      return res.status(400).json({
+        message: "no users in this table",
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: "An error occurred. Please try again later." });  
+  }
+};
+
+
 
 export {registerRecruiter,loginRecruiter,googleRegisterRecruiter,googleLoginRecruiter,
   sendPasswordResetEmailRecruiter,resetPasswordRecruiter,getRecruiterProfile,getRecruiterProfileById,
-  updateRecruiterProfile,recruiterChangePassword}
+  updateRecruiterProfile,recruiterChangePassword,addJobPost,viewAllJobs,editJob,updateJob,deleteJob,getAllCategory}
