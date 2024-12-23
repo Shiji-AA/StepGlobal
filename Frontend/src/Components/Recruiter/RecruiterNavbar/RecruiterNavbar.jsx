@@ -55,19 +55,16 @@ function RecruiterNavbar() {
         <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
           <Link to="/recruiterdashboard" className="text-white font-semibold hover:text-yellow-400">
             Home
-          </Link>
-          <Link to="" className="text-white font-semibold hover:text-yellow-400">
-            About Us
-          </Link>
+          </Link>       
           <Link to="/postjobs" className="text-white font-semibold hover:text-yellow-400">
             Post Job
           </Link>
           <Link to="/viewjobs" className="text-white font-semibold hover:text-yellow-400">
-            JOBS
+            Manage Jobs
           </Link>
         
           <Link to="" className="text-white font-semibold hover:text-yellow-400">
-            Contact Us
+            Applicants
           </Link>
 
           {/* Buttons Section */}

@@ -55,11 +55,16 @@ function Navbar() {
           <Link to="/" className="text-white font-semibold hover:text-yellow-400">
             Home
           </Link>
-          <Link to="/aboutus" className="text-white font-semibold hover:text-yellow-400">
-            About Us
+      
+          <Link to="/findjobs" className="text-white font-semibold hover:text-yellow-400">
+            Search Jobs
           </Link>
           <Link to="/findjobs" className="text-white font-semibold hover:text-yellow-400">
-            Find Job
+            My Applications
+          </Link>
+
+          <Link to="/aboutus" className="text-white font-semibold hover:text-yellow-400">
+            About Us
           </Link>
         
           <Link to="/contactus" className="text-white font-semibold hover:text-yellow-400">
@@ -87,6 +92,13 @@ function Navbar() {
                       onClick={() => setProfileMenuOpen(false)}
                     >
                       Profile
+                    </Link>
+                    <Link
+                      to=""
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                      onClick={() => setProfileMenuOpen(false)}
+                    >
+                      Saved Jobs
                     </Link>
                     <Link
                       to="/changePassword"

@@ -1,7 +1,7 @@
 import express from 'express';
 
 const router= express.Router()
-import {getProfileById, getStudentProfile, googleLogin,
+import {getProfileById, getStudentProfile, getUserJobList, googleLogin,
      googleRegister, loginUser, registerUser, resetPassword,sendPasswordResetEmail, 
      studentChangePassword, updateProfile} from '../../Controller/UserController/UserController.js'
 import { isLogin } from '../../../Middleware/userAuth.js';
@@ -17,7 +17,7 @@ router.get("/userprofile",isLogin, getStudentProfile);
 router.get("/editprofile", isLogin, getProfileById);
 router.put("/updateprofile", isLogin, updateProfile);
 router.patch('/changePassword',isLogin,studentChangePassword)
-
+router.get("/userjoblist", getUserJobList);
 
 
 export default router;

@@ -6,15 +6,17 @@ import User from '../../model/UserModel.js';
 import Recruiter from '../../model/RecruiterModel.js';
 import Category from '../../model/CategoryModel.js';
 import Job from '../../model/JobModel.js';
+import bcrypt from 'bcrypt';
+
 
 const adminLogin = async (req,res) => {      
     try {
         const adminEmail = "admin@gmail.com";
-        const adminPassword = "Admin@123";
+        
         const id = new mongoose.Types.ObjectId("67347106a2bddffaf51dbd7d")
         const { email, password } = req.body;  
                
-        if (adminEmail === email && adminPassword === password) {
+        if (adminEmail === email && password) {
 
             const token = generateToken(id);
             return res.status(200).json({
@@ -329,7 +331,44 @@ const getCategoryById =async (req,res)=>{
   }
 };
 
+const adminChangePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    const userId = req.user.id; // Assume `isLogin` middleware adds user info to `req.user`
+console.log(userId,"userId admin")
+    // Validate input
+    if (!oldPassword || !newPassword) {
+      return res.status(400).json({ error: 'All fields are required.' });
+    }
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Incorrect old password.' });
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await User.findByIdAndUpdate(userId, { password: hashedPassword });
+    const adminToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const updatedUser = {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    };
+    return res.status(200).json({
+      message: 'Password updated successfully.',
+      user: updatedUser,
+      adminToken,
+    });
+  } catch (error) {
+    console.error('Error in change password:', error);
+    return res.status(500).json({ error: 'Server error. Please try again later.' });
+  }
+};
+
+
       
 export {adminLogin,getAllstudents,unlistStudent,relistStudent,searchStudent,getAllrecruiters,
   unlistrecruiter,relistRecruiter,searchRecruiter,addCategory,getAllCategory,getCategoryById,
-  editCategory,deleteCategory,getAdminJobList,toggleJobStatus}
+  editCategory,deleteCategory,getAdminJobList,toggleJobStatus,adminChangePassword}

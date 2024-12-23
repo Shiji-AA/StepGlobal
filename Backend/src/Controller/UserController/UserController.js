@@ -5,6 +5,8 @@ import generateToken from "../../../Utils/generateToken.js"
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
+import Job from '../../model/JobModel.js';
+
 
 console.log(process.env.EMAIL_USER,"CJHDZGCJDGCJDHGCJD")
 
@@ -360,10 +362,29 @@ const studentChangePassword = async (req, res) => {
   }
 };
 
+const getUserJobList = async(req,res)=>{
+  try{
+    const jobDetails = await Job.find().populate('category', 'title').exec();
+    //console.log(jobDetails,"jobDetails")
+          if(jobDetails){
+        res.status(200).json({
+        jobDetails,message:"JobDetails"
+      })
+    }else{
+      return res.status(400).json({
+        error:"no job available"
+      })
+    }
+  }
+  catch(error){
+    return res.status(500).json({ message: "An error occurred. Please try again later." });  
+  }
+}
+
 
    
 
   
 export {registerUser,loginUser,googleRegister,googleLogin,
   sendPasswordResetEmail,resetPassword,getStudentProfile,
-  getProfileById,updateProfile,studentChangePassword}
+  getProfileById,updateProfile,studentChangePassword,getUserJobList}

@@ -77,7 +77,7 @@ function AdminNavbar() {
               Recruiters
             </a>
             <a
-              href="/settings"
+              href="/adminsettings"
               className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
             >
               Settings

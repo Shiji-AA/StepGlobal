@@ -43,6 +43,7 @@ import JobPostsList from "./Components/Admin/JobPostsList/JobPostsList";
 import CategoryList from "./Components/Admin/CategoryList/CategoryList";
 import AddCategory from "./Components/Admin/CategoryList/AddCategory";
 import EditCategory from "./Components/Admin/CategoryList/EditCategory";
+import ChangePasswordAdmin from "./Components/Admin/ChangePasswordAdmin/ChangePasswordAdmin";
 
 function App() {
   return (
@@ -96,6 +97,7 @@ function App() {
       <Route path="/adminjoblist" element={<JobPostsList />} />
       <Route path="/addcategory" element={<AddCategory/>} />
       <Route path="/editcategory/:id" element={<EditCategory/>} />
+      <Route path="/adminsettings" element={<ChangePasswordAdmin/>} />  
 
       </Route>          
       </Routes>       

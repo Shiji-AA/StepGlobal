@@ -3,7 +3,7 @@ const adminRouter = express.Router();
 import { isLogin } from "../../../Middleware/userAuth.js";
 
 
-import { addCategory, adminLogin, deleteCategory, editCategory, getAdminJobList, getAllCategory, getAllrecruiters, getAllstudents, getCategoryById, relistRecruiter, relistStudent, searchRecruiter,
+import { addCategory, adminChangePassword, adminLogin, deleteCategory, editCategory, getAdminJobList, getAllCategory, getAllrecruiters, getAllstudents, getCategoryById, relistRecruiter, relistStudent, searchRecruiter,
      searchStudent, toggleJobStatus, unlistrecruiter, unlistStudent } from "../../Controller/AdminController/AdminController.js";
 
 
@@ -26,5 +26,7 @@ adminRouter.delete("/deletecategory/:id", deleteCategory);
 
 adminRouter.get("/adminjoblist", getAdminJobList);
 adminRouter.post("/toggleJobStatus/:id", toggleJobStatus)
+adminRouter.patch('/adminchangepassword',isLogin,adminChangePassword);
+
 
 export default adminRouter;
