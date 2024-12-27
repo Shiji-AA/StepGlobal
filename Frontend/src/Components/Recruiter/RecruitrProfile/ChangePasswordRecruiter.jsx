@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import RecruiterSidebar from "../RecruiterSidebar/RecruiterSidebar";
+//import RecruiterSidebar from "../RecruiterSidebar/RecruiterSidebar";
 import RecruiterNavbar from "../RecruiterNavbar/RecruiterNavbar";
 import {useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
@@ -71,7 +71,7 @@ const ChangePasswordRecruiter= () => {
       <RecruiterNavbar />
       <div className="bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-20 md:flex-row text-[#161931]">
         <aside className="py-4 md:w-1/3 lg:w-1/4 hidden md:block">
-          <RecruiterSidebar />
+          {/* <RecruiterSidebar /> */}
         </aside>
         <main className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
           <div className="p-2 md:p-4">

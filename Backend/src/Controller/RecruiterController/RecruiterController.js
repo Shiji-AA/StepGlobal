@@ -5,6 +5,7 @@ import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import Job from '../../model/JobModel.js';
 import Category from "../../model/CategoryModel.js";
+import Application from '../../model/ApplicationModel.js';
 
 
 
@@ -507,8 +508,101 @@ const getAllCategory = async (req, res) => {
   }
 };
 
+const getApplicantsList = async (req, res) => {
+  const recruiterId = req.user && req.user._id;
+  // Check if recruiter is authenticated
+  if (!recruiterId) {
+      return res.status(401).json({
+          success: false,
+          message: 'Unauthorized access. Please log in.',
+      });
+  }
+  try {
+      // Fetch jobs posted by the recruiter
+      const jobs = await Job.find({ recruiterId });
+      if (!jobs || jobs.length === 0) {
+          return res.status(404).json({
+              success: false,
+              message: 'No jobs found for this recruiter.',
+          });
+      }
+      // Extract job IDs
+      const jobIds = jobs.map((job) => job._id);
+      // Fetch applications for the recruiter's jobs
+      const applications = await Application.find({ jobId: { $in: jobIds } })
+          .populate('userId', 'name email') // Populate applicant's details
+          .populate('jobId', 'jobTitle'); // Populate job details
+
+      // Handle empty applications
+      if (!applications || applications.length === 0) {
+          return res.status(404).json({
+              success: false,
+              message: 'No applicants found for your jobs.',
+          });
+      }
+      // Respond with applications
+      return res.status(200).json({
+          success: true,
+          applications,
+      });
+  } catch (error) {
+      console.error('Error fetching applicants:', error);
+      return res.status(500).json({
+          success: false,
+          message: 'An error occurred while fetching applicants.',
+      });
+  }
+};
+
+
+const updateApplicationStatus = async (req, res) => {
+    const applicationId = req.params.id; 
+    const { status } = req.body; 
+    const validStatuses = ['Pending', 'Approved', 'Rejected'];
+    if (!validStatuses.includes(status)) {
+        return res.status(400).json({
+            success: false,
+            message: 'Invalid status. Valid statuses are: Pending, Approved, Rejected.',
+        });
+    }
+    try {
+        // Find application by ID
+        const application = await Application.findById(applicationId);
+        if (!application) {
+            return res.status(404).json({
+                success: false,
+                message: 'Application not found.',
+            });
+        }
+        // If the status is already the same, no need to update
+        if (application.status === status) {
+            return res.status(200).json({
+                success: true,
+                message: `Application status is already ${status}.`,
+            });
+        }
+
+        // Update application status
+        application.status = status;
+        await application.save();
+
+        // Respond with success message
+        return res.status(200).json({
+            success: true,
+            message: 'Application status updated successfully.',
+        });
+    } catch (error) {
+        console.error('Error updating application status:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'An error occurred while updating the application status.',
+        });
+    }
+};
+
 
 
 export {registerRecruiter,loginRecruiter,googleRegisterRecruiter,googleLoginRecruiter,
   sendPasswordResetEmailRecruiter,resetPasswordRecruiter,getRecruiterProfile,getRecruiterProfileById,
-  updateRecruiterProfile,recruiterChangePassword,addJobPost,viewAllJobs,editJob,updateJob,deleteJob,getAllCategory}
+  updateRecruiterProfile,recruiterChangePassword,addJobPost,viewAllJobs,editJob,updateJob,deleteJob,
+  getAllCategory,getApplicantsList,updateApplicationStatus}

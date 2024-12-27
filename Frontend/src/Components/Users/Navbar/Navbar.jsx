@@ -59,7 +59,7 @@ function Navbar() {
           <Link to="/findjobs" className="text-white font-semibold hover:text-yellow-400">
             Search Jobs
           </Link>
-          <Link to="/findjobs" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="/appliedJobs" className="text-white font-semibold hover:text-yellow-400">
             My Applications
           </Link>
 
@@ -94,7 +94,7 @@ function Navbar() {
                       Profile
                     </Link>
                     <Link
-                      to=""
+                      to="/savedJobs"
                       className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                       onClick={() => setProfileMenuOpen(false)}
                     >

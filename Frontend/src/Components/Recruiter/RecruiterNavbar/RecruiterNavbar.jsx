@@ -63,7 +63,7 @@ function RecruiterNavbar() {
             Manage Jobs
           </Link>
         
-          <Link to="" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="/applicantsList" className="text-white font-semibold hover:text-yellow-400">
             Applicants
           </Link>
 

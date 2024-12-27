@@ -6,6 +6,8 @@ import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import Job from '../../model/JobModel.js';
+import Application from '../../model/ApplicationModel.js';
+import SavedJob from '../../model/SavedJobsModel.js';
 
 
 console.log(process.env.EMAIL_USER,"CJHDZGCJDGCJDHGCJD")
@@ -364,8 +366,8 @@ const studentChangePassword = async (req, res) => {
 
 const getUserJobList = async(req,res)=>{
   try{
-    const jobDetails = await Job.find().populate('category', 'title').exec();
-    //console.log(jobDetails,"jobDetails")
+    const jobDetails = await Job.find({isApproved: true}).populate('category', 'title').exec();
+    
           if(jobDetails){
         res.status(200).json({
         jobDetails,message:"JobDetails"
@@ -382,9 +384,96 @@ const getUserJobList = async(req,res)=>{
 }
 
 
-   
+const applyForJob = async (req, res) => {  
+    const jobId = req.params.id;      
+    const userId = req.user?.id;  
+    // Validate input
+    if (!jobId || !userId) {
+        return res.status(400).json({ success: false, message: "Job ID and User ID are required." });
+    }
+    try {        
+        const job = await Job.findById(jobId);
+        if (!job) {
+            return res.status(404).json({ success: false, message: "Job not found." });
+        }
+        // Check if the user already applied for the job
+        const existingApplication = await Application.findOne({ userId, jobId });
+        if (existingApplication) {
+            return res.status(400).json({ success: false, message: "You have already applied for this job." });
+        }
+        // Save the new application
+        const newApplication = new Application({ userId, jobId });
+        await newApplication.save();
+        // Respond with success
+        return res.status(201).json({ success: true, message: "Job application successful." });
+    } catch (error) {
+        console.error("Error applying for the job:", error);
+        return res.status(500).json({ success: false, message: "An error occurred while applying for the job." });
+    }
+};
 
-  
+const getAppliedJobsList = async (req, res) => {
+  try {
+    const userId = req.user?.id;   
+    const appliedJobs = await Application.find({ userId })
+      .populate('jobId') 
+      .exec();
+    if (appliedJobs.length === 0) {
+      return res.status(404).json({ message: "No applied jobs found." });
+    }
+    return res.status(200).json({ appliedJobs });
+  } catch (error) {
+    console.error("Error fetching applied jobs:", error);  // Log the error for debugging
+    return res.status(500).json({ message: "An error occurred while fetching applied jobs." });
+  }
+};
+
+
+const saveJob = async (req, res) => {
+  try {
+    const jobId = req.params.id;      
+    const userId = req.user?.id;
+    if (!jobId || !userId) {
+      return res.status(400).json({ message: 'Job ID and User ID are required.' });
+    } 
+    
+    const existingSavedJob = await SavedJob.findOne({ jobId, userId });
+    if (existingSavedJob) {
+      return res.status(400).json({ message: 'You have already saved this job.' });
+    }
+    const newSavedJob = new SavedJob({
+      userId,
+      jobId,
+      savedAt: new Date(),
+    });
+    await newSavedJob.save();
+    return res.status(200).json({ message: 'Job saved successfully!' });
+  } catch (error) {
+    console.error('Error saving job:', error);
+    return res.status(500).json({ message: 'Error saving job.' });
+  }
+};
+
+const getSavedJobsList = async (req, res) => {
+  try {
+    const userId = req.user?.id;   
+    const savedJobsList = await SavedJob.find({ userId })
+      .populate('jobId') 
+      .exec();
+    if (savedJobsList.length === 0) {
+      return res.status(404).json({ message: "No saved jobs found." });
+    }
+    return res.status(200).json({ savedJobsList });
+  } catch (error) {
+    console.error("Error fetching saved jobs:", error);  // Log the error for debugging
+    return res.status(500).json({ message: "An error occurred while fetching saved jobs." });
+  }
+};
+
+
+
+    
 export {registerUser,loginUser,googleRegister,googleLogin,
   sendPasswordResetEmail,resetPassword,getStudentProfile,
-  getProfileById,updateProfile,studentChangePassword,getUserJobList}
+  getProfileById,updateProfile,studentChangePassword,getUserJobList,
+  applyForJob,getAppliedJobsList,saveJob,getSavedJobsList}

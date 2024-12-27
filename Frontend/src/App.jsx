@@ -16,6 +16,8 @@ import ResetPassword from "./Components/Users/Login/ResetPassword";
 import Profile from "./Components/Users/Profile/Profile";
 import EditProfile from "./Components/Users/Profile/Editprofile";
 import ChangePassword from "./Components/Users/Profile/ChangePassword";
+import AppliedJOBs from "./Pages/Users/AppliedJobs/AppliedJOBs";
+import SavedJOBsPage from "./Pages/Users/SavedJobs/SavedJOBsPage";
 
 //Recruiter side
 
@@ -44,6 +46,9 @@ import CategoryList from "./Components/Admin/CategoryList/CategoryList";
 import AddCategory from "./Components/Admin/CategoryList/AddCategory";
 import EditCategory from "./Components/Admin/CategoryList/EditCategory";
 import ChangePasswordAdmin from "./Components/Admin/ChangePasswordAdmin/ChangePasswordAdmin";
+import ApplicantsList from "./Components/Recruiter/ApplicantsList/ApplicantsList";
+
+
 
 function App() {
   return (
@@ -65,7 +70,8 @@ function App() {
      <Route path="/profile" element={<Profile/>} />
      <Route path="/editprofile/:id" element={<EditProfile />} />
      <Route path="/changePassword" element={<ChangePassword />} />
-
+     <Route path="/appliedJobs" element={<AppliedJOBs/>} />     
+     <Route path="/savedJobs" element={<SavedJOBsPage/>} />
      </Route> 
 
       {/* RecruiterSide   */}     
@@ -83,6 +89,8 @@ function App() {
        <Route path="/postjobs/next" element={<Next/>} />  
        <Route path="/viewjobs" element={<JobListingRecruiter/>} /> 
        <Route path="/editjob/:id" element={<EditJob />} /> 
+       <Route path="/applicantsList" element={<ApplicantsList />} /> 
+       
       
         
        </Route>      

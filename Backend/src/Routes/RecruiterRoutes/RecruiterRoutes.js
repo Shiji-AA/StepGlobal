@@ -11,6 +11,8 @@ import { getRecruiterProfile, googleLoginRecruiter, googleRegisterRecruiter, log
      updateJob,
      deleteJob,
      getAllCategory,
+     getApplicantsList,
+     updateApplicationStatus,
      } from '../../Controller/RecruiterController/RecruiterController.js'
 
 
@@ -30,5 +32,9 @@ recruiterRouter.get("/editjob/:id", editJob);
 recruiterRouter.put("/updatejob/:id", updateJob);
 recruiterRouter.delete("/deletejob/:id", deleteJob);
 recruiterRouter.get("/categories", isLogin, getAllCategory);
+recruiterRouter.get("/applicantsList", isLogin, getApplicantsList);
+recruiterRouter.patch('/updateApplicationStatus/:id',isLogin,updateApplicationStatus);
+
+
 
 export default recruiterRouter;

@@ -25,6 +25,49 @@ function JobListing() {
             .finally(() => setLoading(false));
     }, []);
 
+
+function handleApply(jobId) {
+    if (!jobId) return;
+    const confirmApply = window.confirm("Are you sure you want to apply for this job?");
+    if (confirmApply) {
+        axiosInstance.post(`/applyJob/${jobId}`) // Replace with your API endpoint
+            .then((response) => {
+                if (response.data.success) {
+                    toast.success("You have successfully applied for the job!");
+                } else {
+                    toast.error(response.data.message || "Failed to apply for the job.");
+                }
+            })
+            .catch((error) => {
+                const errorMessage = error.response?.data?.message || "An error occurred while applying for the job.";
+                toast.error(errorMessage);
+            });
+    }
+}
+
+   // Function to handle saving a job
+   function handleSave(jobId) {
+    if (!jobId) return;
+
+    const confirmSave = window.confirm("Are you sure you want to save this job?");
+    if (confirmSave) {
+        axiosInstance
+            .post(`/saveJob/${jobId}`) // Replace with your save job API endpoint
+            .then((response) => {
+                if (response.data.success) {
+                    toast.success("Job saved successfully!");
+                } else {
+                    toast.error(response.data.message || "Failed to save the job.");
+                }
+            })
+            .catch((error) => {
+                const errorMessage = error.response?.data?.message || "An error occurred while saving the job.";
+                toast.error(errorMessage);
+            });
+    }
+}
+
+
     // Filter jobs based on search term, location, and type
     const filteredJobs = useMemo(() => {
         return jobDetails.filter((job) => {
@@ -35,11 +78,11 @@ function JobListing() {
             const typeMatch = typeFilter
                 ? job?.jobLocationType?.toLowerCase() === typeFilter.toLowerCase()
                 : true;
-
             return titleMatch && locationMatch && typeMatch;
         });
     }, [jobDetails, searchTerm, locationFilter, typeFilter]);
 
+    
     return (
         <div className="bg-gray-50 min-h-screen p-6 sm:py-12">
             {/* Search and Filter Section */}
@@ -97,13 +140,22 @@ function JobListing() {
                                     {job?.jobLocation?.city}, {job?.jobLocation?.state}
                                 </span>
                             </div>
-                            <div className="flex justify-end ">
-            <button className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition">
-                Apply Now
-            </button>
-        </div>
-                        </div>
-                    ))
+
+
+                            <div className="flex justify-between mt-4">
+                                <button
+                                    onClick={() => handleSave(job?._id)}
+                                    className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+                                >
+                                    Save Job
+                                </button>
+                                <button onClick={() => handleApply(job?._id)} 
+                                    className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition"
+                                >
+                                    Apply Now
+                                </button>
+                            </div>    
+                        </div>                    ))
                 ) : (
                     <p className="text-center text-gray-500">No jobs found.</p>
                 )}
