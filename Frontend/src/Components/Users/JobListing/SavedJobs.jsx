@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { axiosInstance } from '../../../api/axiosinstance'; // Adjust with your axios instance
+import { axiosInstance } from '../../../api/axiosInstance'; // Adjust with your axios instance
 import toast from 'react-hot-toast';
 
 function SavedJobs() {
