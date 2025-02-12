@@ -8,14 +8,15 @@ export default defineConfig({
     port: 4000,
   },
   build: {
-    chunkSizeWarningLimit: 500, // Adjust this if needed
+    outDir: "dist", // ✅ Specifies output directory
+    chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
             if (id.includes("react")) return "vendor-react"; // React-related chunks
-            if (id.includes("axios")) return "vendor-axios"; // Axios (if used)
-            return "vendor"; // Other vendor libraries
+            if (id.includes("axios")) return "vendor-axios"; // Axios chunk
+            return "vendor"; // Other dependencies
           }
         },
       },
