@@ -8,7 +8,7 @@ export default defineConfig({
     port: 4000,
   },
   build: {
-    outDir: "public",
+   
     chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
