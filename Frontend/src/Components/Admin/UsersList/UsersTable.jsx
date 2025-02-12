@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
-import { axiosInstanceAdmin } from "../../../api/axiosinstance";
 import { toast } from "react-hot-toast";
 import { useFormik } from "formik";
+import { axiosInstanceAdmin } from "../../../api/axiosinstance.jsx";
 
 function UsersTable() {
   const [studentDetails, setstudentDetails] = useState([]);
@@ -24,8 +24,7 @@ function UsersTable() {
     },
     validate,
     onSubmit: (values) => {
-      axiosInstanceAdmin
-        .get("/searchstudent", {
+      axiosInstanceAdmin.get("/searchstudent", {
           params: {
             searchCriteria: values.searchInput, // Correct usage of Formik's value
           },
