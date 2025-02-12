@@ -8,7 +8,7 @@ export default defineConfig({
     port: 4000,
   },
   build: {
-    outDir: "dist", // ✅ Specifies output directory
+    outDir: "Frontend/dist", // ✅ Specifies output directory
     chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
