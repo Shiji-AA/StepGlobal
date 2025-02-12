@@ -5,8 +5,8 @@ import { useFormik } from "formik";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { axiosInstance } from "../../../api/axiosinstance";
 import { updateProfile } from "../../../../Redux/Slices/AuthSlice";
+import { axiosInstance } from "../../../api/axiosinstance.jsx";
 
 function EditProfile() {
   const navigate = useNavigate();
@@ -71,7 +71,8 @@ function EditProfile() {
         if (response.data && response.data.url) {
           const imgUrl = response.data.url;
 
-          const updateResponse = await axiosInstance.put("/updateprofile", {
+          const updateResponse = await 
+          axiosInstance.put("/updateprofile", {
             studentName: values.studentName,
             studentEmail: values.studentEmail,
             phone: values.phone,
