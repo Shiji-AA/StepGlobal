@@ -5,10 +5,12 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        tealLight: "#00A0A0", // Custom name for #00A0A0
+        tealDark: "#026971", // Custom name for #026971
+      },
+    },
   },
   plugins: [],
 }
-
-
-

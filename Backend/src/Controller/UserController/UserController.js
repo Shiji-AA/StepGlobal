@@ -386,8 +386,7 @@ const getUserJobList = async(req,res)=>{
 
 const applyForJob = async (req, res) => {  
     const jobId = req.params.id;      
-    const userId = req.user?.id;  
-    // Validate input
+    const userId = req.user?.id;
     if (!jobId || !userId) {
         return res.status(400).json({ success: false, message: "Job ID and User ID are required." });
     }
@@ -396,21 +395,96 @@ const applyForJob = async (req, res) => {
         if (!job) {
             return res.status(404).json({ success: false, message: "Job not found." });
         }
-        // Check if the user already applied for the job
         const existingApplication = await Application.findOne({ userId, jobId });
         if (existingApplication) {
             return res.status(400).json({ success: false, message: "You have already applied for this job." });
         }
-        // Save the new application
         const newApplication = new Application({ userId, jobId });
         await newApplication.save();
-        // Respond with success
         return res.status(201).json({ success: true, message: "Job application successful." });
     } catch (error) {
         console.error("Error applying for the job:", error);
         return res.status(500).json({ success: false, message: "An error occurred while applying for the job." });
     }
 };
+
+
+// const nodemailer = require('nodemailer'); // Import nodemailer
+
+// // Configure the email transporter
+// const transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//         user: process.env.EMAIL_USER, // Replace with your email
+//         pass: process.env.EMAIL_PASS, // Replace with your email password or app-specific password
+//     },
+// });
+
+// const applyForJob = async (req, res) => {
+//     const jobId = req.params.id;
+//     const userId = req.user?.id;
+
+//     if (!jobId || !userId) {
+//         return res.status(400).json({ success: false, message: "Job ID and User ID are required." });
+//     }
+
+//     try {
+//         // Fetch the job details
+//         const job = await Job.findById(jobId);
+//         if (!job) {
+//             return res.status(404).json({ success: false, message: "Job not found." });
+//         }
+
+//         // Check if the user has already applied
+//         const existingApplication = await Application.findOne({ userId, jobId });
+//         if (existingApplication) {
+//             return res.status(400).json({ success: false, message: "You have already applied for this job." });
+//         }
+
+//         // Save the new application
+//         const newApplication = new Application({ userId, jobId });
+//         await newApplication.save();
+
+//         // Fetch recruiter's email
+//         const recruiter = await User.findById(job.recruiterId); // Assuming Job has a recruiterId field
+//         if (!recruiter) {
+//             return res.status(404).json({ success: false, message: "Recruiter not found." });
+//         }
+
+//         // Applicant details (you may fetch more details if available)
+//         const applicant = await User.findById(userId);
+//         const applicantDetails = {
+//             name: applicant?.name || "Applicant",
+//             email: applicant?.email || "N/A",
+//         };
+
+//         // Send email notification to the recruiter
+//         const mailOptions = {
+//             from: process.env.EMAIL_USER,
+//             to: recruiter.email,
+//             subject: `New Application for ${job.title}`,
+//             text: `You have received a new application for your job posting:\n\n` +
+//                   `Job Title: ${job.title}\n` +
+//                   `Applicant Name: ${applicantDetails.name}\n` +
+//                   `Applicant Email: ${applicantDetails.email}\n\n` +
+//                   `Please log in to your dashboard to view more details.`,
+//         };
+
+//         transporter.sendMail(mailOptions, (error, info) => {
+//             if (error) {
+//                 console.error("Error sending email:", error);
+//             } else {
+//                 console.log("Email sent: " + info.response);
+//             }
+//         });
+//            return res.status(201).json({ success: true, message: "Job application successful." });
+
+//     } catch (error) {
+//         console.error("Error applying for the job:", error);
+//         return res.status(500).json({ success: false, message: "An error occurred while applying for the job." });
+//     }
+// };
+
 
 const getAppliedJobsList = async (req, res) => {
   try {

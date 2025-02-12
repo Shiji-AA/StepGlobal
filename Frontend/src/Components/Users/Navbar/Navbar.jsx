@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import logoArcite from "../../../assets/logoArcite.png";
+import stepLogo from "../../../assets/logo/stepLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../Redux/Slices/AuthSlice";
 
@@ -21,9 +21,12 @@ function Navbar() {
   const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-gray-400 shadow-md">
+
+
+  <>
+    <nav className="flex items-center justify-between p-4 bg-white shadow-md">
       {/* Logo */}
-      <img src={logoArcite} alt="ARCITE" width="120" className="mr-4" />
+      <img src={stepLogo} alt="ARCITE" width="110" className="mr-4" />
 
       {/* Mobile Menu Toggle */}
       <div className="flex md:hidden">
@@ -52,22 +55,22 @@ function Navbar() {
         }`}
       >
         <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
-          <Link to="/" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="/" className="text-black font-semibold hover:text-yellow-400">
             Home
           </Link>
       
-          <Link to="/findjobs" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="/findjobs" className="text-black font-semibold hover:text-yellow-400">
             Search Jobs
           </Link>
-          <Link to="/appliedJobs" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="/appliedJobs" className="text-black font-semibold hover:text-yellow-400">
             My Applications
           </Link>
 
-          <Link to="/aboutus" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="/aboutus" className="text-black font-semibold hover:text-yellow-400">
             About Us
           </Link>
         
-          <Link to="/contactus" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="/contactus" className="text-black font-semibold hover:text-yellow-400">
             Contact Us
           </Link>
 
@@ -139,6 +142,7 @@ function Navbar() {
         </div>
       </div>
     </nav>
+  </>
   );
 }
 

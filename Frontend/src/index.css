@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.display-none{
-  @apply hidden
+/* Prevent unwanted overflow */
+body, html {
+  @apply overflow-x-hidden;
+}
+
+/* Utility class for hiding elements */
+.display-none {
+  @apply hidden;
 }

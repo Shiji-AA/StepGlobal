@@ -53,7 +53,8 @@ import ApplicantsList from "./Components/Recruiter/ApplicantsList/ApplicantsList
 function App() {
   return (
     <Router>
-     <Toaster position="top-right"/>
+      <div className="min-h-screen overflow-x-hidden bg-gray-100">
+      <Toaster position="top-right"/>
      <Routes>   
       {/* UserSide   */}
      <Route path="/" element={<LandingPage/>} />
@@ -108,7 +109,10 @@ function App() {
       <Route path="/adminsettings" element={<ChangePasswordAdmin/>} />  
 
       </Route>          
-      </Routes>       
+      </Routes>  
+
+      </div>
+       
       </Router>
   )
 }
