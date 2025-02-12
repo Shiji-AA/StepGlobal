@@ -1,5 +1,5 @@
 import  { useState, useEffect } from "react";
-import { axiosInstance } from "../../../api/axiosinstance";
+import { axiosInstance } from "../../../api/axiosInstance";
 import toast from "react-hot-toast";
 
 function AppliedJobs() {

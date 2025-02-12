@@ -1,4 +1,4 @@
-import { axiosInstanceAdmin } from '../../../api/axiosinstance';
+import { axiosInstanceAdmin } from '../../../api/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 import logoArcite from "../../../assets/logoArcite.png";
 import admin1 from '../../../assets/admin1.jpg'

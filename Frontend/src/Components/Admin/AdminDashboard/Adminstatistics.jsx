@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { axiosInstanceAdmin } from "../../../api/axiosinstance";
+import { axiosInstanceAdmin } from "../../../api/axiosInstance";
 
 function Adminstatistics() {
   const [count, setCount] = useState({

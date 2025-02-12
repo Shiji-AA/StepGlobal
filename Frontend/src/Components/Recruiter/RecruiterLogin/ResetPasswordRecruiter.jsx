@@ -2,7 +2,7 @@ import {useNavigate, useParams } from "react-router-dom";
 import logoArcite from "../../../assets/logoArcite.png";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { axiosInstanceRecruiter } from "../../../api/axiosinstance";
+import { axiosInstanceRecruiter } from "../../../api/axiosInstance";
 
 export default function ResetPasswordRecruiter() {
   const[recruiterPassword,setrecruiterPassword] = useState('');

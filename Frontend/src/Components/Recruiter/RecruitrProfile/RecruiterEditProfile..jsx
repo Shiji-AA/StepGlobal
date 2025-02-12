@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import RecruiterNavbar from "../RecruiterNavbar/RecruiterNavbar";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { axiosInstanceRecruiter } from "../../../api/axiosinstance";
+import { axiosInstanceRecruiter } from "../../../api/axiosInstance";
 import { updateRecruiterProfile } from "../../../../Redux/Slices/RecruiterSlice";
 
 function RecruiterEditProfile() {

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
-import { axiosInstance } from "../../../api/axiosinstance.jsx";
+import { axiosInstance } from "../../../api/axiosInstance";
 
 function Profile() {
    const userData = useSelector((state) => state.auth.userdata); 

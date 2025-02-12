@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-import { axiosInstanceAdmin } from '../../../api/axiosinstance';
+import { axiosInstanceAdmin } from '../../../api/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';

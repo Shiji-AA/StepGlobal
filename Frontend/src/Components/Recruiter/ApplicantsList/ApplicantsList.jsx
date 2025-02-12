@@ -1,5 +1,5 @@
 import  { useEffect, useState } from 'react'
-import { axiosInstanceRecruiter } from '../../../api/axiosinstance';
+import { axiosInstanceRecruiter } from '../../../api/axiosInstance';
 import toast from 'react-hot-toast';
 import RecruiterNavbar from '../RecruiterNavbar/RecruiterNavbar';
 

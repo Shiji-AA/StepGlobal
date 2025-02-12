@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import RecruiterNavbar from "../RecruiterNavbar/RecruiterNavbar";
 import jobpost from "../../../assets/jobpost.jpg";
-import { axiosInstanceRecruiter } from "../../../api/axiosinstance.jsx";
+import { axiosInstanceRecruiter } from "../../../api/axiosInstance";
 import toast from "react-hot-toast";
 import { useState } from "react";
 

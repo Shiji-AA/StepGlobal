@@ -6,7 +6,7 @@ import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { updateProfile } from "../../../../Redux/Slices/AuthSlice";
-import { axiosInstance } from "../../../api/axiosinstance.jsx";
+import { axiosInstance } from "../../../api/axiosInstance";
 
 function EditProfile() {
   const navigate = useNavigate();

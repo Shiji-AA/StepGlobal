@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import { toast } from "react-hot-toast";
 import { useFormik } from "formik";
-import { axiosInstanceAdmin } from "../../../api/axiosinstance.jsx";
+import { axiosInstanceAdmin } from "../../../api/axiosInstance";
 
 function UsersTable() {
   const [studentDetails, setstudentDetails] = useState([]);

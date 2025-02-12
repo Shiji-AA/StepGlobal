@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { axiosInstanceRecruiter } from "../../../api/axiosinstance.jsx";
+import { axiosInstanceRecruiter } from "../../../api/axiosInstance";
 import RecruiterNavbar from "../RecruiterNavbar/RecruiterNavbar";
 import { Link } from "react-router-dom";
 

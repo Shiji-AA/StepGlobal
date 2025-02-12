@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { axiosInstanceAdmin } from "../../../api/axiosinstance"; // Adjust the import as per your API configuration
+import { axiosInstanceAdmin } from "../../../api/axiosInstance"; // Adjust the import as per your API configuration
 import toast from "react-hot-toast";
 import AdminNavbar from "../../../Components/Admin/AdminNavbar/AdminNavbar"; // Assuming you have this component
 import { format } from "date-fns";

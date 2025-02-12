@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { axiosInstanceAdmin } from "../../../api/axiosinstance";
+import { axiosInstanceAdmin } from "../../../api/axiosInstance";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { axiosInstanceAdmin } from "../../../api/axiosinstance";
+import { axiosInstanceAdmin } from "../../../api/axiosInstance";
 import toast from "react-hot-toast";
 import AdminNavbar from "../AdminNavbar/AdminNavbar";
 import Swal from 'sweetalert2';

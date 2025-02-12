@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import RecruiterNavbar from "../RecruiterNavbar/RecruiterNavbar";
 import {useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
-import { axiosInstanceRecruiter } from '../../../api/axiosinstance';
+import { axiosInstanceRecruiter } from '../../../api/axiosInstance';
 import { useFormik } from 'formik';
 import { setRecruiterInfo } from '../../../../Redux/Slices/RecruiterSlice';
 

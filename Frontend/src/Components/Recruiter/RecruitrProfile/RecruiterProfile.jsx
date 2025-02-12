@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import {Link} from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { axiosInstanceRecruiter } from "../../../api/axiosinstance";
+import { axiosInstanceRecruiter } from "../../../api/axiosInstance";
 import RecruiterNavbar from "../RecruiterNavbar/RecruiterNavbar";
 import RecruiterSidebar from "../RecruiterSidebar/RecruiterSidebar";
 

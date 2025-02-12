@@ -3,7 +3,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import Navbar from '../Navbar/Navbar';
 import { useSelector, useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
-import { axiosInstance } from '../../../api/axiosinstance';
+import { axiosInstance } from '../../../api/axiosInstance';
 import { setUserInfo } from '../../../../Redux/Slices/AuthSlice';
 import { useFormik } from 'formik';
 
