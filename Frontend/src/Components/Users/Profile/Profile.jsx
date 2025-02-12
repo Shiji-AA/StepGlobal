@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import {Link} from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { axiosInstance } from "../../../api/axiosinstance";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
+import { axiosInstance } from "../../../api/axiosinstance.jsx";
 
 function Profile() {
    const userData = useSelector((state) => state.auth.userdata); 
@@ -12,7 +12,7 @@ function Profile() {
     useEffect(() => {
     const userId = userData?.id;
     if (userId) {
-      axiosInstance.get(`/userprofile`)
+axiosInstance.get(`/userprofile`)     
       .then((response) => {
         console.log(response, "I am  response");
       if (response.data) {
