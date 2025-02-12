@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import stepLogo from "../../../assets/logo/stepLogo.png";
+import stepLogo from "../../../assets/logo/StepLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../Redux/Slices/AuthSlice";
 
