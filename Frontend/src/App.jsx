@@ -62,11 +62,12 @@ function App() {
      <Route path="/login" element={<Login/>} />
      <Route path="/forgotpassword" element={<ForgotPassword/>} />
      <Route path="/reset_password/:id/:token" element={<ResetPassword/>} />
-     <Route element={<PrivatePages isStudent={true}/>}> 
-     <Route path="/home" element={<HomePage/>} />    
-     <Route path="/aboutus" element={<AboutUs/>} />
      <Route path="/contactus" element={<ContactUs/>} />
+     <Route path="/aboutus" element={<AboutUs/>} />
      <Route path="/findjobs" element={<FindJobs/>} />
+
+     <Route element={<PrivatePages isStudent={true}/>}> 
+     <Route path="/home" element={<HomePage/>} />     
      <Route path="/page" element={<Page/>} />     
      <Route path="/profile" element={<Profile/>} />
      <Route path="/editprofile/:id" element={<EditProfile />} />

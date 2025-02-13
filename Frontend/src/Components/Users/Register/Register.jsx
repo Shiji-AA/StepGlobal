@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import {axiosInstance} from '../../../api/axiosInstance/'
-import logoArcite from "../../../assets/logoArcite.png";
+import logoArcite from "../../../assets/logo/StepLogo.png";
 import tutor6 from '../../../assets/tutor6.jpg';
 import { useFormik } from 'formik';
 import {GoogleOAuthProvider,GoogleLogin} from '@react-oauth/google'
@@ -81,7 +81,7 @@ function Register() {
                   width="120"
                 />
               </div>
-                <h1 className="font-semibold text-xl">Sign up To your account</h1>
+                <h1 className="font-semibold text-xl">Create my Profile</h1>
                 <form onSubmit={formik.handleSubmit} className="space-y-4 md:space-y-5">
                   <div>
                     <input
@@ -148,7 +148,7 @@ function Register() {
                     type="submit"
                     className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium bg-indigo-600 text-gray-900 bg-customColor hover:bg-customColor focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customColor"
                   >
-                    Signup
+                    Create my Profile
                   </button>
                 </form>
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { logout } from '../../../../Redux/Slices/AdminSlice'
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import logoArcite from "../../../assets/logoArcite.png"; // Keep the same logo for consistency
+import logoArcite from "../../../assets/logo/StepLogo.png"; // Keep the same logo for consistency
 
 function AdminNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);

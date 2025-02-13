@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import logoArcite from "../../../assets/logoArcite.png";
+import logoArcite from "../../../assets/logo/StepLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from '../../../../Redux/Slices/RecruiterSlice'
 

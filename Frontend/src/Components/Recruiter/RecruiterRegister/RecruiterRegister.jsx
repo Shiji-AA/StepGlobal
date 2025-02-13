@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import {axiosInstanceRecruiter} from '../../../api/axiosInstance/'
-import logoArcite from "../../../assets/logoArcite.png";
+import logoArcite from "../../../assets/logo/StepLogo.png";
 import tutor6 from '../../../assets/tutor6.jpg'
 import {GoogleOAuthProvider,GoogleLogin} from '@react-oauth/google';
 import {useFormik } from 'formik';

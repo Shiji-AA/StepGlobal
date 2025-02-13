@@ -1,5 +1,5 @@
 import {useNavigate, useParams } from "react-router-dom";
-import logoArcite from "../../../assets/logoArcite.png";
+import logoArcite from "../../../assets/logo/StepLogo.png";
 import { axiosInstance } from "../../../api/axiosInstance/";
 import { useState } from "react";
 import toast from "react-hot-toast";

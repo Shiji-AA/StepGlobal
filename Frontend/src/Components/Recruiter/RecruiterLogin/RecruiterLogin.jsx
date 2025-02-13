@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { axiosInstanceRecruiter } from "../../../api/axiosInstance/";
 import toast from "react-hot-toast";
 import { setRecruiterInfo } from "../../../../Redux/Slices/RecruiterSlice";
-import logoArcite from "../../../assets/logoArcite.png";
+import logoArcite from "../../../assets/logo/StepLogo.png";
 import admin1 from "../../../assets/admin1.jpg";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useFormik } from 'formik';

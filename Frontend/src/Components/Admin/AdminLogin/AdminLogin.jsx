@@ -1,6 +1,6 @@
 import { axiosInstanceAdmin } from '../../../api/axiosInstance';
 import { useNavigate } from 'react-router-dom';
-import logoArcite from "../../../assets/logoArcite.png";
+import logoArcite from "../../../assets/logo/StepLogo.png";
 import admin1 from '../../../assets/admin1.jpg'
 import { useState,useEffect } from "react";
 import toast from "react-hot-toast";

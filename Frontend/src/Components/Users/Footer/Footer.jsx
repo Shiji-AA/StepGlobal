@@ -1,4 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import footerbg from "../../../assets/images/footerbg1.avif";
+import logoArcite2 from "../../../assets/logo/StepLogo.png";
 import {
   faFacebookF,
   faInstagram,
@@ -6,217 +8,129 @@ import {
   faLinkedin,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import {
+  faPhone,
+  faMapMarkerAlt,
+  faEnvelope,
+  faArrowUp,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { Link } from "react-router-dom";
-import logoArcite from '../../../assets/logoArcite.png';
+
 
 function Footer() {
+  // Scroll to top functionality
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <>
-      <div className="border-t border-black">
-        <footer className="bg-gray-100 dark:bg-black">
-          <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-            <div className="grid md:grid-cols-6 gap-4">
-              
-              {/* First div - takes 2 columns */}
-              <div className="col-span-2">
-                <Link to="" className="flex items-center">
-                  <img src={logoArcite} className="h-14 mr-3" alt="ARCITE" />
-                </Link>
-                <p className="text-sm mt-6 text-gray-700 dark:text-gray-400">
-  ARCITE, an ISO 9001-2015 certified institution, was founded in
-  2015 with the goal of fostering a better engineering culture
-  by providing quality and affordable training programs to the
-  emerging engineering community.
+    <footer
+      className="bg-white text-gray-900 pt-3  border border-gray-100"
+      style={{
+        backgroundImage: `url(${footerbg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+ <div className="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:py-6">
+        {/* Footer Content */}
+        <div className="flex flex-col md:flex-row justify-between gap-10">
+          {/* Left Section */}
+          <div className="flex-1 p">  
+            <Link to="" className="flex items-center">
+              <img src={logoArcite2} className="h-16 mr-3" alt="ARCITE" />
+            </Link>
+            <p className="text-sm md:text-base mt-6 text-gray-800 leading-relaxed max-w-[700px] sm:max-w-[800px] mx-auto sm:mx-0 text-justify">
+            StepGlobal is designed to connect job seekers with opportunities across the globe. It aims to establish a comprehensive job portal, bridging geographical gaps and empowering candidates to find industry-relevant jobs, no matter where they are.
+
 </p>
 
 
-                <div className="flex items-center mt-6 text-gray-600 dark:text-gray-400">
-                  <div>
-                    <div className="flex items-baseline">
-                      <div className="text-lg font-bold text-gray-700 dark:text-gray-300">
-                        Follow Us
-                      </div>
-                    </div>
-                    <div className="flex gap-4 mt-2">
-                      <FontAwesomeIcon
-                        icon={faFacebookF}
-                        size="1x"
-                        style={{
-                          backgroundColor: "#e7f3ff",
-                          color: "#3b5998",
-                          padding: "8px",
-                        }}
-                      />
-                      <FontAwesomeIcon
-                        icon={faInstagram}
-                        size="1x"
-                        style={{
-                          backgroundColor: "#FFE5E5",
-                          color: "#B22222",
-                          padding: "8px",
-                        }}
-                      />
-                      <FontAwesomeIcon
-                        icon={faXTwitter}
-                        size="1x"
-                        style={{
-                          backgroundColor: "#e7f3ff",
-                          color: "#3b5998",
-                          padding: "8px",
-                        }}
-                      />
-                      <FontAwesomeIcon
-                        icon={faYoutube}
-                        size="1x"
-                        style={{
-                          backgroundColor: "#FFE5E5",
-                          color: "#B22222",
-                          padding: "8px",
-                        }}
-                      />
-                      <FontAwesomeIcon
-                        icon={faLinkedin}
-                        size="1x"
-                        style={{
-                          backgroundColor: "#e7f3ff",
-                          color: "#3b5998",
-                          padding: "8px",
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Second div - takes 1 column */}
-              <div className="col-span-1">
-                <h2 className="mb-6 text-md font-semibold text-gray-1000 dark:text-white">
-                  Departments
-                </h2>
-                <ul className="text-gray-900 dark:text-gray-600 font-small">
-                  <li className="mb-1 text-sm">Mechanical Engineering</li>
-                  <li className="mb-1 text-sm">Electrical Engineering</li>
-                  <li className="mb-1 text-sm">Civil Engineering</li>
-                  <li className="mb-1 text-sm">Data Science</li>
-                </ul>
-              </div>
+          </div>
 
-              {/* Third div - takes 1 column */}
-              <div className="col-span-1">
-                <h2 className="mb-6 text-md font-semibold text-gray-1000 dark:text-white">
-                  Our Concerns
-                </h2>
-                <ul className="text-gray-900 dark:text-gray-600 font-small">
-                  <li className="mb-1 text-sm">ARCITE School of Technical Education</li>
-                  <li className="mb-1 text-sm">ARCITE School of Builders and Innovators</li>
-                  <li className="mb-1 text-sm">ARCITE School of Media</li>
-                  <li className="mb-1 text-sm">ARCITE School of Data Science</li>
-                </ul>
-              </div>
-
-              {/* Fourth div - takes 2 columns */}
-              <div className="col-span-2">
-                <h2 className="mb-6 text-md font-semibold text-gray-1000 dark:text-white">
-                  Contact Us
-                </h2>
-                <ul className="text-gray-900 dark:text-gray-400 font-sm">
-                  <li className="mb-1 flex items-center space-x-2">
-                  <svg
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      className="w-8 h-10 text-blue-400"
+          {/* Right Section - Social Links & Contact */}
+          <div className="flex-1 grid grid-cols-2 gap-1">
+            {/* Social Links */}
+            <div>
+              <h2 className="font-body mb-4 text-xl font-semibold text-tealDark">
+                Follow Us
+              </h2>
+              <ul className="space-y-3">
+                {[
+                  { href: "https://www.facebook.com/arciteschooloftechnicaleducation/", icon: faFacebookF, label: "Facebook" },
+                  { href: "https://www.instagram.com/arcite.in/", icon: faInstagram, label: "Instagram" },                 
+                  { href: "https://x.com/arcite_in", icon: faXTwitter, label: "Twitter" },                  
+                  { href: "https://www.linkedin.com/company/arc-institute-of-technical-education/", icon: faLinkedin, label: "LinkedIn" },
+                  { href: "https://www.youtube.com/@arciteschooloftechnicaledu6571", icon: faYoutube, label: "YouTube" },
+                ].map(({ href, icon, label }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 transition-all hover:text-tealLight hover:translate-x-2"
                     >
-                      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <p className="ml-2 text-sm mt-6 text-gray-700 dark:text-gray-400">Kottiyam Campus:Second floor SAS Arcade 
-                        Opp.VyaparaBhavan kottiyam 
-                        Kollam Kerala 691571</p>
+                      <FontAwesomeIcon
+                        icon={icon}
+                        size="lg"
+                        className="text-tealLight hover:bg-tealLight hover:text-tealDark p-2 rounded-full transition-colors"
+                      />
+                      <span className="text-lg">{label}</span>
+                    </a>
                   </li>
-                  <li className="mb-1 flex items-center space-x-2">
-                  <svg
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      className="w-8 h-10 text-blue-400"
-                    >
-                      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <p className="ml-2 text-sm mt-6 text-gray-700 dark:text-gray-400">Kochi Campus:Second floor SAS Arcade 
-                        Opp.VyaparaBhavan kottiyam 
-                        Kollam Kerala 691571</p>
-                  </li>
-                  <li className="mb-1 flex items-center space-x-2">
-                  <svg
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      className="w-8 h-10 text-blue-400"
-                    >
-                      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <p className="ml-2 text-sm mt-6 text-gray-700 dark:text-gray-400">Kadappakkada Campus:Second floor SAS Arcade 
-                        Opp.VyaparaBhavan kottiyam 
-                        Kollam Kerala 691571</p>
-                  </li>
-                  <li className="mb-1 flex items-center space-x-2">
-                  <svg
-                      fill="none"
-                      stroke="#3B82F6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1"
-                      viewBox="0 0 24 24"
-                      className="w-6 h-5 text-gray-500"
-                    >
-                      <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <p className="ml-2 text-sm mt-6 text-gray-700 dark:text-gray-400" >info@arcite.in</p>
-                  </li>
-                  <li className="mb-1 flex items-center space-x-2">
-                  <svg
-                      fill="none"
-                      stroke="#3B82F6" /* Light blue color */
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1"
-                      viewBox="0 0 24 24"
-                      className="w-6 h-5" /* Medium size */
-                    >
-                      <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <p className="ml-2 text-sm mt-6 text-gray-700 dark:text-gray-400">+91-799 421 1144</p>
-                  </li>
-                </ul>
-              </div>
+                ))}
+              </ul>
             </div>
 
-            <div className="sm:flex sm:items-center sm:justify-center border-t border-gray-300 pt-6 mt-6">
-              <span className="text-sm text-gray-900 sm:text-center dark:text-gray-400">
-                © 2024{" "}
-                <a href="https://flowbite.com/" className="">
-                  ARCITE
-                </a>
-                . All Rights Reserved.
-              </span>
+            {/* Contact Info */}
+            <div>
+              <h2 className="font-body mb-4 text-xl font-semibold text-tealDark">
+                Contact Us
+              </h2>
+              <ul className="space-y-3">
+                {[
+                  { icon: faPhone, text: "9633221153" },
+                  { icon: faMapMarkerAlt, text: "Kerala, India" },
+                  { icon: faEnvelope, text: "info@stepglobal.in" },
+                ].map(({ icon, text }) => (
+                  <li key={text} className="flex items-center gap-3 text-lg">
+                    <FontAwesomeIcon icon={icon} className="text-tealLight" />
+                    <span>{text}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </footer>
+        </div>
+
+        {/* Footer Bottom */}
+        <div className="flex flex-col md:flex-row sm:justify-between items-center mt-6 pt-4 border-t-2 border-gray-300 text-lg">
+        <span className="text-gray-900 text-center sm:text-left">
+  © 2025{" "}
+  <a href="#">
+    An{" "}
+    <a href="https://www.arcite.in/" className="text-tealLight" style={{ display: 'inline-flex', alignItems: 'center' }}>
+ARCITE
+    </a>{" "}
+    Initiative
+  </a>
+</span>
+
+
+          <div className="flex items-center gap-6 mt-4 sm:mt-0">
+            {/* Scroll to Top Button */}
+            <button
+              onClick={scrollToTop}
+              className=" bg-tealLight text-white p-3 w-12 h-12 rounded-full shadow-lg transform rotate-[-45deg] transition-all duration-300 hover:bg-tealDark hover:rotate-0"
+              aria-label="Scroll to top"
+            >
+              <FontAwesomeIcon icon={faArrowUp} size="lg" />
+            </button>
+          </div>
+        </div>
       </div>
-    </>
+    </footer>
   );
 }
 
