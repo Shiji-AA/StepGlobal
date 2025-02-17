@@ -57,20 +57,20 @@ function Navbar() {
           <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
             {user ? (
               <Link
-                to="/"
+                to="/home"
                 className="text-black font-semibold hover:text-teal-400"
               >
                 Home
               </Link>
             ) : null}
 
-            {/* <Link to="/findjobs" className="text-black font-semibold hover:text-yellow-400">
+            {/* <Link to="/findjobs" className="text-black font-semibold hover:text-teal-400">
             Search Jobs
           </Link> */}
             {user ? (
               <Link
                 to="/appliedJobs"
-                className="text-black font-semibold hover:text-yellow-400"
+                className="text-black font-semibold hover:text-teal-400"
               >
                 My Applications
               </Link>
@@ -79,7 +79,7 @@ function Navbar() {
             {user ? (
               <Link
                 to="/aboutus"
-                className="text-black font-semibold hover:text-yellow-400"
+                className="text-black font-semibold hover:text-teal-400"
               >
                 About Us
               </Link>
@@ -88,7 +88,7 @@ function Navbar() {
             {user ? (
               <Link
                 to="/contactus"
-                className="text-black font-semibold hover:text-yellow-400"
+                className="text-black font-semibold hover:text-teal-400"
               >
                 Contact Us
               </Link>
@@ -101,7 +101,7 @@ function Navbar() {
                 <div className="relative">
                   <button
                     onClick={toggleProfileMenu}
-                    className="px-6 py-2 font-semibold text-white bg-green-500 hover:bg-green-600 rounded-lg transition duration-300 ease-in-out"
+                    className="px-6 py-2 font-semibold text-white bg-teal-500 hover:bg-teal-600 rounded-lg transition duration-300 ease-in-out"
                   >
                     {user?.name}
                   </button>

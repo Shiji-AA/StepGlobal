@@ -36,7 +36,7 @@ function RecruiterProfile() {
           <RecruiterSidebar />
         </div>
 
-<div className="w-3/4 bg-gradient-to-b from-blue-200 to-white rounded-lg">
+<div className="w-3/4 bg-gradient-to-b from-teal-200 to-white rounded-lg">
     <br/>
       <div className="text-2xl font-semibold mb-4 text-center"> Recruiter Profile</div>
 
@@ -92,7 +92,7 @@ function RecruiterProfile() {
 
              
                 <Link to={`/recruitereditprofile/${recruiterData?.id}`}>              
-                <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button className="px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
                   Edit Profile
                 </button>
                 </Link>

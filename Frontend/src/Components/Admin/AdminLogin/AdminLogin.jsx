@@ -44,7 +44,7 @@ const handleSubmit=(e)=> {
 
 }
   return (
-    <div className="flex min-h-screen justify-center items-center bg-blue-50"style={{ backgroundImage: `url(${admin1})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', width: '100vw' }}>
+    <div className="flex min-h-screen justify-center items-center bg-teal-50"style={{ backgroundImage: `url(${admin1})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', width: '100vw' }}>
       <div className="bg-white rounded-lg border border-gray-300 shadow-md overflow-hidden sm:max-w-sm sm:w-full">
         <div className="px-6 py-8">
           <img
@@ -71,7 +71,7 @@ const handleSubmit=(e)=> {
                   placeholder="Enter your username"
                   autoComplete="email"
                   required
-                  className="block w-full px-4 py-3 rounded-md border border-gray-300 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-4 py-3 rounded-md border border-gray-300 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -82,7 +82,7 @@ const handleSubmit=(e)=> {
                   Password
                 </label>
                 {/* <div className="text-sm">
-                  <a href="/tutorforgot" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <a href="/tutorforgot" className="font-semibold text-teal-600 hover:text-teal-500">
                     Forgot password?
                   </a>
                 </div> */}
@@ -97,7 +97,7 @@ const handleSubmit=(e)=> {
                   placeholder="Enter your password"
                   autoComplete="current-password"
                   required
-                  className="block w-full px-4 py-3 rounded-md border border-gray-300 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-4 py-3 rounded-md border border-gray-300 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -105,7 +105,7 @@ const handleSubmit=(e)=> {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
                ADMIN LOGIN
               </button>

@@ -7,7 +7,6 @@ import Register from "./Components/Users/Register/Register";
 import LandingPage from "./Pages/Users/LandingPage/LandingPage";
 import Login from "./Components/Users/Login/Login";
 import HomePage from "./Pages/Users/HomePage/HomePage";
-import AboutUs from "./Pages/Users/AboutUs/AboutUs";
 import ContactUs from "./Pages/Users/ContactUs/ContactUs";
 import FindJobs from "./Pages/Users/FindJobs/FindJobs";
 import Page from "./Pages/Users/Page/Page";
@@ -18,6 +17,7 @@ import EditProfile from "./Components/Users/Profile/Editprofile";
 import ChangePassword from "./Components/Users/Profile/ChangePassword";
 import AppliedJOBs from "./Pages/Users/AppliedJobs/AppliedJOBs";
 import SavedJOBsPage from "./Pages/Users/SavedJobs/SavedJOBsPage";
+import AboutUs from "./Components/Users/AboutUs/AboutUs";
 
 //Recruiter side
 
@@ -47,6 +47,7 @@ import AddCategory from "./Components/Admin/CategoryList/AddCategory";
 import EditCategory from "./Components/Admin/CategoryList/EditCategory";
 import ChangePasswordAdmin from "./Components/Admin/ChangePasswordAdmin/ChangePasswordAdmin";
 import ApplicantsList from "./Components/Recruiter/ApplicantsList/ApplicantsList";
+import FindJobsByCategory from "./Pages/Users/FindJobs/FindJobsByCategory";
 
 
 
@@ -64,9 +65,12 @@ function App() {
      <Route path="/reset_password/:id/:token" element={<ResetPassword/>} />
      <Route path="/contactus" element={<ContactUs/>} />
      <Route path="/aboutus" element={<AboutUs/>} />
-     <Route path="/findjobs" element={<FindJobs/>} />
+     <Route path="/findjobs" element={<FindJobs/>} />  
+     <Route path="/findjobsbycategory/:id" element={<FindJobsByCategory />} />
+
 
      <Route element={<PrivatePages isStudent={true}/>}> 
+
      <Route path="/home" element={<HomePage/>} />     
      <Route path="/page" element={<Page/>} />     
      <Route path="/profile" element={<Profile/>} />

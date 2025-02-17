@@ -75,7 +75,7 @@ function Login() {
   return (
     <section>   
 <GoogleOAuthProvider clientId={client_id} >
-<div className="flex min-h-screen justify-center items-center bg-blue-50"style={{ backgroundImage: `url(${admin1})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', width: '100vw' }}>
+<div className="flex min-h-screen justify-center items-center bg-teal-50"style={{ backgroundImage: `url(${admin1})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100vh', width: '100vw' }}>
       <div className="bg-white rounded-lg border border-gray-300 shadow-md overflow-hidden sm:max-w-sm sm:w-full">
         <div className="px-6 py-8">
           <img

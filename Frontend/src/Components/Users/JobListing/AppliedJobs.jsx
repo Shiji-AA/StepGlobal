@@ -13,11 +13,17 @@ function AppliedJobs() {
       .get("/appliedJobs") // Replace with your actual API endpoint
       .then((response) => {
         console.log(response.data?.appliedJobs ,"appliedJobs")
+        const jobs = response.data?.appliedJobs;
         setAppliedJobs(response.data?.appliedJobs || []);
+        
+        if(jobs.length ===0){
+          toast.error("No applied jobs yet");
+        }
       })
+     
       .catch((error) => {
         console.error("Error fetching applied jobs:", error);
-        toast.error("Error fetching applied jobs");
+      
       })
       .finally(() => setLoading(false));
   }, []);
@@ -76,7 +82,7 @@ function AppliedJobs() {
 
       {/* Footer */}
       <div className="mt-12 text-center">
-        <button className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">
+        <button className="bg-teal-600 text-white px-6 py-3 rounded-md hover:bg-teal-700 transition">
           Load More Jobs
         </button>
       </div>

@@ -1,7 +1,7 @@
 import express from 'express';
 
 const router= express.Router()
-import {applyForJob, getAppliedJobsList, getProfileById, getSavedJobsList, getStudentProfile, getUserJobList, googleLogin,
+import {applyForJob, getAppliedJobsList, getProfileById, getSavedJobsList, getStudentProfile, getUserJobList, getUserJobListByCategory, googleLogin,
      googleRegister, loginUser, registerUser, resetPassword,saveJob,sendPasswordResetEmail, 
      studentChangePassword, updateProfile} from '../../Controller/UserController/UserController.js'
 import { isLogin } from '../../../Middleware/userAuth.js';
@@ -18,6 +18,7 @@ router.get("/editprofile", isLogin, getProfileById);
 router.put("/updateprofile", isLogin, updateProfile);
 router.patch('/changePassword',isLogin,studentChangePassword)
 router.get("/userjoblist", getUserJobList);
+router.get("/userjoblistbycategory/:id", getUserJobListByCategory);
 
 router.post("/applyJob/:id", isLogin,applyForJob );
 router.get("/appliedJobs",isLogin, getAppliedJobsList);

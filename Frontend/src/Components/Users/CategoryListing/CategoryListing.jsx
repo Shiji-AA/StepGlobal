@@ -1,81 +1,69 @@
 import { Link } from "react-router-dom";
-
-// Static imports for images
-import electrical from "../../../assets/images/electrical1.jpg";
-import mechanical from "../../../assets/images/mech3.jpg";
-import civil from "../../../assets/images/civil22.jpg";
-import computer1 from "../../../assets/images/computer1.jpg";
-
-// Define the job categories as an array of objects
-const jobCategories = [
-  {
-    _id: 1,
-    category: "Electrical Engineering",
-    jobTitle: "Electrical Design Engineer",
-    mode: "Remote/On-site",
-    availability: "Full-Time",
-    photo: electrical,
-  },
-  {
-    _id: 2,
-    category: "Civil Engineering",
-    jobTitle: "BIM Specialist",
-    mode: "Remote/On-site",
-    availability: "Part-Time",
-    photo: civil,
-  },
-  {
-    _id: 3,
-    category: "Mechanical Engineering",
-    jobTitle: "EV Technology Specialist",
-    mode: "Remote/On-site",
-    availability: "Full-Time",
-    photo: mechanical,
-  }, 
-  {
-    _id: 4,
-    category: "Computer Science Engineering",
-    jobTitle: "Software Developer",
-    mode: "Remote/On-site",
-    availability: "Full-Time",
-    photo: computer1,
-  },
-];
+import { useEffect, useState } from "react";
+import { axiosInstance } from "../../../api/axiosInstance";
+import toast from "react-hot-toast";
 
 function CategoryListing() {
+  const [jobDetails, setJobDetails] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch Job Details
+  useEffect(() => {
+    setLoading(true);
+    axiosInstance
+      .get("/userjoblist")
+      .then((response) => {
+  
+        const jobs = response.data?.jobDetails || [];
+        setJobDetails(jobs);
+      })
+      .catch((error) => {
+        console.error("Error in fetching data", error);
+        toast.error("Error in fetching data");
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
-    <>
-      <div className="bg-white py-24 px-6 flex flex-col items-center">
-        <h2 className="text-3xl font-bold text-aqua mb-8">Search Jobs by Category</h2>
-        <div className="max-w-6xl w-full">
+    <div className="bg-white py-24 px-6 flex flex-col items-center">
+      <h2 className="text-3xl font-bold text-aqua mb-8">
+        Search Jobs by Category
+      </h2>
+      <div className="max-w-6xl w-full">
+        {loading ? (
+          <p>Loading...</p>
+        ) : jobDetails.length === 0 ? (
+          <p>No jobs available</p>
+        ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {jobCategories.map((category) => (
+            {jobDetails.map((item) => (
               <div
-                key={category._id}
+                key={item._id}
                 className="bg-gray-100 overflow-hidden p-6 shadow-lg rounded-lg hover:shadow-xl transition-transform duration-300 hover:scale-105"
               >
-                <Link to={"/findjobs"}>
+               <Link to={`/findjobsbycategory/${item.category?._id}`}>
                   <div className="w-full h-48 overflow-hidden rounded-t-lg">
                     <img
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                      src={category.photo}
-                      alt={category.category}
+                      src={item.category?.photo}
+                      alt={item.category?.title}
+                      onError={(e) => (e.target.src = "/fallback-image.jpg")} // Optional: Fallback image
                     />
                   </div>
                 </Link>
                 <div className="text-start mt-4">
                   <div className="bg-tealLight text-white font-medium py-1 px-4 inline-block rounded-md">
-                    {category.category}
+                    {typeof item.category?.title === "string"
+                      ? item.category?.title
+                      : "Unknown Category"}
                   </div>
-                 
-                  
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 

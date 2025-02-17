@@ -121,7 +121,7 @@ function PostJobs() {
                   name="companyName"
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                   placeholder="Enter company name"
                   required
                 />
@@ -139,7 +139,7 @@ function PostJobs() {
                   name="companyDescription"
                   value={companyDescription}
                   onChange={(e) => setCompanyDescription(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                   rows="4"
                 ></textarea>
               </div>
@@ -154,7 +154,7 @@ function PostJobs() {
                   name="jobTitle"
                   value={jobTitle}
                   onChange={(e) => setJobTitle(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                   placeholder="Enter job title"
                   required
                 />
@@ -173,7 +173,7 @@ function PostJobs() {
                   name="jobLocationType"
                   value={jobLocationType}
                   onChange={(e) => setJobLocationType(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                   required
                 >
                   <option value="">Select location type</option>
@@ -193,7 +193,7 @@ function PostJobs() {
                   name="city"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                   placeholder="Enter city"
                   required
                 />
@@ -209,7 +209,7 @@ function PostJobs() {
                   name="state"
                   value={state}
                   onChange={(e) => setState(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                   placeholder="Enter state"
                   required
                 />
@@ -225,7 +225,7 @@ function PostJobs() {
                   name="pincode"
                   value={pincode}
                   onChange={(e) => setPincode(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                   placeholder="Enter pincode"
                   required
                 />
@@ -241,7 +241,7 @@ function PostJobs() {
                   name="street"
                   value={street}
                   onChange={(e) => setStreet(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                   placeholder="Enter street address"
                   required
                 />
@@ -258,7 +258,7 @@ function PostJobs() {
                 name="salary"
                 value={salary}
                 onChange={(e) => setSalary(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                 placeholder="Enter salary"
               />
             </div>
@@ -267,7 +267,7 @@ function PostJobs() {
             <div className="mt-8 text-right">
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-6 py-3 rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="bg-teal-500 text-white px-6 py-3 rounded-md shadow-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500"
               >
                 Submit
               </button>

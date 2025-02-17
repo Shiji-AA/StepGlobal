@@ -260,7 +260,7 @@ console.log(jobDetails,"jobDetailsss")
           </div>
 
           <div className="flex justify-end mt-6">
-            <button type="submit" className="bg-blue-500 text-white px-6 py-2 rounded-md">
+            <button type="submit" className="bg-teal-500 text-white px-6 py-2 rounded-md">
               Save Changes
             </button>
           </div>

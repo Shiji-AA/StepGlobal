@@ -22,7 +22,7 @@ function RecruiterNavbar() {
   const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-gray-500 shadow-md">
+    <nav className="flex items-center justify-between p-4 bg-gray-100 shadow-md">
       {/* Logo */}
       <img src={logoArcite} alt="ARCITE" width="120" className="mr-4" />
 
@@ -53,17 +53,17 @@ function RecruiterNavbar() {
         }`}
       >
         <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
-          <Link to="/recruiterdashboard" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="/recruiterdashboard" className="text-gray-900 font-semibold hover:text-teal-500">
             Home
           </Link>       
-          <Link to="/postjobs" className="text-white font-semibold hover:text-yellow-400">
+          {/* <Link to="/postjobs" className="text-gray-900 font-semibold hover:text-teal-500">
             Post Job
-          </Link>
-          <Link to="/viewjobs" className="text-white font-semibold hover:text-yellow-400">
+          </Link> */}
+          <Link to="/viewjobs" className="text-gray-900 font-semibold hover:text-teal-500">
             Manage Jobs
           </Link>
         
-          <Link to="/applicantsList" className="text-white font-semibold hover:text-yellow-400">
+          <Link to="/applicantsList" className="text-gray-900 font-semibold hover:text-teal-500">
             Applicants
           </Link>
 
@@ -74,14 +74,14 @@ function RecruiterNavbar() {
               <div className="relative">
                 <button
                   onClick={toggleProfileMenu}
-                  className="px-6 py-2 font-semibold text-white bg-green-500 hover:bg-green-600 rounded-lg transition duration-300 ease-in-out"
+                  className="px-6 py-2 font-semibold text-gray-100 bg-teal-500 hover:bg-teal-600 rounded-lg transition duration-300 ease-in-out"
                 >
                   {recruiter?.recruiterName}
                 </button>
 
                 {/* Dropdown Menu */}
                 {profileMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                  <div className="absolute right-0 mt-2 w-48 bg-gray-100 rounded-md shadow-lg z-50">
                     <Link
                       to="/recruiterprofile"
                       className="block px-4 py-2 text-gray-800 hover:bg-gray-100"

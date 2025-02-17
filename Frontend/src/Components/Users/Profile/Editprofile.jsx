@@ -115,7 +115,7 @@ function EditProfile() {
   return (
     <>
       <Navbar />
-      <div className="bg-gradient-to-b from-blue-200 to-white p-4 rounded-lg">
+      <div className="bg-gradient-to-b from-gray-200 to-white p-4 rounded-lg">
         <div className="min-h-screen">
           <form onSubmit={formik.handleSubmit} className="p-8 space-y-8">
             <div className="text-3xl font-semibold mb-8 text-center">
@@ -135,7 +135,7 @@ function EditProfile() {
                       type="text"
                       id="studentName"
                       name="studentName"
-                      className="w-full rounded-lg bg-gray-100 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 text-sm p-2"
+                      className="w-full rounded-lg bg-gray-100 border border-gray-300 text-gray-900 focus:ring-teal-500 focus:border-teal-500 text-sm p-2"
                       value={formik.values.studentName}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
@@ -158,7 +158,7 @@ function EditProfile() {
                       type="text"
                       id="studentEmail"
                       name="studentEmail"
-                      className="w-full rounded-lg bg-gray-100 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 text-sm p-2"
+                      className="w-full rounded-lg bg-gray-100 border border-gray-300 text-gray-900 focus:ring-teal-500 focus:border-teal-500 text-sm p-2"
                       value={formik.values.studentEmail}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
@@ -182,7 +182,7 @@ function EditProfile() {
                       type="text"
                       id="phone"
                       name="phone"
-                      className="w-full rounded-lg bg-gray-100 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 text-sm p-2"
+                      className="w-full rounded-lg bg-gray-100 border border-gray-300 text-gray-900 focus:ring-teal-500 focus:border-teal-500 text-sm p-2"
                       value={formik.values.phone}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
@@ -291,7 +291,7 @@ function EditProfile() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-2 px-4 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full py-2 px-4 text-sm font-medium text-white bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500"
                   >
                     {loading ? "Updating..." : "Update Profile"}
                   </button>

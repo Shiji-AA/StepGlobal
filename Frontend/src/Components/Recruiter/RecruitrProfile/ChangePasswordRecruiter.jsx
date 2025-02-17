@@ -80,14 +80,14 @@ const ChangePasswordRecruiter= () => {
               <div className="grid max-w-2xl mx-auto mt-8">
                 <form onSubmit={formik.handleSubmit} className="space-y-4">
                   <div className="mb-2 sm:mb-6">
-                    <label htmlFor="oldPassword" className="block mb-2 text-sm font-medium text-indigo-900">Old Password</label>
+                    <label htmlFor="oldPassword" className="block mb-2 text-sm font-medium text-teal-900">Old Password</label>
                     <input
                       type="password"
                       id="oldPassword"
                       onBlur={formik.handleBlur}
                       value={formik.values.oldPassword}
                       onChange={formik.handleChange}
-                      className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                      className="bg-teal-50 border border-teal-300 text-teal-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5"
                       placeholder="Enter your old password"
                     />
                     {formik.touched.oldPassword && formik.errors.oldPassword && (
@@ -95,14 +95,14 @@ const ChangePasswordRecruiter= () => {
                     )}
                   </div>
                   <div className="mb-2 sm:mb-6">
-                    <label htmlFor="newPassword" className="block mb-2 text-sm font-medium text-indigo-900">New Password</label>
+                    <label htmlFor="newPassword" className="block mb-2 text-sm font-medium text-teal-900">New Password</label>
                     <input
                       type="password"
                       id="newPassword"
                       onBlur={formik.handleBlur}
                       value={formik.values.newPassword}
                       onChange={formik.handleChange}
-                      className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                      className="bg-teal-50 border border-teal-300 text-teal-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5"
                       placeholder="Enter your new password"
                     />
                     {formik.touched.newPassword && formik.errors.newPassword && (
@@ -110,14 +110,14 @@ const ChangePasswordRecruiter= () => {
                     )}
                   </div>
                   <div className="mb-2 sm:mb-6">
-                    <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-indigo-900">Confirm Password</label>
+                    <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-teal-900">Confirm Password</label>
                     <input
                       type="password"
                       id="confirmPassword"
                       onBlur={formik.handleBlur}
                       value={formik.values.confirmPassword}
                       onChange={formik.handleChange}
-                      className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                      className="bg-teal-50 border border-teal-300 text-teal-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5"
                       placeholder="Confirm your new password"
                     />
                     {formik.touched.confirmPassword && formik.errors.confirmPassword && (
@@ -127,7 +127,7 @@ const ChangePasswordRecruiter= () => {
                   <div className="flex justify-end">
                     <button
                       type="submit"
-                      className="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                      className="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                     >
                       Save
                     </button>

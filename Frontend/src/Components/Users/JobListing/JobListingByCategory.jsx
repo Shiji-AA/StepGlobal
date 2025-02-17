@@ -1,25 +1,29 @@
 import { useState, useEffect, useMemo } from "react";
 import { axiosInstance } from "../../../api/axiosInstance";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-function JobListing() {
+function JobListingByCategory() {
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.userdata);
+    
     const [searchTerm, setSearchTerm] = useState("");
     const [locationFilter, setLocationFilter] = useState("");
     const [typeFilter, setTypeFilter] = useState("");
     const [jobDetails, setJobDetails] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { id } = useParams();
+ 
 
     // Fetch Job Details
     useEffect(() => {
+        if (!id) return;
         setLoading(true);
         axiosInstance
-            .get('/userjoblist')
+            .get(`/userjoblistbycategory/${id}`)
             .then((response) => {
-                const jobs = response.data?.jobDetails || [];
+                const jobs = response.data?.jobDetails || [];              
                 setJobDetails(jobs);
             })
             .catch((error) => {
@@ -27,13 +31,13 @@ function JobListing() {
                 toast.error("Error in fetching data");
             })
             .finally(() => setLoading(false));
-    }, []);
+    }, [id]);
 
 
 function handleApply(jobId) {
     if (!jobId) return;
-    // Redirect to login if not authenticated
-    if (!user) {
+      // Redirect to login if not authenticated
+      if (!user) {
         toast.error("You need to log in first!");
         navigate("/login");
         return;
@@ -58,12 +62,13 @@ function handleApply(jobId) {
    // Function to handle saving a job
    function handleSave(jobId) {
     if (!jobId) return;
-    // Redirect to login if not authenticated
-    if (!user) {
-        toast.error("You need to log in first!");
-        navigate("/login");
-        return;
-    }
+
+// Redirect to login if not authenticated
+if (!user) {
+    toast.error("You need to log in first!");
+    navigate("/login");
+    return;
+}
     const confirmSave = window.confirm("Are you sure you want to save this job?");
     if (confirmSave) {
         axiosInstance
@@ -106,7 +111,7 @@ function handleApply(jobId) {
                 <div className="flex flex-wrap gap-4">
                     <input
                         type="text"
-                        className="flex-grow p-3 border rounded-md focus:ring-2 focus:ring-tealDark outline-none"
+                        className="flex-grow p-3 border rounded-md focus:ring-2 focus:ring-purple-600 outline-none"
                         placeholder="Search by job title"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -186,4 +191,4 @@ function handleApply(jobId) {
     );
 }
 
-export default JobListing;
+export default JobListingByCategory;

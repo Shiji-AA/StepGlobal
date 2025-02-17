@@ -9,7 +9,7 @@ function AdminDashboard() {
            <AdminNavbar/>
            <Adminstatistics/>
            <br/><br/>
-           <Admingraph/>  
+           <Admingraph/>            
            <br/><br/>      
             <Footer/>
         </div>

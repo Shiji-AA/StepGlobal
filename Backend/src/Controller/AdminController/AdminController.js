@@ -188,11 +188,13 @@ const unlistrecruiter = async (req, res) => {
 
     const addCategory= async(req,res)=>{
       try{
-          const {title,description} = req.body;         
+          const {title,description,photo} = req.body;         
       const categoryExist= await Category.findOne({
           title: { $regex: new RegExp(title, 'i') },
         });
-    
+        if (!title || !description || !photo) {
+          return res.status(400).json({ error: "All fields are required" });
+      }
         if (categoryExist) {
           console.log('Category already exists');
           return res.status(400).json({ error: 'Category already exists' });
@@ -200,6 +202,7 @@ const unlistrecruiter = async (req, res) => {
         const newCategory = await Category.create({
           title,
           description,
+          photo
         });
     
         if (newCategory) {
@@ -207,6 +210,7 @@ const unlistrecruiter = async (req, res) => {
             res.status(201).json({
               title,
               description,
+              photo,
               message :"Category added successfully"
             });
           } else {

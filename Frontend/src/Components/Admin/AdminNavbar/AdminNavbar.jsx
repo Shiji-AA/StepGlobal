@@ -22,7 +22,7 @@ function AdminNavbar() {
 
   return (
     <div>
-      <nav className="flex flex-wrap items-center justify-between p-3 bg-gray-400">
+      <nav className="flex flex-wrap items-center justify-between p-3 bg-white">
         <img src={logoArcite} className="h-10 w-36" alt="Job Portal" width="120" />
         
         <div className="flex md:hidden">
@@ -45,40 +45,40 @@ function AdminNavbar() {
         <div
           className={`w-full flex-grow md:flex md:items-center md:w-auto ${menuOpen ? "block" : "hidden"}`}
         >
-          <div className="ml-40 text-right text-bold mt-5 md:mt-0 border-t-2 border-white-900 md:border-none">
+          <div className="ml-40 text-right text-bold mt-5 md:mt-0 border-t-2 border-gray-900-900 md:border-none">
             <a
               href="/admindashboard"
-              className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Dashboard
             </a>
             <a
               href="/getallcategory"
-              className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Job Category
             </a>
             <a
               href="/adminjoblist"
-              className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Job Listings
             </a>
             <a
               href="/users"
-              className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Applicants
             </a>
             <a
               href="/recruiters"
-              className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Recruiters
             </a>
             <a
               href="/adminsettings"
-              className="block md:inline-block text-white hover:text-yellow-400 px-3 py-3 border-b-2 border-white-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Settings
             </a>
@@ -88,7 +88,7 @@ function AdminNavbar() {
         {adminUser && (
           <button
             onClick={handleLogout}
-            className={`toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-red-500 hover:bg-red-700 text-white md:rounded ${
+            className={`toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-tealLight hover:bg-tealDark text-white md:rounded ${
               menuOpen ? "block" : "hidden"
             }`}
           >

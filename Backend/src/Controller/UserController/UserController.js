@@ -366,8 +366,7 @@ const studentChangePassword = async (req, res) => {
 
 const getUserJobList = async(req,res)=>{
   try{
-    const jobDetails = await Job.find({isApproved: true}).populate('category', 'title').exec();
-    
+    const jobDetails = await Job.find({isApproved: true}).populate('category', 'title photo').exec();   
           if(jobDetails){
         res.status(200).json({
         jobDetails,message:"JobDetails"
@@ -382,6 +381,33 @@ const getUserJobList = async(req,res)=>{
     return res.status(500).json({ message: "An error occurred. Please try again later." });  
   }
 }
+
+
+const getUserJobListByCategory = async (req, res) => {
+  const { id } = req.params; // Extract category ID from params
+  
+  try {
+    const jobDetails = await Job.find({ 
+      isApproved: true, 
+      category: id 
+    }).populate('category', 'title');  
+    if (jobDetails.length > 0) { 
+      res.status(200).json({
+        jobDetails,
+        message: "Job details fetched successfully",
+      });
+    } else {
+      return res.status(404).json({
+        error: "No jobs available for this category",
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching jobs:", error);
+    return res.status(500).json({ message: "An error occurred. Please try again later." });
+  }
+};
+
+
 
 
 const applyForJob = async (req, res) => {  
@@ -550,4 +576,4 @@ const getSavedJobsList = async (req, res) => {
 export {registerUser,loginUser,googleRegister,googleLogin,
   sendPasswordResetEmail,resetPassword,getStudentProfile,
   getProfileById,updateProfile,studentChangePassword,getUserJobList,
-  applyForJob,getAppliedJobsList,saveJob,getSavedJobsList}
+  applyForJob,getAppliedJobsList,saveJob,getSavedJobsList,getUserJobListByCategory}

@@ -22,7 +22,7 @@ export default function ForgotPassword() {
     
   }
   return (
-    <div className="flex min-h-screen justify-center items-center bg-blue-100">
+    <div className="flex min-h-screen justify-center items-center bg-teal-100">
       <div className="sm:max-w-md w-full bg-white p-6 rounded-lg shadow-md">
         <img
           className="mx-auto h-9 w-auto"

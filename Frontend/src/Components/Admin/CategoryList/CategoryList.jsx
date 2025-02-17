@@ -49,7 +49,7 @@ const CategoryList = () => {
   return (
     <>
       <AdminNavbar />
-      <div className="bg-gradient-to-b from-blue-200 to-white p-4 rounded-lg">
+      <div className="bg-gradient-to-b from-tealLight to-white p-4 rounded-lg">
         <div className="px-3 mt-10">
           <div className="max-w-3xl mx-auto bg-white rounded-lg overflow-hidden shadow-md">
             <div className="bg-white p-4 sm:flex sm:justify-between items-center rounded-t-lg">
@@ -57,7 +57,7 @@ const CategoryList = () => {
                 Category Table
               </h3>
               <Link to="/addcategory">
-                <button className="bg-blue-500 text-white px-3 py-1 rounded-lg">
+                <button className="bg-tealLight text-white px-3 py-1 rounded-lg">
                   Add New Category
                 </button>
               </Link>
@@ -65,7 +65,7 @@ const CategoryList = () => {
 
             <div className="overflow-x-auto w-full">
               <table className="table text-gray-400 border-separate space-y-6 text-sm w-full">
-                <thead className="bg-blue-500 text-white">
+                <thead className="bg-tealDark text-white">
                   <tr>
                     <th className="p-3">Sl No</th>
                     <th className="p-3 text-left">Category</th>
@@ -75,7 +75,7 @@ const CategoryList = () => {
                 </thead>
                 <tbody>
                   {categoryDetails.map((category, index) => (
-                    <tr key={category._id} className="bg-blue-100 lg:text-black">
+                    <tr key={category._id} className="bg-teal-100 lg:text-black">
                       <td className="p-3 font-medium capitalize">
                         {index + 1}
                       </td>
@@ -83,7 +83,7 @@ const CategoryList = () => {
                       <td className="p-3">{category.description}</td>
                       <td className="p-3">
                         <Link to={`/editcategory/${category._id}`}>
-                          <button className="px-4 py-2 mr-2 text-sm font-medium text-white bg-orange-500 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                          <button className="px-4 py-2 mr-2 text-sm font-medium text-white bg-orange-500 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
                             Edit
                           </button>
                         </Link>
