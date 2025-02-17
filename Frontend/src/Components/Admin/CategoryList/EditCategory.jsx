@@ -43,10 +43,10 @@ function EditCategory() {
   return (
   <>
     <AdminNavbar />
-    <div className="bg-gradient-to-b from-blue-200 to-white p-4 rounded-lg">
-    <div className="max-w-3xl mx-auto bg-blue-50 rounded-lg overflow-hidden shadow-md">
+    <div className="bg-gradient-to-b from-tealLight to-white p-4 rounded-lg">
+    <div className="max-w-3xl mx-auto bg-gray-100 rounded-lg overflow-hidden shadow-md">
   
-      <h2 className="text-2xl font-bold px-6 py-4 bg-blue-500 text-white rounded-t-lg">Edit Category</h2>
+      <h2 className="text-2xl font-bold px-6 py-4 bg-tealDark text-white rounded-t-lg">Edit Category</h2>
       <form onSubmit={handleEditSubmit} className="p-6">
         <div className="mb-4">
           <label htmlFor="title" className="block text-sm font-medium text-gray-700">Category Title</label>
@@ -57,7 +57,7 @@ function EditCategory() {
             value={title} 
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter category title"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 focus:outline-none" />
+            className="mt-1 p-2 w-full border border-gray-600 rounded-md focus:ring-tealLight focus:border-tealLight focus:outline-none" />
         </div>
         <div className="mb-4">
           <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
@@ -67,10 +67,10 @@ function EditCategory() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Enter description" 
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 focus:outline-none"></textarea>
+            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-tealLight focus:border-tealDark focus:outline-none"></textarea>
         </div>
         <div className="flex justify-end">
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Save Changes</button>
+          <button type="submit" className="bg-tealLight text-white px-4 py-2 rounded-lg hover:bg-tealDark focus:outline-none focus:ring-2 focus:ring-tealLight focus:ring-offset-2">Save Changes</button>
         </div>
       </form>
     </div>

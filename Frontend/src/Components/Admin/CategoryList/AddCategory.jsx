@@ -83,9 +83,9 @@ function AddCategory() {
   return (
     <>
       <AdminNavbar />
-      <div className="bg-gradient-to-b from-teal-100 to-white p-4 rounded-lg">
+      <div className="bg-gradient-to-b from-tealLight to-white p-4 rounded-lg">
         <br />
-        <div className="max-w-3xl mx-auto bg-blue-50 rounded-lg overflow-hidden shadow-md">
+        <div className="max-w-3xl mx-auto bg-white rounded-lg overflow-hidden shadow-md">
           <h2 className="text-2xl font-bold px-6 py-4 bg-tealDark text-white rounded-t-lg">
             Add Category
           </h2>

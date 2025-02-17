@@ -94,11 +94,11 @@ function UsersTable() {
   return (
     <>
       <AdminNavbar />
-      <div className="bg-gradient-to-b from-blue-200 to-white py-8 min-h-screen">
+      <div className="bg-gradient-to-b from-tealLight to-white py-8 min-h-screen">
         <div className="container mx-auto xl:max-w-screen-xl">
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="flex justify-between items-center mb-8">
-              <h3 className="text-3xl font-bold">Users Table</h3>
+              <h3 className="text-3xl font-bold text-tealDark">Users Table</h3>
 
               {/* Search Bar */}
 
@@ -111,7 +111,7 @@ function UsersTable() {
       className={`border border-gray-300 py-3 px-6 w-full focus:outline-none focus:ring ${
         formik.touched.searchInput && formik.errors.searchInput
           ? "border-red-500"
-          : "focus:border-blue-400"
+          : "focus:border-teal-400"
       } rounded-l-lg`}
       onChange={formik.handleChange}
       onBlur={formik.handleBlur}
@@ -125,7 +125,7 @@ function UsersTable() {
   </div>
   <button
     type="submit"
-    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-r-lg -ml-px"
+    className="bg-tealLight hover:bg-tealDark text-white font-bold py-3 px-6 rounded-r-lg -ml-px"
   >
     Search
   </button>
@@ -137,7 +137,7 @@ function UsersTable() {
 
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse border border-gray-300">
-                <thead className="bg-blue-600 text-white">
+                <thead className="bg-tealDark text-white">
                   <tr>
                     <th className="p-5 border border-gray-300">Sl No</th>
                     <th className="p-5 border border-gray-300">Name</th>
@@ -151,7 +151,7 @@ function UsersTable() {
                     ? filteredData
                     : studentDetails
                   ).map((student, index) => (
-                    <tr key={student._id} className="bg-blue-100 hover:bg-blue-200">
+                    <tr key={student._id} className="bg-teal-50 hover:bg-teal-100">
                       <td className="p-5 border border-gray-300">{index + 1}</td>
                       <td className="p-5 border border-gray-300">
                         {student.name}

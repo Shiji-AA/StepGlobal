@@ -78,7 +78,7 @@ const validate=(values)=>{
                   width="120"
                 />
               </div>
-                <h1 className="font-semibold text-xl">Sign up To your account</h1>
+                <h1 className="font-semibold text-xl text-tealDark">Sign up To your account</h1>
                 <form onSubmit={formik.handleSubmit} className="space-y-4 md:space-y-5">
                   <div>
                     <input
@@ -142,7 +142,7 @@ const validate=(values)=>{
 
                   <button
                     type="submit"
-                    className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium bg-teal-600 text-gray-900 bg-customColor hover:bg-customColor focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customColor"
+                    className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium bg-teal-600 text-white bg-customColor hover:bg-customColor focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customColor"
                   >
                     Signup
                   </button>
@@ -154,7 +154,7 @@ const validate=(values)=>{
                   Already have an account?{" "}
                   <Link
                     to="/recruiterlogin"
-                    className="font-medium text-customColor hover:underline dark:text-customColor"
+                    className="font-medium text-customColor hover:underline dark:text-customColor text-tealLight"
                   >
                     Login
                   </Link>

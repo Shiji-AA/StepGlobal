@@ -45,15 +45,15 @@ const JobPostsList = () => {
   return (
     <>
       <AdminNavbar />
-      <div className="bg-gradient-to-b from-blue-200 to-white p-4 rounded-lg">
+      <div className="bg-gradient-to-b from-tealLight to-white p-4 rounded-lg">
         <div className="px-3 mt-10">
           <div className="max-w-4xl mx-auto bg-white rounded-lg overflow-hidden shadow-md">
             <div className="bg-white p-4 sm:flex sm:justify-between items-center rounded-t-lg">
-              <h3 className="text-2xl font-bold mb-4 sm:mb-0 sm:mr-4">Job Approval List</h3>
+              <h3 className="text-2xl font-bold mb-4 sm:mb-0 sm:mr-4 text-tealDark">Job Approval List</h3>
             </div>
             <div className="overflow-x-auto w-full">
               <table className="table text-gray-400 border-separate space-y-6 text-sm w-full">
-                <thead className="bg-blue-500 text-white">
+                <thead className="bg-tealDark text-white">
                   <tr>
                     <th className="p-3">Sl No</th>
                     <th className="p-3 text-left">Category</th>
@@ -70,7 +70,7 @@ const JobPostsList = () => {
 {jobDetails.map((job, index) => (
 
   
-    <tr key={job._id} className="bg-blue-100 lg:text-black">
+    <tr key={job._id} className="bg-teal-50 lg:text-black">
       <td className="p-3 font-medium capitalize">{index + 1}</td>
       <td className="p-3">{job.category?.title || "N/A"}</td>
       <td className="p-3">{job.companyName}</td>

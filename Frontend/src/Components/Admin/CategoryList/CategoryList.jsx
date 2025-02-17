@@ -53,11 +53,11 @@ const CategoryList = () => {
         <div className="px-3 mt-10">
           <div className="max-w-3xl mx-auto bg-white rounded-lg overflow-hidden shadow-md">
             <div className="bg-white p-4 sm:flex sm:justify-between items-center rounded-t-lg">
-              <h3 className="text-2xl font-bold mb-4 sm:mb-0 sm:mr-4">
+              <h3 className="text-2xl font-bold mb-4 sm:mb-0 sm:mr-4 text-tealDark">
                 Category Table
               </h3>
               <Link to="/addcategory">
-                <button className="bg-tealLight text-white px-3 py-1 rounded-lg">
+                <button className="bg-tealLight text-white px-3 py-1 rounded-lg ">
                   Add New Category
                 </button>
               </Link>
@@ -75,7 +75,7 @@ const CategoryList = () => {
                 </thead>
                 <tbody>
                   {categoryDetails.map((category, index) => (
-                    <tr key={category._id} className="bg-teal-100 lg:text-black">
+                    <tr key={category._id} className="bg-teal-50 lg:text-black">
                       <td className="p-3 font-medium capitalize">
                         {index + 1}
                       </td>

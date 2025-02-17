@@ -90,7 +90,7 @@ function RecruiterLogin() {
                 src={logoArcite}
                 alt="Arcite Logo"
               />
-              <h2 className="mt-3 text-center text-xl font-bold leading-9 text-gray-900">
+              <h2 className="mt-3 text-center text-xl font-bold leading-9 text-tealDark">
                 Login to your account
               </h2>
 
@@ -157,7 +157,7 @@ function RecruiterLogin() {
                 <div>
                   <button
                     type="submit"
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 "
                   >
                     RECRUITER LOGIN
                   </button>
@@ -168,7 +168,7 @@ function RecruiterLogin() {
                 Dont have an account?{" "}
                 <Link
                   to="/recruiterregister"
-                  className="font-medium text-customColor hover:underline dark:text-customColor"
+                  className="font-medium text-customColor hover:underline dark:text-customColor text-tealLight"
                 >
                   Register Here
                 </Link>

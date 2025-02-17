@@ -23,7 +23,7 @@ function AdminNavbar() {
   return (
     <div>
       <nav className="flex flex-wrap items-center justify-between p-3 bg-white">
-        <img src={logoArcite} className="h-10 w-36" alt="Job Portal" width="120" />
+        <img src={logoArcite} className="h-14 w-32" alt="Job Portal" width="120" />
         
         <div className="flex md:hidden">
           <button onClick={toggleMenu}>
@@ -48,37 +48,37 @@ function AdminNavbar() {
           <div className="ml-40 text-right text-bold mt-5 md:mt-0 border-t-2 border-gray-900-900 md:border-none">
             <a
               href="/admindashboard"
-              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealLight px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Dashboard
             </a>
             <a
               href="/getallcategory"
-              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealLight px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Job Category
             </a>
             <a
               href="/adminjoblist"
-              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealLight px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Job Listings
             </a>
             <a
               href="/users"
-              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealLight px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Applicants
             </a>
             <a
               href="/recruiters"
-              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealLight px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Recruiters
             </a>
             <a
               href="/adminsettings"
-              className="block md:inline-block text-gray-900 hover:text-tealDark px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
+              className="block md:inline-block text-gray-900 hover:text-tealLight px-3 py-3 border-b-2 border-gray-900-900 md:border-none"
             >
               Settings
             </a>

@@ -117,7 +117,7 @@ function RecruiterEditProfile() {
       <div className="bg-gradient-to-b from-teal-200 to-white p-4 rounded-lg">
         <div className="min-h-screen">
           <form onSubmit={formik.handleSubmit} className="p-8 space-y-8">
-            <div className="text-3xl font-semibold mb-8 text-center">
+            <div className="text-3xl font-semibold mb-8 text-center text-tealDark">
               Edit Profile
             </div>
             <div className="flex justify-center items-center">

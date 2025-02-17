@@ -38,7 +38,7 @@ function RecruiterProfile() {
 
 <div className="w-3/4 bg-gradient-to-b from-teal-200 to-white rounded-lg">
     <br/>
-      <div className="text-2xl font-semibold mb-4 text-center"> Recruiter Profile</div>
+      <div className="text-2xl font-semibold mb-4 text-center text-tealDark"> Recruiter Profile</div>
 
       {/* Content */}
       <div className="flex justify-center items-center pb-8">

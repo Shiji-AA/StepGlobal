@@ -17,7 +17,7 @@ function AdminStatistics() {
   return (
     <>
       <div className="bg-gray-100 flex justify-center">
-        <div className="flex justify-center items-center bg-red-300 border-2 border-teal-500 p-4">
+        <div className="flex justify-center items-center bg-red-200 border-2 border-teal-500 p-4">
           <div
             id="chart"
             className="bg-white p-8 rounded-lg shadow-md violet-shadow"

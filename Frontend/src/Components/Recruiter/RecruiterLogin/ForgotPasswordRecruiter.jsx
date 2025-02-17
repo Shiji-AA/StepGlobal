@@ -33,8 +33,8 @@ export default function ForgotPasswordRecruiter() {
   }
 
   return (
-    <div className="flex min-h-screen justify-center items-center bg-teal-100">
-      <div className="sm:max-w-md w-full bg-white p-6 rounded-lg shadow-md">
+    <div className="flex min-h-screen justify-center items-center bg-gray-100">
+      <div className="sm:max-w-md w-full bg-white p-6 rounded-lg shadow-md border-2 border-gray-200">
         <img
           className="mx-auto h-9 w-auto"
           src={logoArcite}
@@ -67,7 +67,7 @@ export default function ForgotPasswordRecruiter() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full mt-4 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${loading ? 'bg-gray-500' : 'bg-indigo-600 hover:bg-indigo-700'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+            className={`w-full mt-4 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${loading ? 'bg-gray-500' : 'bg-teal-600 hover:bg-teal-700'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500`}
           >
             {loading ? "Sending..." : "Send"}
           </button>

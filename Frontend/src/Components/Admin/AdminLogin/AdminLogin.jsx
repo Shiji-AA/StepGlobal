@@ -52,7 +52,7 @@ const handleSubmit=(e)=> {
             src={logoArcite}
             alt="Arcite logo"
           />
-          <h2 className="mt-6 text-center text-2xl font-bold leading-9 text-gray-900">
+          <h2 className="mt-6 text-center text-2xl font-bold leading-9 text-tealDark">
             Login As Admin
           </h2>
 

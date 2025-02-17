@@ -62,8 +62,8 @@ const LineChart = () => {
       {
         label: "Revenue",
         data: revenueMonthlyData,
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        borderColor: "rgb(53, 252, 235)",
+        backgroundColor: "rgba(53, 162, 125, 0.5)",
         fill: false,
         tension: 0.4,
       },
