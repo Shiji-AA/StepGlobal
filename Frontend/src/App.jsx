@@ -18,6 +18,8 @@ import ChangePassword from "./Components/Users/Profile/ChangePassword";
 import AppliedJOBs from "./Pages/Users/AppliedJobs/AppliedJOBs";
 import SavedJOBsPage from "./Pages/Users/SavedJobs/SavedJOBsPage";
 import AboutUs from "./Components/Users/AboutUs/AboutUs";
+import EducationLandingPage from "./Pages/Users/Education/EducationLandingPage/EducationLandingPage";
+import ArchitectureLanding from "./Pages/Users/Architecture/ArchitectureLandingPage/ArchitectureLandingPage";
 
 //Recruiter side
 
@@ -48,6 +50,8 @@ import EditCategory from "./Components/Admin/CategoryList/EditCategory";
 import ChangePasswordAdmin from "./Components/Admin/ChangePasswordAdmin/ChangePasswordAdmin";
 import ApplicantsList from "./Components/Recruiter/ApplicantsList/ApplicantsList";
 import FindJobsByCategory from "./Pages/Users/FindJobs/FindJobsByCategory";
+import WelcomePage from "./Pages/Users/WelcomePage/WelcomePage";
+
 
 
 
@@ -58,7 +62,13 @@ function App() {
       <Toaster position="top-right"/>
      <Routes>   
       {/* UserSide   */}
-     <Route path="/" element={<LandingPage/>} />
+      <Route path="/" element={<WelcomePage/>} />
+      <Route path="educationportal" element={<EducationLandingPage/>} />
+
+      <Route path="/architectureportal" element={<ArchitectureLanding/>} />
+
+     <Route path="/jobportal" element={<LandingPage/>} />
+     
      <Route path="/register" element={<Register/>} />
      <Route path="/login" element={<Login/>} />
      <Route path="/forgotpassword" element={<ForgotPassword/>} />
