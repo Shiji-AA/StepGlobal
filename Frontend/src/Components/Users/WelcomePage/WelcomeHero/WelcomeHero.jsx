@@ -36,22 +36,23 @@ function WelcomeHero() {
                     <div className="container mx-auto px-4">
                         <div className="flex flex-wrap">
                             {[{
-                                color: "bg-red-400", 
+                                color: "bg-red-700", 
                                 icon: "fas fa-award", 
                                 title: "Architecture", 
                                 text: "Divide details about your product or agency work into parts.", 
                                 link: "/architectureportal"
                             }, {
-                                color: "bg-blue-400", 
+                                color: "bg-teal-400", 
                                 icon: "fas fa-retweet", 
                                 title: "HR Consultancy Services", 
                                 text: "Keep users engaged by providing meaningful information.", 
                                 link: "/jobportal"
                             }, {
-                                color: "bg-green-400", 
+                                color: "bg-yellow-500", 
                                 icon: "fas fa-fingerprint", 
                                 title: "Education Support Activities", 
-                                text: "Write a few lines about each feature.", 
+                                text: "Providing personalized tutoring and learning resources for success.",
+                                 
                                 link: "/educationportal"
                             }].map((item, index) => (
                                 <div key={index} className="w-full md:w-4/12 px-4 text-center pt-6">
@@ -71,20 +72,71 @@ function WelcomeHero() {
                         </div>
                     </div>
 
-                    <footer className="relative pt-8 pb-6 mt-1">
-                        <div className="container mx-auto px-4">
-                            <div className="flex flex-wrap items-center justify-center">
-                                <div className="w-full md:w-6/12 px-4 mx-auto text-center"> 
-                                    <div className="text-sm text-gray-500 font-semibold py-1">
-                                        Made with <a href="https://www.creative-tim.com/product/notus-js" className="text-gray-500 hover:text-gray-800" target="_blank" rel="noopener noreferrer">React JS</a> by 
-                                        <a href="https://www.creative-tim.com" className="text-gray-500 hover:text-gray-800" target="_blank" rel="noopener noreferrer"> Creative Team</a>.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
                 </section>
             </section>
+{/* TWO */}
+<section className="bg-white">
+    <div className="max-w-5xl px-6 py-16 mx-auto">
+        <div className="md:flex md:justify-between">
+            <h2 className="text-3xl font-semibold text-gray-800 md:text-4xl">
+                Empowering Learning, Design, and Career Growth
+            </h2>
+            <a href="#" className="block mt-6 text-indigo-700 underline md:mt-0">
+                Learn More
+            </a>
+        </div>
+
+        <div className="grid gap-4 sm:gap-6 md:gap-8 mt-10 md:grid-cols-2 lg:grid-cols-3">
+            <div className="px-6 py-8 overflow-hidden bg-white rounded-md shadow-md">
+                <h2 className="text-xl font-medium text-gray-800">Education</h2>
+                <p className="max-w-md mt-4 text-gray-400">
+                    Advancing knowledge through innovation and modern and modern and modern teaching.
+                </p>
+            </div>
+
+            <div className="px-6 py-8 overflow-hidden bg-white rounded-md shadow-md">
+                <h2 className="text-xl font-medium text-gray-800">Architecture</h2>
+                <p className="max-w-md mt-4 text-gray-400">
+                    Crafting visionary spaces with creative and smart  and smart and smart design.
+                </p>
+            </div>
+
+            <div className="px-6 py-8 overflow-hidden bg-white rounded-md shadow-md">
+                <h2 className="text-xl font-medium text-gray-800">HR Consultancy</h2>
+                <p className="max-w-md mt-4 text-gray-400">
+                    Building careers with expert guidance and guidance and guidance and recruitment.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{/* THREE */}
+
+<section className="bg-white">
+    <div className="max-w-5xl px-6 py-16 mx-auto space-y-8 md:flex md:items-center md:space-y-0">
+        <div className="md:w-2/3">
+            <div className="hidden md:flex md:items-center md:space-x-10">
+                <img className="object-cover object-center rounded-md shadow w-72 h-72"
+                    src="https://images.unsplash.com/photo-1614030126544-b79b92e29e98?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"/>
+                <img className="object-cover object-center w-64 h-96 rounded-md shadow"
+                    src="https://images.unsplash.com/photo-1618506469810-282bef2b30b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"/>
+            </div>
+            <h2 className="text-3xl font-semibold text-gray-800 md:mt-6">Shaping the Future</h2>
+<p className="max-w-lg mt-4 text-gray-600">
+    Education fosters knowledge and skills for lifelong success. Architecture blends creativity with functionality to design inspiring spaces.  
+    HR consultancy empowers businesses by connecting talent with the right opportunities, ensuring professional growth and efficiency.
+</p>
+
+        </div>
+        <div className="md:w-1/3">
+            <img className="object-cover object-center w-full rounded-md shadow h-72 md:h-96 lg:h-700" 
+                src="https://images.unsplash.com/photo-1593352216840-1aee13f45818?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" />
+        </div>
+    </div>
+</section>
+
+
         </>
     );
 }
