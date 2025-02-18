@@ -1,17 +1,17 @@
 import axios from "axios"
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api/users",
+   baseURL:`${import.meta.env.VITE_PUBLIC_API_URL}/api/users`
 
 });
 
 const axiosInstanceRecruiter = axios.create({
-  baseURL: "http://localhost:3000/api/recruiter"
+   baseURL:`${import.meta.env.VITE_PUBLIC_API_URL}/api/recruiter`
 })
 
 
 const axiosInstanceAdmin = axios.create({
-  baseURL: "http://localhost:3000/api/admin"
+   baseURL:`${import.meta.env.VITE_PUBLIC_API_URL}/api/admin`
 })
 
 // *********************************************************************************
