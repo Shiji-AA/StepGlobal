@@ -4,6 +4,7 @@ import stepLogo from "../../../assets/logo/StepLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../Redux/Slices/AuthSlice";
 import Toolbar from "./Toolbar";
+import home from '../../../assets/images/home.png'
 
 function Navbar() {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function Navbar() {
     <>
     <Toolbar/>
       <nav className="flex items-center justify-between p-3 bg-white shadow-md">
+      
         {/* Logo */}
         <img src={stepLogo} alt="ARCITE" width="110" className="mr-4" />
 
@@ -55,6 +57,13 @@ function Navbar() {
           }`}
         >
           <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
+
+          <a href="/" className="block px-6 py-2 md:inline hover:underline">
+                        <img src={home} alt="Home" className="h-8 w-8" />
+                      </a>
+
+                      
+
             {user ? (
               <Link
                 to="/home"
