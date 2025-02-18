@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from "cors";
 import dotenv from 'dotenv';
-import { join } from 'path';  // Correct import
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import UserRoutes from './Routes/UserRoutes/UserRoutes.js'
 import { connectDB } from './config/db.js';
 import recruiterRouter from './Routes/RecruiterRoutes/RecruiterRoutes.js';
@@ -11,6 +12,10 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+// Define __dirname for ES module compatibility
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -36,5 +41,7 @@ app.get('*', (req, res) => {
 app.get('/', (req, res) => res.send("server is ready"));
 
 const port = process.env.PORT || 3000;
+
 app.listen(port, () =>
-  console.log("server started"));
+  console.log("server started")
+);
