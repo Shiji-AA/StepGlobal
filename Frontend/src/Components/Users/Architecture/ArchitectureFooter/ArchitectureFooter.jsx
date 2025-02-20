@@ -46,7 +46,7 @@ function Footer() {
   {/* Middle Section: Follow Us and Contact Us */}
   <div className="grid grid-cols-1 gap-8 lg:col-span-1 sm:grid-cols-2 lg:grid-cols-2">
     <div>
-      <h2 className="font-body pt-4 mb-4 text-sm font-semibold text-tealDark">
+      <h2 className="font-body mb-4 text-sm font-semibold text-tealDark">
         Follow Us
       </h2>
       <ul className="space-y-3">
