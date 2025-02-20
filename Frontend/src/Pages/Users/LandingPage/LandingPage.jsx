@@ -5,6 +5,7 @@ import CategoryListing from "../../../Components/Users/CategoryListing/CategoryL
 import Testimonials from "../../../Components/Users/Testimonials/Testimonials";
 import Footer from "../../../Components/Users/Footer/Footer";
 
+
 function LandingPage() {
     return (
         <>
@@ -13,7 +14,8 @@ function LandingPage() {
             <CategoryListing />
             {/* <Hero1 /> */}
             <Testimonials />
-            <Footer />
+            <Footer /> 
+        
         </>
     );
 }
