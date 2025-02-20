@@ -1,4 +1,5 @@
-
+import dotenv from 'dotenv';
+dotenv.config();
 import jwt from 'jsonwebtoken';
 import generateToken from '../../../Utils/generateToken.js'
 import mongoose from "mongoose";
@@ -9,11 +10,13 @@ import Job from '../../model/JobModel.js';
 import bcrypt from 'bcrypt';
 
 
+
 const adminLogin = async (req,res) => {      
     try {
-        const adminEmail = "admin@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL;
+      const id = new mongoose.Types.ObjectId(process.env.ADMIN_ID);     
         
-        const id = new mongoose.Types.ObjectId("67347106a2bddffaf51dbd7d")
+        // const id = new mongoose.Types.ObjectId("67b6f7c5c174d0befc4f3951")
         const { email, password } = req.body;  
                
         if (adminEmail === email && password) {
@@ -354,7 +357,7 @@ console.log(userId,"userId admin")
     }
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     await User.findByIdAndUpdate(userId, { password: hashedPassword });
-    const adminToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const adminToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '3d' });
     const updatedUser = {
       id: user._id,
       name: user.name,

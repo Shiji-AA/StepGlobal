@@ -10,9 +10,6 @@ import Application from '../../model/ApplicationModel.js';
 import SavedJob from '../../model/SavedJobsModel.js';
 
 
-console.log(process.env.EMAIL_USER,"CJHDZGCJDGCJDHGCJD")
-
-
 const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -344,7 +341,7 @@ const studentChangePassword = async (req, res) => {
     await User.findByIdAndUpdate(userId, { password: hashedPassword });
 
     // Generate a new token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '3d' });
 
     // Send the updated user data (excluding sensitive fields) and token
     const updatedUser = {
@@ -539,7 +536,7 @@ const saveJob = async (req, res) => {
     
     const existingSavedJob = await SavedJob.findOne({ jobId, userId });
     if (existingSavedJob) {
-      return res.status(400).json({ message: 'You have already saved this job.' });
+      return res.status(200).json({ message: 'You have already saved this job.' });
     }
     const newSavedJob = new SavedJob({
       userId,

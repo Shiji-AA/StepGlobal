@@ -84,7 +84,7 @@ axiosInstanceRecruiter.interceptors.response.use(
 axiosInstanceAdmin.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("adminToken");
-    console.log(token,"interceptor page token")
+    console.log(token,"interceptor page Admin token")
     if (token !== null) {
       config.headers.Authorization = `Bearer ${token}`;
     }
