@@ -16,8 +16,7 @@ const adminLogin = async (req,res) => {
       const adminEmail = process.env.ADMIN_EMAIL;
       const id = new mongoose.Types.ObjectId(process.env.ADMIN_ID);     
         
-        // const id = new mongoose.Types.ObjectId("67b6f7c5c174d0befc4f3951")
-        const { email, password } = req.body;  
+       const { email, password } = req.body;  
                
         if (adminEmail === email && password) {
 
@@ -341,31 +340,37 @@ const getCategoryById =async (req,res)=>{
 const adminChangePassword = async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
-    const userId = req.user.id; // Assume `isLogin` middleware adds user info to `req.user`
-console.log(userId,"userId admin")
-    // Validate input
-    if (!oldPassword || !newPassword) {
+    const userId = process.env.ADMIN_ID; 
+ 
+     if (!oldPassword || !newPassword) {
       return res.status(400).json({ error: 'All fields are required.' });
     }
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found.' });
-    }
+  
+     // Check if admin exists in the database
+     const user = await User.findById(userId);
+     if (!user) {
+       return res.status(404).json({ error: 'Admin not found.' });
+     }
+
     const isMatch = await bcrypt.compare(oldPassword, user.password);
     if (!isMatch) {
       return res.status(400).json({ error: 'Incorrect old password.' });
     }
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await User.findByIdAndUpdate(userId, { password: hashedPassword });
+
+    user.password = hashedPassword;
+    await user.save(); 
+
     const adminToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '3d' });
-    const updatedUser = {
-      id: user._id,
-      name: user.name,
-      email: user.email,
-    };
+    
+ 
     return res.status(200).json({
       message: 'Password updated successfully.',
-      user: updatedUser,
+      user: {
+        id:user._id,
+        name: user.name,
+        email: user.email,
+      },
       adminToken,
     });
   } catch (error) {

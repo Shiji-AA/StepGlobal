@@ -26,7 +26,7 @@ adminRouter.delete("/deletecategory/:id", deleteCategory);
 
 adminRouter.get("/adminjoblist", getAdminJobList);
 adminRouter.post("/toggleJobStatus/:id", toggleJobStatus)
-adminRouter.patch('/adminchangepassword',isLogin,adminChangePassword);
+adminRouter.patch('/adminchangepassword',adminChangePassword);
 
 
 export default adminRouter;

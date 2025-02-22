@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import footerbg from "../../../../assets/images/footerbg1.avif";
+//import footerbg from "../../../../assets/images/footerbg1.avif";
 import logoArcite2 from "../../../../assets/logo/StepLogo.png";
 import {
   faFacebookF,
@@ -20,11 +20,11 @@ function Footer() {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${footerbg})` }}
+        // style={{ backgroundImage: `` }}
       ></div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-teal-300 opacity-10"></div>
+      <div className="absolute inset-0 bg-white"></div>
 
       {/* Footer Content */}
       <div className="relative max-w-screen-xl px-4 py-6 mx-auto sm:px-6 lg:px-16">

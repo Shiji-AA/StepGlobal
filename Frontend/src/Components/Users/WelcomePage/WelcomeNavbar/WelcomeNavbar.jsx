@@ -5,7 +5,7 @@ function WelcomeNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-white text-white p-4 flex justify-between items-center">
+    <header className="bg-cream text-white p-4 flex justify-between items-center fixed top-0 left-0 w-full z-50 border border-b--100">
       {/* Logo Image */}
       <img src={logoArcite2} alt="Step Global Logo" className="h-12 w-22" />
 

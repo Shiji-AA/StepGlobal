@@ -3,7 +3,7 @@ import { useState } from "react";
 import stepLogo from "../../../assets/logo/StepLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../Redux/Slices/AuthSlice";
-import Toolbar from "./Toolbar";
+//import Toolbar from "./Toolbar";
 import home from '../../../assets/images/home.png'
 
 function Navbar() {
@@ -24,7 +24,7 @@ function Navbar() {
 
   return (
     <>
-    <Toolbar/>
+    {/* <Toolbar/> */}
       <nav className="flex items-center justify-between p-3 bg-white shadow-md">
       
         {/* Logo */}
