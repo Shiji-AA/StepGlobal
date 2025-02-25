@@ -1,25 +1,33 @@
-import { useState } from "react";
-import logoArcite2 from "../../../../assets/logo/StepLogo.png"; // Make sure the logo path is correct
+import { useState, useEffect } from "react";
+import logoArcite2 from "../../../../assets/logo/StepLogo.png"; // Ensure the path is correct
 
 function WelcomeNavbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="bg-cream text-white p-4 flex justify-between items-center fixed top-0 left-0 w-full z-50 border border-b--100">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 p-4 flex justify-between items-center transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-md" : "bg-transparent"
+      }`}
+    >
       {/* Logo Image */}
       <img src={logoArcite2} alt="Step Global Logo" className="h-12 w-22" />
 
       {/* Mobile Menu Toggle Button */}
-      <button onClick={() => setIsOpen(!isOpen)} className="md:hidden focus:outline-none">
-        ☰
-      </button>
-
-      {/* Navigation Links */}
-      {/* <nav className={`absolute top-16 left-0 w-full bg-black md:relative md:top-0 md:flex md:space-x-4 transition-all duration-300 ${isOpen ? "block" : "hidden"}`}>
-        <a href="#" className="block px-6 py-2 md:inline hover:underline">Home</a>
-        <a href="#" className="block px-6 py-2 md:inline hover:underline">Projects</a>
-        <a href="#" className="block px-6 py-2 md:inline hover:underline">Contact</a>
-      </nav> */}
+      <button className="md:hidden focus:outline-none">☰</button>
     </header>
   );
 }

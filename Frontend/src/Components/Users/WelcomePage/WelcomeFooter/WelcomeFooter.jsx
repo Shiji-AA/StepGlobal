@@ -24,7 +24,7 @@ function Footer() {
       ></div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-white"></div>
+      <div className=" font-custom absolute inset-0 bg-white"></div>
 
       {/* Footer Content */}
       <div className="relative max-w-screen-xl px-4 py-6 mx-auto sm:px-6 lg:px-16">
@@ -46,7 +46,7 @@ function Footer() {
   {/* Middle Section: Follow Us and Contact Us */}
   <div className="grid grid-cols-1 gap-8 lg:col-span-1 sm:grid-cols-2 lg:grid-cols-2">
     <div>
-      <h2 className="font-body mb-4 text-sm font-semibold text-tealDark">
+      <h2 className=" mb-4 text-sm font-semibold text-tealDark">
         Follow Us
       </h2>
       <ul className="space-y-3">
@@ -76,7 +76,7 @@ function Footer() {
       </ul>
     </div>
     <div>
-      <h2 className="font-body mb-4 text-sm font-semibold text-tealDark">
+      <h2 className=" mb-4 text-sm font-semibold text-tealDark">
         Contact Us
       </h2>
       <ul className="space-y-3">

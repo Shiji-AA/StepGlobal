@@ -2,10 +2,11 @@ import hero from '../../../../assets/heroImages/hero7.png'
 import hero10 from '../../../../assets/heroImages/hero10.png'
 import hero9 from '../../../../assets/heroImages/hero9.jpg'
 import hero8 from '../../../../assets/heroImages/hero8.jpg'
+import hero12 from '../../../../assets/heroImages/hero12.png'
 function WelcomeHero2() {
   return (
     <>
-    {/* <section>
+     <section>
     <div>
  
   <div
@@ -22,58 +23,82 @@ function WelcomeHero2() {
 
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
     
-      <div className="p-2 sm:p-10 text-center cursor-pointer">
-        <div className="py-16 max-w-sm rounded-lg overflow-hidden shadow-lg hover:bg-white transition duration-500 bg-white">
-          <div className="space-y-10">
-            <i className="fa fa-spa text-4xl"></i>
-            <div className="px-6 py-4">
-              <div className="space-y-5">
-                <div className="font-bold text-xl mb-2">Education</div>
-                <p className="text-gray-700 text-base">
-                  Innovative learning methods and resources.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="p-2 sm:p-10 text-center cursor-pointer">
+  <div 
+    className="py-16 max-w-sm rounded-lg overflow-hidden shadow-lg hover:bg-opacity-90 transition duration-500 bg-cover bg-center relative"
+    style={{ backgroundImage: `url(${hero12})` }} 
+  >
+    {/* Dark Overlay for better readability */}
+    <div className="absolute inset-0 bg-black bg-opacity-70 rounded-lg"></div>
 
-      <div className="p-2 sm:p-10 text-center cursor-pointer text-white">
-        <div className="py-16 max-w-sm rounded-lg overflow-hidden shadow-lg bg-yellow-500 hover:bg-yellow-600 transition duration-500">
-          <div className="space-y-10">
-            <i className="fa fa-head-side-mask text-4xl"></i>
-            <div className="px-6 py-4">
-              <div className="space-y-5">
-                <div className="font-bold text-xl mb-2">Architecture</div>
-                <p className="text-gray-700 text-base">
-                  Modern designs and sustainable structures.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-  
-      <div className="p-2 sm:p-10 text-center cursor-pointer translate-x-2">
-        <div className="py-16 max-w-sm rounded-lg overflow-hidden shadow-lg hover:bg-white transition duration-500 bg-white">
-          <div className="space-y-10">
-            <i className="fa fa-swimmer text-4xl"></i>
-            <div className="px-6 py-4">
-              <div className="space-y-5">
-                <div className="font-bold text-xl mb-2">HR Consultancy</div>
-                <p className="text-gray-700 text-base">
-                  Talent management and recruitment solutions.
-                </p>
-              </div>
-            </div>
-          </div>
+    <div className="relative space-y-5 text-white">
+      <i className="fa fa-spa text-4xl"></i>
+      <div className="px-6 py-1">
+        <div className="space-y-5">
+          <div className="font-bold text-xl">Education</div>
+          <p className="text-base">
+            Innovative learning methods and resources. Innovative learning methods and resources.
+             
+          </p>
         </div>
       </div>
     </div>
   </div>
 </div>
-    </section> */}
+
+
+<div className="p-2 sm:p-10 text-center cursor-pointer text-white">
+  <div 
+    className="py-16 max-w-sm rounded-lg overflow-hidden shadow-lg bg-cover bg-center relative transition duration-500 hover:bg-opacity-80"
+    style={{ backgroundImage: `url(${hero9})` }} // Corrected background image
+  >
+    {/* Dark Overlay for better readability */}
+    <div className="absolute inset-0 bg-black bg-opacity-70 rounded-lg"></div>
+
+    <div className="relative space-y-10">
+      <i className="fa fa-head-side-mask text-4xl"></i>
+      <div className="px-6 py-1">
+        <div className="space-y-5">
+          <div className="font-bold text-xl ">Architecture</div>
+          <p className="text-base text-white">
+            Modern designs and sustainable structures.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+<div className="p-2 sm:p-10 text-center cursor-pointer">
+  <div 
+    className="py-16 max-w-sm rounded-lg overflow-hidden shadow-lg bg-cover bg-center relative transition duration-500 hover:bg-opacity-80"
+    style={{ backgroundImage: `url(${hero10})` }} // Ensure hero10 is imported correctly
+  >
+    {/* Dark Overlay for better readability */}
+    <div className="absolute inset-0 bg-black bg-opacity-70 rounded-lg"></div>
+
+    <div className="relative space-y-6 text-white">
+      <i className="fa fa-swimmer text-4xl"></i>
+      <div className="px-6 py-1">
+        <div className="space-y-5">
+          <div className="font-bold text-xl ">HR Consultancy</div>
+          <p className="text-base">
+            Talent management and recruitment solutions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    </div>
+  </div>
+</div>
+    </section> 
         
 
       {/* 1 DIV */}
@@ -97,7 +122,7 @@ function WelcomeHero2() {
   </p>
 
   <h1 className=" text-2xl leading-none md:text-4xl xl:text-5xl dark:text-white">
-    Innovative Solutions for Education, Architecture & HR
+    innovative Solutions for Education, Architecture & HR
   </h1>
 
   <p className="font-light text-gray-500 md:text-lg lg:text-xl dark:text-gray-400">
@@ -141,7 +166,7 @@ function WelcomeHero2() {
   </p>
 
   <h1 className=" text-2xl leading-none md:text-4xl xl:text-5xl dark:text-white">
-    Innovative Solutions for Education, Architecture &
+    innovative Solutions for Education, Architecture &
   </h1>
 
   <p className="font-light text-gray-500 md:text-lg lg:text-xl dark:text-gray-400">
@@ -200,7 +225,7 @@ function WelcomeHero2() {
   </p>
 
   <h1 className=" text-2xl leading-none md:text-4xl xl:text-5xl dark:text-white">
-    Innovative Solutions for Education
+    innovative solutions for education
   </h1>
 
   <p className="font-light text-gray-500 md:text-lg lg:text-xl dark:text-gray-400">
@@ -245,7 +270,7 @@ function WelcomeHero2() {
   </p>
 
   <h1 className=" text-2xl leading-none md:text-4xl xl:text-5xl dark:text-white">
-    Innovative Solutions for Education
+    innovative Solutions for Education
   </h1>
 
   <p className="font-light text-gray-500 md:text-lg lg:text-xl dark:text-gray-400">
