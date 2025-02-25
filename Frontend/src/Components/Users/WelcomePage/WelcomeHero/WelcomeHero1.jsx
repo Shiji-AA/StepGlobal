@@ -77,7 +77,7 @@ function WelcomeHero1() {
   }, []);
 
   return (
-    <section className="font-custom bg-white shadow-2xl shadow-blue-900/50">
+    <section className="bg-white shadow-2xl shadow-blue-900/50">
       <div className="max-w-5xl px-6 py-16 mx-auto space-y-8 md:flex md:items-center md:space-y-0">
         <div className="md:w-2/3">
           <div className="hidden md:flex md:items-center md:space-x-10">
@@ -99,8 +99,8 @@ function WelcomeHero1() {
               />
             </a>
           </div>
-          <h2 className="text-3xl font-semibold text-gray-800 md:mt-6">Shaping the Future</h2>
-          <p className="max-w-lg mt-4 text-gray-600">
+          <h2 className="text-3xl font-normal text-gray-800 md:mt-6">Shaping the Future</h2>
+          <p className="max-w-lg mt-4 text-gray-600 font-normal">
             Education fosters knowledge and skills for lifelong success. Architecture blends creativity with functionality to design inspiring spaces.
             HR consultancy empowers businesses by connecting talent with the right opportunities, ensuring professional growth and efficiency.
           </p>

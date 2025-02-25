@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Roboto', 'sans-serif'],
-        heading: ['Poppins', 'sans-serif'],
+        //body: ['Roboto', 'sans-serif'],
+        //heading: ['Poppins', 'sans-serif'],
         custom: ['Graphik', 'Tahoma', 'sans-serif'],
       }, 
      

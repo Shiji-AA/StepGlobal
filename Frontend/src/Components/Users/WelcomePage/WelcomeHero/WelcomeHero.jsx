@@ -73,7 +73,7 @@ function WelcomeHero() {
     return (
         <>
         {/* ONE */}
-        <section ref={heroRef} className="font-custom relative bg-white overflow-hidden">
+        <section ref={heroRef} className=" relative bg-white overflow-hidden">
             <div className="relative pt-16 pb-24 flex content-center items-center justify-center min-h-[130vh]">
                 {/* Background Image */}
                 <div 
@@ -89,10 +89,10 @@ function WelcomeHero() {
                     <div className="items-center flex flex-wrap">
                         <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                             <div ref={textRef} className="pr-12">
-                                <h1 className="text-white font-semibold text-5xl">
+                                <h1 className="text-white font-normal text-5xl">
                                     Empower Your Future with Us
                                 </h1>
-                                <p className="mt-4 text-lg text-gray-200">
+                                <p className="mt-4 text-lg text-gray-200 font-normal">
                                     Explore tailored solutions in architecture, career development, and education support that empower your future.
                                 </p>
                             </div>
@@ -103,10 +103,10 @@ function WelcomeHero() {
         </section>
     
         {/* TWO */}
-        <section ref={sectionRef} className="font-custom w-full h-[300px] flex items-center justify-center bg-gray-100">
+        <section ref={sectionRef} className=" w-full h-[300px] flex items-center justify-center bg-gray-100">
             <div className="text-center">
-                <p ref={sectionTextRef} className="text-red-500 text-lg font-semibold">AVONE FEEDBACK</p>
-                <h1 ref={headingRef} className="text-4xl font-semibold text-gray-800">
+                <p ref={sectionTextRef} className="text-red-500 text-lg font-normal">AVONE FEEDBACK</p>
+                <h1 ref={headingRef} className="text-4xl font-normal text-gray-800">
                     What makes Avone so beloved by<br />
                     over 10,000 individuals?
                 </h1>
