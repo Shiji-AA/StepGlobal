@@ -1,4 +1,4 @@
-import bg from "../../../../assets/heroImages/bg1.jpg";
+import bg from "../../../../assets/heroImages/bg.jpg";
 
 function WelcomeContact() {
     return (

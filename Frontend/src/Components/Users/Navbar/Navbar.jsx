@@ -152,7 +152,7 @@ function Navbar() {
             ) : (
               <div className="flex space-x-3">
                 <Link to="/register">
-                  <button className="px-2 py-2 font-semibold text-white bg- hover:tealLight bg-tealDark rounded-lg transition duration-300 ease-in-out">
+                  <button className="font-custom font-normal px-2 py-2 text-white bg- hover:tealLight bg-tealDark rounded-lg transition duration-300 ease-in-out">
                     Create my Profile
                   </button>
                 </Link>

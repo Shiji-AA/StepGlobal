@@ -1,9 +1,14 @@
 import hero from '../../../../assets/heroImages/hero6.jpg'
 
+
 const ArchitectureHero = () => {
 
     return (
     <>
+
+
+
+
 
 
 <section>

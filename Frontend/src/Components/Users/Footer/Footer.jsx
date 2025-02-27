@@ -24,7 +24,7 @@ function Footer() {
       ></div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-teal-300 opacity-10"></div>
+      <div className="absolute inset-0 bg-white opacity-10"></div>
 
       {/* Footer Content */}
       <div className="relative max-w-screen-xl px-4 py-6 mx-auto sm:px-6 lg:px-16">
@@ -34,7 +34,7 @@ function Footer() {
   {/* First Section: Logo and Description */}
   <div className="lg:col-span-2">
     <img src={logoArcite2} className="mr-5 h-6 sm:h-9" alt="logo" />
-    <p className="text-sm md:text-sm mt-6 text-gray-800 leading-relaxed max-w-[500px] sm:max-w-[500px] mx-auto sm:mx-0 text-justify">
+    <p className=" font-custom font-normal text-sm md:text-sm mt-6 text-gray-800 leading-relaxed max-w-[500px] sm:max-w-[500px] mx-auto sm:mx-0 text-justify">
   StepGlobal is designed to connect job seekers with opportunities
   across the globe. It aims to establish a comprehensive job portal,
   bridging geographical gaps and empowering candidates to find
@@ -46,7 +46,7 @@ function Footer() {
   {/* Middle Section: Follow Us and Contact Us */}
   <div className="grid grid-cols-1 gap-8 lg:col-span-1 sm:grid-cols-2 lg:grid-cols-2">
     <div>
-      <h2 className="font-body mb-4 text-sm font-semibold text-tealDark">
+      <h2 className="font-custom font-normal  mb-4 text-sm text-gray-900">
         Follow Us
       </h2>
       <ul className="space-y-3">
@@ -76,7 +76,7 @@ function Footer() {
       </ul>
     </div>
     <div>
-      <h2 className="font-body mb-4 text-sm font-semibold text-tealDark">
+      <h2 className="font-custom font-normal mb-4 text-sm  text-gray-900">
         Contact Us
       </h2>
       <ul className="space-y-3">
@@ -98,7 +98,7 @@ function Footer() {
 
 
 
-        <span className="text-gray-800 text-center sm:text-left text-sm block mt-4">
+        <span className="font-custom font-normal text-gray-800 text-center sm:text-left text-sm block mt-4">
           © 2025{" "}
           <a href="#">
             An{" "}

@@ -26,7 +26,7 @@ function CategoryListing() {
 
   return (
     <div className="bg-white py-24 px-6 flex flex-col items-center">
-      <h2 className="text-3xl font-bold text-aqua mb-8">
+      <h2 className="font-custom font-weight-normal text-3xl  text-aqua mb-8">
         Search Jobs by Category
       </h2>
       <div className="max-w-6xl w-full">
@@ -42,7 +42,7 @@ function CategoryListing() {
                 className="bg-gray-100 overflow-hidden p-6 shadow-lg rounded-lg hover:shadow-xl transition-transform duration-300 hover:scale-105"
               >
                <Link to={`/findjobsbycategory/${item.category?._id}`}>
-                  <div className="w-full h-48 overflow-hidden rounded-t-lg">
+                  <div className=" font-custom font-weight-normal w-full h-48 overflow-hidden rounded-t-lg">
                     <img
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                       src={item.category?.photo}
@@ -52,7 +52,7 @@ function CategoryListing() {
                   </div>
                 </Link>
                 <div className="text-start mt-4">
-                  <div className="bg-tealLight text-white font-medium py-1 px-4 inline-block rounded-md">
+                  <div className="bg-tealLight font-custom  text-white py-1 px-4 inline-block rounded-md">
                     {typeof item.category?.title === "string"
                       ? item.category?.title
                       : "Unknown Category"}
