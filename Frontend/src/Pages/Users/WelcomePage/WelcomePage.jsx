@@ -1,10 +1,11 @@
 
 import WelcomeFooter from "../../../Components/Users/WelcomePage/WelcomeFooter/WelcomeFooter"
 import WelcomeContact from "../../../Components/Users/WelcomePage/WelcomeHero/WelcomeContact"
-//import VERuthe from "../../../Components/Users/WelcomePage/WelcomeHero/VERuthe"
+
 import WelcomeHero from "../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero"
 import WelcomeHero1 from "../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero1"
 import WelcomeHero2 from "../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero2"
+import WelcomeHero3 from "../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero3"
 import WelcomeNavbar from "../../../Components/Users/WelcomePage/WelcomeNavbar/WelcomeNavbar"
 
 
@@ -16,9 +17,8 @@ function WelcomePage() {
     <WelcomeNavbar/> 
     <WelcomeHero/>
     <WelcomeHero1/>
-    <WelcomeHero2/>
-    {/* <VERuthe/> */}
- 
+    <WelcomeHero3/>
+    <WelcomeHero2/> 
     <WelcomeContact/>
     <WelcomeFooter/>   
             

@@ -101,17 +101,7 @@ function WelcomeHero() {
                 </div>
             </div>
         </section>
-    
-        {/* TWO */}
-        <section ref={sectionRef} className=" w-full h-[300px] flex items-center justify-center bg-gray-100">
-            <div className="text-center">
-                <p ref={sectionTextRef} className="text-red-500 text-lg font-normal">AVONE FEEDBACK</p>
-                <h1 ref={headingRef} className="text-4xl font-normal text-gray-800">
-                    What makes Avone so beloved by<br />
-                    over 10,000 individuals?
-                </h1>
-            </div>
-        </section>
+ 
         </>
     );
 }

@@ -1,8 +1,7 @@
-import  { useEffect, useRef } from "react";
-//import hero from "../../../../assets/heroImages/hero6.jpg";
-import architect from "../../../../assets/heroImages/architect.avif";
+import { useEffect, useRef } from "react";
+import architect from "../../../../assets/heroImages/architect.jpg";
 import hr from "../../../../assets/heroImages/hr.png";
-import edu from "../../../../assets/heroImages/edu.avif";
+import edu from "../../../../assets/heroImages/edu.jpeg";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,109 +9,126 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 function WelcomeHero1() {
-  // Refs for the images
   const imgRef1 = useRef(null);
   const imgRef2 = useRef(null);
   const imgRef3 = useRef(null);
 
-  // GSAP ScrollTrigger for animations
   useEffect(() => {
-    // Create a GSAP timeline to chain the animations together
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: imgRef1.current,
-        start: "top 80%",  // Trigger animation when 80% of the image comes into view
-        toggleActions: "play none none none",  // Play animation on trigger
-      }
+    const animateImage = (imgRef) => {
+      gsap.fromTo(
+        imgRef.current,
+        { scale: 0.8, opacity: 0, y: 20 },
+        { scale: 1, opacity: 1, y: 0, duration: 1.2, ease: "power2.out" }
+      );
+    };
+
+    // Initial animation when page loads
+    animateImage(imgRef1);
+    animateImage(imgRef2);
+    animateImage(imgRef3);
+
+    // Scroll-triggered animation
+    [imgRef1, imgRef2, imgRef3].forEach((imgRef) => {
+      gsap.fromTo(
+        imgRef.current,
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.5, ease: "power2.out", scrollTrigger: {
+          trigger: imgRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        }}
+      );
     });
-
-    // Animation for the first image (Architecture)
-    tl.fromTo(
-      imgRef1.current,
-      { scale: 0.5 },  // Start from 50% size
-      { scale: 1, duration: 1.5, ease: "power2.out" }  // End at original size (100%)
-    )
-    .to(
-      imgRef1.current,
-      { y: -5, duration: 0.1, yoyo: true, repeat: 2, ease: "bounce.out" }  // Jumping effect
-    );
-
-    // Animation for the second image (Job Portal)
-    const tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: imgRef2.current,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      }
-    });
-
-    tl2.fromTo(
-      imgRef2.current,
-      { scale: 0.5 },
-      { scale: 1, duration: 1.5, ease: "power2.out" }
-    )
-    .to(
-      imgRef2.current,
-      { y: -5, duration: 0.1, yoyo: true, repeat: 2, ease: "bounce.out" }
-    );
-
-    // Animation for the third image (Education Portal)
-    const tl3 = gsap.timeline({
-      scrollTrigger: {
-        trigger: imgRef3.current,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      }
-    });
-
-    tl3.fromTo(
-      imgRef3.current,
-      { scale: 0.5 },
-      { scale: 1, duration: 1.5, ease: "power2.out" }
-    )
-    .to(
-      imgRef3.current,
-      { y: -5, duration: 0.1, yoyo: true, repeat: 5, ease: "bounce.out" }
-    );
   }, []);
 
   return (
-    <section className="bg-white shadow-2xl shadow-blue-900/50">
-      <div className="max-w-5xl px-6 py-16 mx-auto space-y-8 md:flex md:items-center md:space-y-0">
-        <div className="md:w-2/3">
-          <div className="hidden md:flex md:items-center md:space-x-10">
-            <a href="/architectureportal">
-              <img
-                ref={imgRef1}
-                className="object-cover object-center rounded-md shadow-2xl w-72 h-72"
-                src={architect}
-                alt="Architecture Portal"
-              />
-            </a>
+    <section className="bg-white shadow-2xl shadow-blue-900/50 py-10">
+      {/* Title Section */}
+      <div className="text-center mb-8">
+        <h2 className="font-custom text-4xl font-normal text-gray-800">
+          Explore Our Platforms
+        </h2>
+        <p className="font-custom text-gray-600 mt-2">
+          Discover opportunities in Architecture, Careers, and Education.
+        </p>
+      </div>
 
-            <a href="/jobportal">
-              <img
-                ref={imgRef2}
-                className="object-cover object-center w-64 h-96 rounded-md shadow-2xl"
-                src={hr}
-                alt="Job Portal"
-              />
-            </a>
-          </div>
-          <h2 className="text-3xl font-normal text-gray-800 md:mt-6">Shaping the Future</h2>
-          <p className="max-w-lg mt-4 text-gray-600 font-normal">
-            Education fosters knowledge and skills for lifelong success. Architecture blends creativity with functionality to design inspiring spaces.
-            HR consultancy empowers businesses by connecting talent with the right opportunities, ensuring professional growth and efficiency.
+      <div className="max-w-6xl px-6 py-8 mx-auto grid md:grid-cols-3 gap-8">
+        {/* Architecture Portal */}
+        <div className="text-center">
+          <a href="/architectureportal" className="relative group block">
+            <img
+              ref={imgRef1}
+              className="object-cover object-center rounded-md shadow-2xl w-full h-72 transition-transform duration-300 group-hover:scale-105"
+              src={architect}
+              alt="Architecture Portal"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+              <span className="bg-white font-custom text-black text-2xl font-normal p-1">
+                Architecture Portal
+              </span>
+            </div>
+          </a>
+          <h3 className="font-custom text-xl font-normal mt-4">Architecture & Design</h3>
+          <p className="font-custom text-gray-600 text-sm mt-2">
+            Explore cutting-edge architectural trends, tools, and innovations.
           </p>
+          <a href="/architectureportal">
+          <button className="font-custom px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700">
+  Learn More
+</button>
+          </a>
         </div>
-        <div className="md:w-1/3">
-          <a href="/educationportal">
+
+        {/* Job Portal */}
+        <div className="text-center">
+          <a href="/jobportal" className="relative group block">
+            <img
+              ref={imgRef2}
+              className="object-cover object-center w-full h-72 rounded-md shadow-2xl transition-transform duration-300 group-hover:scale-105"
+              src={hr}
+              alt="Job Portal"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+              <span className="bg-white font-custom text-black text-2xl font-normal p-1">
+                Job Portal
+              </span>
+            </div>
+          </a>
+          <h3 className="font-custom text-xl font-medium mt-4">Career Opportunities</h3>
+          <p className="font-custom text-gray-600 text-sm mt-2">
+            Find your dream job and connect with top recruiters worldwide.
+          </p>
+          <a href="/jobportal">
+          <button className="font-custom px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700">
+  Learn More
+</button>
+          </a>
+        </div>
+
+        {/* Education Portal */}
+        <div className="text-center">
+          <a href="/educationportal" className="relative group block">
             <img
               ref={imgRef3}
-              className="object-cover object-center w-full rounded-md shadow-2xl h-72 md:h-96 lg:h-[700px]"
+              className="object-cover object-center w-full h-72 rounded-md shadow-2xl transition-transform duration-300 group-hover:scale-105"
               src={edu}
               alt="Education Portal"
             />
+            <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+              <span className="bg-white font-custom text-black text-2xl font-normal p-1">
+                Education Portal
+              </span>
+            </div>
+          </a>
+          <h3 className="font-custom text-xl font-medium mt-4">Learning & Growth</h3>
+          <p className="font-custom text-gray-600 text-sm mt-2">
+            Access courses, study materials, and expert guidance to excel.
+          </p>
+          <a href="/educationportal">
+          <button className="font-custom px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700">
+  Learn More
+</button>
           </a>
         </div>
       </div>

@@ -2,105 +2,10 @@ import hero from '../../../../assets/heroImages/hero13.jpg'
 import hero10 from '../../../../assets/heroImages/hero10.png'
 import hero9 from '../../../../assets/heroImages/hero9.jpg'
 import hero8 from '../../../../assets/heroImages/hero7.png'
-import hero12 from '../../../../assets/heroImages/hero12.png'
+//import hero12 from '../../../../assets/heroImages/hero12.png'
 function WelcomeHero2() {
   return (
-    <>
-     <section>
-    <div>
- 
-  <div
-    className="bannerFondo bg-teal-800 bg-left-top bg-auto bg-repeat-x h-[400px] bg-[url('/img/continuartl_4.png')]"
-  ></div>
-
-  <div className="-mt-64">
-    <div className="w-full text-center">
-      <p className="text-sm tracking-widest text-white font-normal">Empowering Growth</p>
-      <h1 className="font-normal text-4xl text-white">
-        Education | Architecture | HR Consultancy
-      </h1>
-    </div>
-
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-    
-    <div className="p-2 sm:p-10 text-center cursor-pointer">
-  <div 
-    className="py-16 max-w-sm rounded-lg overflow-hidden shadow-lg hover:bg-opacity-90 transition duration-500 bg-cover bg-center relative"
-    style={{ backgroundImage: `url(${hero12})` }} 
-  >
-    
-    <div className="absolute inset-0 bg-black bg-opacity-70 rounded-lg"></div>
-
-    <div className="relative space-y-5 text-white">
-      <i className="fa fa-spa text-4xl"></i>
-      <div className="px-6 py-1">
-        <div className="space-y-5">
-          <div className="font-normal text-2xl">Education</div>
-          <p className="font-normal">
-            Innovative learning methods and resources. 
-             
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div className="p-2 sm:p-10 text-center cursor-pointer text-white">
-  <div 
-    className="py-16 max-w-sm rounded-lg overflow-hidden shadow-lg bg-cover bg-center relative transition duration-500 hover:bg-opacity-80"
-    style={{ backgroundImage: `url(${hero9})` }} // Corrected background image
-  >
-
-
-    <div className="absolute inset-0 bg-black bg-opacity-70 rounded-lg"></div>
-
-    <div className="relative space-y-5 text-white">
-      <i className="fa fa-head-side-mask text-4xl"></i>
-      <div className="px-6 py-1">
-        <div className="space-y-5">
-          <div className="font-normal text-2xl ">Architecture</div>
-          <p className="font-normal">
-            Modern designs and sustainable structures.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  
-<div className="p-2 sm:p-10 text-center cursor-pointer">
-  <div 
-    className="py-16 max-w-sm rounded-lg overflow-hidden shadow-lg bg-cover bg-center relative transition duration-500 hover:bg-opacity-80"
-    style={{ backgroundImage: `url(${hero10})` }} // Ensure hero10 is imported correctly
-  >
-
-    <div className="absolute inset-0 bg-black bg-opacity-70 rounded-lg"></div>
-
-    <div className="relative space-y-5 text-white">
-      <i className="fa fa-swimmer text-4xl"></i>
-      <div className="px-6 py-1">
-        <div className="space-y-5">
-          <div className="font-normal text-xl ">HR Consultancy</div>
-          <p className="text-normal">
-            Talent management and recruitment solutions.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-    </div>
-  </div>
-</div>
-    </section> 
-        
+    <>       
 
       {/* 1 DIV */}
 <section className="bg-white h-full w-full flex justify-center  shadow-2xl shadow-blue-900/50">
