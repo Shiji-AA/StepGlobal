@@ -1,29 +1,31 @@
+import  { Suspense, lazy } from 'react';
 
-import ArchitectureFooter from '../../../../Components/Users/Architecture/ArchitectureFooter/ArchitectureFooter'
-//import ArchitectureHero from '../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero'
-import ArchitectureHero1 from '../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero1'
-import ArchitectureHero2 from '../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero2'
-import ArchitectureHero3 from '../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero3'
-import ArchitectureHero4 from '../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero4'
-import ArchitectureHero5 from '../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero5'
-import ArchitectureHero7 from '../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero7'
-import ArchitectureNavbar from '../../../../Components/Users/Architecture/ArchitectureNavbar/ArchitectureNavbar'
+// Lazy load components
+const ArchitectureNavbar = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureNavbar/ArchitectureNavbar'));
+const ArchitectureHero1 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero1'));
+const ArchitectureHero2 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero2'));
+const ArchitectureHero3 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero3'));
+const ArchitectureHero4 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero4'));
+const ArchitectureHero5 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero5'));
+const ArchitectureHero7 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero7'));
+const ArchitectureFooter = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureFooter/ArchitectureFooter'));
 
 function ArchitectureLandingPage() {
   return (
     <div>
-      <ArchitectureNavbar/>
-      <ArchitectureHero1/>
-      <ArchitectureHero2/>
-      <ArchitectureHero3/>
-      <ArchitectureHero4/>
-      <ArchitectureHero5/>    
-      <ArchitectureHero7/>
-     {/* <ArchitectureHero/> */}
-      <ArchitectureFooter/>
-      
+      {/* Suspense wrapper with fallback UI while the components load */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <ArchitectureNavbar />
+        <ArchitectureHero1 />
+        <ArchitectureHero2 />
+        <ArchitectureHero3 />
+        <ArchitectureHero4 />
+        <ArchitectureHero5 />
+        <ArchitectureHero7 />
+        <ArchitectureFooter />
+      </Suspense>
     </div>
-  )
+  );
 }
 
-export default ArchitectureLandingPage
+export default ArchitectureLandingPage;

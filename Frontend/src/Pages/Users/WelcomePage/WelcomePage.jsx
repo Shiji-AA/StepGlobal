@@ -1,29 +1,29 @@
+import  { Suspense, lazy } from 'react';
 
-import WelcomeFooter from "../../../Components/Users/WelcomePage/WelcomeFooter/WelcomeFooter"
-import WelcomeContact from "../../../Components/Users/WelcomePage/WelcomeHero/WelcomeContact"
-
-import WelcomeHero from "../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero"
-import WelcomeHero1 from "../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero1"
-import WelcomeHero2 from "../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero2"
-import WelcomeHero3 from "../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero3"
-import WelcomeNavbar from "../../../Components/Users/WelcomePage/WelcomeNavbar/WelcomeNavbar"
-
-
+// Lazy load components
+const WelcomeNavbar = lazy(() => import("../../../Components/Users/WelcomePage/WelcomeNavbar/WelcomeNavbar"));
+const WelcomeHero = lazy(() => import("../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero"));
+const WelcomeHero1 = lazy(() => import("../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero1"));
+const WelcomeHero2 = lazy(() => import("../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero2"));
+const WelcomeHero3 = lazy(() => import("../../../Components/Users/WelcomePage/WelcomeHero/WelcomeHero3"));
+const WelcomeContact = lazy(() => import("../../../Components/Users/WelcomePage/WelcomeHero/WelcomeContact"));
+const WelcomeFooter = lazy(() => import("../../../Components/Users/WelcomePage/WelcomeFooter/WelcomeFooter"));
 
 function WelcomePage() {
     return (
         <>
-
-    <WelcomeNavbar/> 
-    <WelcomeHero/>
-    <WelcomeHero1/>
-    <WelcomeHero3/>
-    <WelcomeHero2/> 
-    <WelcomeContact/>
-    <WelcomeFooter/>   
-            
+            {/* Suspense wrapper with a fallback while the components load */}
+            <Suspense fallback={<div>Loading...</div>}>
+                <WelcomeNavbar />
+                <WelcomeHero />
+                <WelcomeHero1 />
+                <WelcomeHero3 />
+                <WelcomeHero2 />
+                <WelcomeContact />
+                <WelcomeFooter />
+            </Suspense>
         </>
-    )
+    );
 }
 
-export default WelcomePage
+export default WelcomePage;

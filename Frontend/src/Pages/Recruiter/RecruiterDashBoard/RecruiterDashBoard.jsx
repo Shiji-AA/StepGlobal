@@ -1,22 +1,27 @@
-import Banner from '../../../Components/Recruiter/RecruiterDashboard/Banner'
-import RecruiterHero1 from '../../../Components/Recruiter/RecruiterDashboard/RecruiterHero1'
-import RecruiterHero2 from '../../../Components/Recruiter/RecruiterDashboard/RecruiterHero2'
-import RecruiterHero3 from '../../../Components/Recruiter/RecruiterDashboard/RecruiterHero3'
-import RecruiterNavbar from '../../../Components/Recruiter/RecruiterNavbar/RecruiterNavbar'
-import Footer from '../../../Components/Users/Footer/Footer'
+import { Suspense, lazy } from 'react';
+
+// Lazy load components
+const RecruiterNavbar = lazy(() => import('../../../Components/Recruiter/RecruiterNavbar/RecruiterNavbar'));
+const Banner = lazy(() => import('../../../Components/Recruiter/RecruiterDashboard/Banner'));
+const RecruiterHero1 = lazy(() => import('../../../Components/Recruiter/RecruiterDashboard/RecruiterHero1'));
+const RecruiterHero2 = lazy(() => import('../../../Components/Recruiter/RecruiterDashboard/RecruiterHero2'));
+const RecruiterHero3 = lazy(() => import('../../../Components/Recruiter/RecruiterDashboard/RecruiterHero3'));
+const Footer = lazy(() => import('../../../Components/Users/Footer/Footer'));
 
 function RecruiterDashBoard() {
     return (
         <div>
-            
-            <RecruiterNavbar/>
-            <Banner/>
-            <RecruiterHero1/>
-            <RecruiterHero2/>
-            <RecruiterHero3/>
-            <Footer/>
+            {/* Suspense wrapper with fallback UI while the components load */}
+            <Suspense fallback={<div>Loading...</div>}>
+                <RecruiterNavbar />
+                <Banner />
+                <RecruiterHero1 />
+                <RecruiterHero2 />
+                <RecruiterHero3 />
+                <Footer />
+            </Suspense>
         </div>
-    )
+    );
 }
 
-export default RecruiterDashBoard
+export default RecruiterDashBoard;

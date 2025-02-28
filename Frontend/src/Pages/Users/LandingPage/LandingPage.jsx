@@ -1,24 +1,27 @@
-import Navbar from "../../../Components/Users/Navbar/Navbar";
-import Hero from "../../../Components/Users/Hero/Hero";
+import { Suspense, lazy } from 'react';
 
-import Hero3 from "../../../Components/Users/Hero/Hero3";
-import CategoryListing from "../../../Components/Users/CategoryListing/CategoryListing";
-import Testimonials from "../../../Components/Users/Testimonials/Testimonials";
-import Footer from "../../../Components/Users/Footer/Footer";
-import Hero1 from "../../../Components/Users/Hero/Hero1";
-
+// Lazy load components
+const Navbar = lazy(() => import("../../../Components/Users/Navbar/Navbar"));
+const Hero = lazy(() => import("../../../Components/Users/Hero/Hero"));
+const Hero3 = lazy(() => import("../../../Components/Users/Hero/Hero3"));
+const CategoryListing = lazy(() => import("../../../Components/Users/CategoryListing/CategoryListing"));
+const Testimonials = lazy(() => import("../../../Components/Users/Testimonials/Testimonials"));
+const Footer = lazy(() => import("../../../Components/Users/Footer/Footer"));
+const Hero1 = lazy(() => import("../../../Components/Users/Hero/Hero1"));
 
 function LandingPage() {
     return (
         <>
-            <Navbar />
-            <Hero />        
-            <CategoryListing />  
-            <Hero1/>    
-            <Hero3/>      
-            <Testimonials />
-            <Footer /> 
-        
+            {/* Suspense wrapper with fallback UI */}
+            <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+                <Hero />
+                <CategoryListing />
+                <Hero1 />
+                <Hero3 />
+                <Testimonials />
+                <Footer />
+            </Suspense>
         </>
     );
 }
