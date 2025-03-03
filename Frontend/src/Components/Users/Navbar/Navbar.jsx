@@ -4,7 +4,7 @@ import stepLogo from "../../../assets/logo/StepLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../Redux/Slices/AuthSlice";
 //import Toolbar from "./Toolbar";
-import home from '../../../assets/images/home.png'
+
 
 function Navbar() {
   const navigate = useNavigate();
@@ -30,6 +30,10 @@ function Navbar() {
         {/* Logo */}
         <img src={stepLogo} alt="ARCITE" width="110" className="mr-4" />
 
+          {/* Vertical Line */}
+          <div className="h-10 border-l-2 border-teal-500 mx-10"></div>
+
+
         {/* Mobile Menu Toggle */}
         <div className="flex md:hidden">
           <button onClick={toggleMenu} className="focus:outline-none">
@@ -52,124 +56,68 @@ function Navbar() {
 
         {/* Nav Links and Buttons */}
         <div
-          className={`w-full md:flex md:items-center md:w-auto transition-all duration-300 ease-in-out ${
+          className={`w-full flex-grow md:flex md:items-center md:w-auto ${
             menuOpen ? "block" : "hidden"
           }`}
         >
-          <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
+       <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0 w-full">
+  <Link to="/" className="font-custom text-black font-normal hover:text-teal-400">
+    Home
+  </Link>
+  <Link to="" className="font-custom text-black font-normal hover:text-teal-400">
+    About Us
+  </Link>
+  <Link to="" className="font-custom text-black font-normal hover:text-teal-400">
+    Contact Us
+  </Link>
 
-          <a href="/" className="block px-6 py-2 md:inline hover:underline">
-                        <img src={home} alt="Home" className="h-8 w-8" />
-                      </a>
+  {user ? (
+    <>
+      <Link to="/appliedJobs" className="font-custom text-black font-normal hover:text-teal-400">
+        My Applications
+      </Link>
 
-                      
 
-            {user ? (
-              <Link
-                to="/home"
-                className="text-black font-semibold hover:text-teal-400"
-              >
-                Home
-              </Link>
-            ) : null}
+      <div className="relative ">
+        <button
+          onClick={toggleProfileMenu}
+          className=" font-custom px-6 py-2 font-normal text-white bg-teal-500 hover:bg-teal-600 rounded-lg transition duration-300 ease-in-out"
+        >
+          {user?.name}
+        </button>
 
-            {/* <Link to="/findjobs" className="text-black font-semibold hover:text-teal-400">
-            Search Jobs
-          </Link> */}
-            {user ? (
-              <Link
-                to="/appliedJobs"
-                className="text-black font-semibold hover:text-teal-400"
-              >
-                My Applications
-              </Link>
-            ) : null}
-
-            {user ? (
-              <Link
-                to="/aboutus"
-                className="text-black font-semibold hover:text-teal-400"
-              >
-                About Us
-              </Link>
-            ) : null}
-
-            {user ? (
-              <Link
-                to="/contactus"
-                className="text-black font-semibold hover:text-teal-400"
-              >
-                Contact Us
-              </Link>
-            ) : null}
-
-            {/* Buttons Section */}
-            {user ? (
-              <>
-                {/* User Name with Dropdown */}
-                <div className="relative">
-                  <button
-                    onClick={toggleProfileMenu}
-                    className="px-6 py-2 font-semibold text-white bg-teal-500 hover:bg-teal-600 rounded-lg transition duration-300 ease-in-out"
-                  >
-                    {user?.name}
-                  </button>
-
-                  {/* Dropdown Menu */}
-                  {profileMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
-                      <Link
-                        to="/profile"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                        onClick={() => setProfileMenuOpen(false)}
-                      >
-                        Profile
-                      </Link>
-                      <Link
-                        to="/savedJobs"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                        onClick={() => setProfileMenuOpen(false)}
-                      >
-                        Saved Jobs
-                      </Link>
-                      <Link
-                        to="/changePassword"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                        onClick={() => setProfileMenuOpen(false)}
-                      >
-                        Account Settings
-                      </Link>
-                      <button
-                        onClick={handleLogout}
-                        className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </>
-            ) : (
-              <div className="flex space-x-3">
-                <Link to="/register">
-                  <button className="font-custom font-normal px-2 py-2 text-white bg- hover:tealLight bg-tealDark rounded-lg transition duration-300 ease-in-out">
-                    Create my Profile
-                  </button>
-                </Link>
-                {/* <Link to="/login">
-                <button className="px-6 py-2 font-semibold text-gray-800 bg-white hover:bg-red-600 rounded-lg border border-gray-300 transition duration-300 ease-in-out">
-                  Login
-                </button>
-              </Link> */}
-
-                {/* <Link to="/recruiterlogin">
-                <button className="px-6 py-2 font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition duration-300 ease-in-out">
-                  Recruiter?
-                </button>
-              </Link> */}
-              </div>
-            )}
+        {profileMenuOpen && (
+          <div className="font-custom  absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+            <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={() => setProfileMenuOpen(false)}>
+              Profile
+            </Link>
+            <Link to="/savedJobs" className="font-custom  block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={() => setProfileMenuOpen(false)}>
+              Saved Jobs
+            </Link>
+            <Link to="/changePassword" className="font-custom  block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={() => setProfileMenuOpen(false)}>
+              Account Settings
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="font-custom  block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
+            >
+              Logout
+            </button>
           </div>
+        )}
+      </div>
+    </>
+  ) : (
+    <div className="ml-auto">
+      <Link to="/register">
+        <button className="font-custom font-normal px-4 py-2 text-white bg-teal-500 hover:bg-teal-600 rounded-lg transition duration-300 ease-in-out">
+          Create my Profile
+        </button>
+      </Link>
+    </div>
+  )}
+</div>
+
         </div>
       </nav>
     </>
