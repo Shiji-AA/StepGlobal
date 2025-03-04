@@ -7,7 +7,7 @@ const services = [
     title: "Certified Teachers",
     description: "Even the all-powerful Pointing has no control about the blind texts; it is almost unorthographic.",
     icon: faChalkboardTeacher,
-    bgColor: "bg-teal-500",
+    bgColor: "bg-teal-600",
   },
   {
     title: "Special Education",
@@ -19,7 +19,7 @@ const services = [
     title: "Book & Library",
     description: "Even the all-powerful Pointing has no control about the blind texts; it is almost unorthographic.",
     icon: faGraduationCap,
-    bgColor: "bg-teal-500",
+    bgColor: "bg-teal-600",
   },
   {
     title: "Sport Clubs",
@@ -33,13 +33,13 @@ const EducationeHero2 = () => {
   return (
     <section className="w-screen bg-gray-200">
       <div className="container mx-auto max-w-full px-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
           {services.map((service, index) => (
             <div
               key={index}
-              className={`p-8 text-white text-center shadow-lg flex flex-col items-center justify-center min-h-[250px] ${service.bgColor}`}
+              className={` border-2 border-yellow-300 p-8 text-white text-center shadow-lg flex flex-col items-center justify-center min-h-[250px] ${service.bgColor}`}
             >
-              <div className="flex justify-center items-center text-4xl">
+              <div className="flex justify-center items-center text-4xl ">
               <FontAwesomeIcon icon={service.icon} />
               </div>
               <h3 className="font-custom text-2xl font-normal mt-4">{service.title}</h3>

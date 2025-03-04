@@ -68,6 +68,18 @@ function ArchitectureNavbar() {
               Home
             </Link>
             <Link
+              to="/educationportal"
+              className="block md:inline-block text-navy  hover:text-aqua px-3 py-3 border-b-2 border-white-900 md:border-none"
+            >
+              Education Portal
+            </Link>
+            <Link
+              to="/jobportal"
+              className="block md:inline-block text-navy  hover:text-aqua px-3 py-3 border-b-2 border-white-900 md:border-none"
+            >
+              Job Portal
+            </Link>
+            <Link
               to="/"
               className="block md:inline-block text-navy  hover:text-aqua px-3 py-3 border-b-2 border-white-900 md:border-none"
             >

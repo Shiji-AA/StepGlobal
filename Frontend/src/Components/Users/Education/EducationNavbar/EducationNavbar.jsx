@@ -68,13 +68,25 @@ function EducationNavbar() {
               Home
             </Link>
             <Link
-              to="/"
+              to="/architectureportal"
+              className="block md:inline-block text-navy  hover:text-aqua px-3 py-3 border-b-2 border-white-900 md:border-none"
+            >
+              Architecture Portal
+            </Link>
+            <Link
+              to="/jobportal"
+              className="block md:inline-block text-navy  hover:text-aqua px-3 py-3 border-b-2 border-white-900 md:border-none"
+            >
+              Job Portal
+            </Link>
+            <Link
+              to=""
               className="block md:inline-block text-navy  hover:text-aqua px-3 py-3 border-b-2 border-white-900 md:border-none"
             >
               Contact Us
             </Link>
             <Link
-              to="/"
+              to=""
               className="block md:inline-block text-navy  hover:text-aqua px-3 py-3 border-b-2 border-white-900 md:border-none"
             >
               About Us

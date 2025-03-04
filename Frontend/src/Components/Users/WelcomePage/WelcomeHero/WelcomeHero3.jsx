@@ -19,7 +19,7 @@ function WelcomeHero3() {
                 Join a global community of learners and experts, all in one place.
                 Join a global community of learners and experts, all in one place.
                 Join a global community of learners and experts, all in one place.
-                 Join a global community of learners and experts, all in one place.
+                Join a global community of learners and experts, all in one place.
                 Join a global community of learners and experts, all in one place.
                 Join a global community of learners and experts, all in one place.
                
@@ -29,7 +29,7 @@ function WelcomeHero3() {
         </Parallax>
 
         {/* Full-width faded overlay that covers the entire section */}
-        <div className="absolute top-0 left-0 w-full h-full bg-teal-700 bg-opacity-80"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-80"></div>
       </div>
     </section>
   );

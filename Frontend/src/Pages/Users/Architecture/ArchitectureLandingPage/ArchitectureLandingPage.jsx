@@ -6,8 +6,6 @@ const ArchitectureHero1 = lazy(() => import('../../../../Components/Users/Archit
 const ArchitectureHero2 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero2'));
 const ArchitectureHero3 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero3'));
 const ArchitectureHero4 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero4'));
-const ArchitectureHero5 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero5'));
-const ArchitectureHero7 = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureHero/ArchitectureHero7'));
 const ArchitectureFooter = lazy(() => import('../../../../Components/Users/Architecture/ArchitectureFooter/ArchitectureFooter'));
 
 function ArchitectureLandingPage() {
@@ -19,9 +17,7 @@ function ArchitectureLandingPage() {
         <ArchitectureHero1 />
         <ArchitectureHero2 />
         <ArchitectureHero3 />
-        <ArchitectureHero4 />
-        <ArchitectureHero5 />
-        <ArchitectureHero7 />
+        <ArchitectureHero4 />    
         <ArchitectureFooter />
       </Suspense>
     </div>

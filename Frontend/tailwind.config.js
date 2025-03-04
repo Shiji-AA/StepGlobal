@@ -18,6 +18,16 @@ export default {
         cream: '#fdfdfd',
       },
 
+      keyframes: {
+        'scroll-bg': {
+          '0%': { backgroundPosition: '0 0' },
+          '100%': { backgroundPosition: '-100% 0' },
+        },
+      },
+      animation: {
+        'scroll-bg': 'scroll-bg 30s linear infinite',
+      },
+
     },
   },
   plugins: [],

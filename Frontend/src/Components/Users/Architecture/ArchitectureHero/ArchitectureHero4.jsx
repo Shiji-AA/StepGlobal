@@ -1,4 +1,4 @@
-import bg from "../../../../assets/architect/bg.jpg";
+import bg from "../../../../assets/architect/bg.jpeg";
 
 function ArchitectHero4() {
     return (

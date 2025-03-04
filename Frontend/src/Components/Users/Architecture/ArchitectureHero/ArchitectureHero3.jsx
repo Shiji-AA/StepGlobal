@@ -2,11 +2,11 @@ import { Navigation, A11y } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import img1 from "../../../../assets/architect/1.jpg"
-import img2 from "../../../../assets/architect/2.jpg"
-import img3 from "../../../../assets/architect/3.jpg"
+import img2 from "../../../../assets/architect/2.jpeg"
+import img3 from "../../../../assets/architect/3.jpeg"
 import img4 from "../../../../assets/architect/1.jpg"
-import img5 from "../../../../assets/architect/2.jpg"
-import img6 from "../../../../assets/architect/3.jpg"
+import img5 from "../../../../assets/architect/2.jpeg"
+import img6 from "../../../../assets/architect/3.jpeg"
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 

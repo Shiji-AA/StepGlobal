@@ -55,7 +55,7 @@ const EducationHero4 = () => {
         </Parallax>
 
         {/* Full-width faded overlay that covers the entire section */}
-        <div className="absolute top-0 left-0 w-full h-full bg-teal-900 bg-opacity-85"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gray-900 bg-opacity-85"></div>
       </div>
     </section>
   );

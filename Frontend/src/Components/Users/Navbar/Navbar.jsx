@@ -64,6 +64,18 @@ function Navbar() {
   <Link to="/" className="font-custom text-black font-normal hover:text-teal-400">
     Home
   </Link>
+  <Link
+              to="/architectureportal"
+              className="block md:inline-block text-navy  hover:text-aqua px-3 py-3 border-b-2 border-white-900 md:border-none"
+            >
+              Architecture Portal
+            </Link>
+            <Link
+              to="/educationportal"
+              className="block md:inline-block text-navy  hover:text-aqua px-3 py-3 border-b-2 border-white-900 md:border-none"
+            >
+              Education Portal
+            </Link>
   <Link to="" className="font-custom text-black font-normal hover:text-teal-400">
     About Us
   </Link>
