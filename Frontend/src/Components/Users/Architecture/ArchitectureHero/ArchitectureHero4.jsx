@@ -1,10 +1,8 @@
-import bg from "../../../../assets/architect/bg.jpeg";
-
 function ArchitectHero4() {
     return (
-        <section 
+        <section
             className="w-full min-h-[250px] sm:min-h-[250px] md:min-h-[450px] flex items-center justify-center bg-cover bg-center relative p-6 sm:p-8 md:p-10"
-            style={{ backgroundImage: `url(${bg})` }}
+            style={{ backgroundImage: `url(/photo/bg.jpeg)`, backgroundAttachment: 'fixed', backgroundPosition: 'center' }}
         >
             {/* Black Overlay with Opacity */}
             <div className="absolute inset-0 bg-black opacity-70"></div>

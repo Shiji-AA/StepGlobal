@@ -1,4 +1,4 @@
-import { useState ,useEffect} from "react";
+import { useState} from "react";
 import { Link } from "react-router-dom";
 import logoArcite from "../../../../assets/logo/StepLogo.png";
 import squaremenu from "../../../../assets/logo/squaremenu1.png";
@@ -14,11 +14,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons"; // Correct import for FontAwesome icons
 
 function WelcomeNavbar() {
-  const [isFixed, setIsFixed] = useState(false);
-
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
   };
@@ -26,42 +23,19 @@ function WelcomeNavbar() {
   const toggleModal = () => {
     setModalOpen((prev) => !prev);
   };
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > window.innerHeight * 0.01) {
-        setIsFixed(true);
-      } else {
-        setIsFixed(false);
-      }
-    };
-  
-    window.addEventListener("scroll", handleScroll);
-  
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+
   
   
 
   return (
     <>
       {/* Navbar */}
-      <nav  className={`flex flex-wrap items-center justify-between p-3 transition-all duration-300 ${
-    isFixed
-      ? "fixed top-0 left-0 w-full bg-white bg-opacity-85 z-50"
-      : "relative bg-white "
-  }`}
-      
-      >
+      <nav  className={"flex flex-wrap items-center justify-between p-3 transition-all duration-300"}>
         <img src={logoArcite} alt="Step logo" width="110" />
-
-        {/* Vertical Line */}
+        
         <div className="h-10 border-l-2 border-teal-500 mx-10"></div>
 
-        {/* Mobile Menu Button (Only for Mobile View) */}
-        <div className="flex md:hidden">
+          <div className="flex md:hidden">
           <button onClick={toggleMenu}>
             <img
               className={menuOpen ? "hidden" : "block"}

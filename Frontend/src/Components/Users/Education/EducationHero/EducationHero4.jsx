@@ -1,20 +1,22 @@
 import { Parallax } from "react-parallax";
 import edu4 from "../../../../assets/education/edu4.jpg";
 import bg2 from "../../../../assets/education/bg2.jpg";
+
 import { PlayCircle } from "lucide-react"; // Using Lucide Icons for Play Button
 
 const EducationHero4 = () => {
   return (
     <section className="relative py-10">
       
-      <div className="relative w-full h-[700px]">      
+      <div className="relative w-full sm:min-h-[400px] md:h-[600px]">      
         <Parallax
           bgImage={edu4}
           strength={700}
-          className="w-full h-full relative flex items-center"
+          className="w-full h-full"
+          bgImageStyle={{ objectFit: "cover", width: "100%", height: "100%" }}
         >
           {/* Main Content Container */}
-          <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10 w-full">
+          <div className="container mx-auto px-6 py-16 md:px-12 lg:px-16 relative z-10 w-full">
             <div className="flex flex-col lg:flex-row items-center w-full">
               
               {/* Right Side - Video Section */}

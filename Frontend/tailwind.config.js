@@ -16,20 +16,10 @@ export default {
         tealLight: "#00A0A0", // Custom name for #00A0A0
         tealDark: "#026971", // Custom name for #026971
         cream: '#fdfdfd',
-      },
-
-      keyframes: {
-        'scroll-bg': {
-          '0%': { backgroundPosition: '0 0' },
-          '100%': { backgroundPosition: '-100% 0' },
-        },
-      },
-      animation: {
-        'scroll-bg': 'scroll-bg 30s linear infinite',
-      },
-
-    },
+      }, 
+     },
   },
   plugins: [],
+  
   
 }
