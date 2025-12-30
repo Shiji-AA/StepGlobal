@@ -19,7 +19,7 @@ function ApplicantsList() {
                 }
             })
             .catch((error) => {
-                console.error('Error fetching applicants:', error);
+                console.error('Error in fetching applicants:', error);
                 toast.error('An error occurred while fetching applicants.');
             });
     }, []);

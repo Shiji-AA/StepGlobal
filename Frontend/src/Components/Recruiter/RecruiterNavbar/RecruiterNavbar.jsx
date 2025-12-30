@@ -22,9 +22,12 @@ function RecruiterNavbar() {
   const toggleProfileMenu = () => setProfileMenuOpen((prev) => !prev);
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-gray-100 shadow-md">
+    <nav className="flex flex-wrap items-center justify-start p-3 bg-white relative">
       {/* Logo */}
-      <img src={logoArcite} alt="ARCITE" width="120" className="mr-4" />
+      <img src={logoArcite} alt="ARCITE" width="110" className="mr-4" />
+
+           {/* Vertical Line */}
+           <div className="h-10 border-l-2 border-teal-500 mx-10"></div>
 
       {/* Mobile Menu Toggle */}
       <div className="flex md:hidden">
@@ -53,17 +56,15 @@ function RecruiterNavbar() {
         }`}
       >
         <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 mt-4 md:mt-0">
-          <Link to="/recruiterdashboard" className="text-gray-900 font-semibold hover:text-teal-500">
+          <Link to="/recruiterdashboard" className=" font-custom text-gray-900 font-normal hover:text-teal-500">
             Home
-          </Link>       
-          {/* <Link to="/postjobs" className="text-gray-900 font-semibold hover:text-teal-500">
-            Post Job
-          </Link> */}
-          <Link to="/viewjobs" className="text-gray-900 font-semibold hover:text-teal-500">
+          </Link>      
+       
+          <Link to="/viewjobs" className="font-custom text-gray-900 font-normal hover:text-teal-500">
             Manage Jobs
           </Link>
         
-          <Link to="/applicantsList" className="text-gray-900 font-semibold hover:text-teal-500">
+          <Link to="/applicantsList" className="font-custom text-gray-900 font-normal hover:text-teal-500">
             Applicants
           </Link>
 
@@ -74,12 +75,12 @@ function RecruiterNavbar() {
               <div className="relative">
                 <button
                   onClick={toggleProfileMenu}
-                  className="px-6 py-2 font-semibold text-gray-100 bg-teal-500 hover:bg-teal-600 rounded-lg transition duration-300 ease-in-out"
+                  className="font-custom px-6 py-2 font-semibold text-gray-100 bg-teal-500 hover:bg-teal-600 rounded-lg transition duration-300 ease-in-out"
                 >
                   {recruiter?.recruiterName}
                 </button>
 
-                {/* Dropdown Menu */}
+           
                 {profileMenuOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-gray-100 rounded-md shadow-lg z-50">
                     <Link
@@ -118,13 +119,3 @@ function RecruiterNavbar() {
 export default RecruiterNavbar;
 
 
-{/* <div className="flex items-center  px-2">
-<img
-  className="object-cover mx-2 rounded-full h-9 w-9"
-  src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-  alt="avatar"
-/>
-<h4 className="mx-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">
-  John Doe
-</h4>
-</div> */}

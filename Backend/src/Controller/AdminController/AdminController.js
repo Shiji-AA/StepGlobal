@@ -223,7 +223,7 @@ const unlistrecruiter = async (req, res) => {
         return res.status(500).json({ message: "An error occurred. Please try again later." });  
       }}
 
-      const getAllCategory = async (req, res) => {
+    const getAllCategory = async (req, res) => {
         try {
           const categoryDetails = await Category.find().exec();
           if (categoryDetails) {      
