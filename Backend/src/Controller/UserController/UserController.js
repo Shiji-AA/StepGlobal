@@ -8,6 +8,7 @@ import bcrypt from 'bcrypt';
 import Job from '../../model/JobModel.js';
 import Application from '../../model/ApplicationModel.js';
 import SavedJob from '../../model/SavedJobsModel.js';
+import Category from '../../model/CategoryModel.js';
 
 
 const registerUser = async (req, res) => {
@@ -361,23 +362,31 @@ const studentChangePassword = async (req, res) => {
   }
 };
 
-const getUserJobList = async(req,res)=>{
-  try{
-    const jobDetails = await Job.find({isApproved: true}).populate('category', 'title photo').exec();   
-          if(jobDetails){
-        res.status(200).json({
-        jobDetails,message:"JobDetails"
-      })
-    }else{
-      return res.status(400).json({
-        error:"no job available"
-      })
-    }
+const getUserJobList = async (req, res) => {
+  try {
+    // Step 1: Get unique category IDs from approved jobs
+    const categoryIds = await Job.distinct("category", {
+      isApproved: true,
+    });
+
+    // Step 2: Fetch category details
+    const categories = await Category.find(
+      { _id: { $in: categoryIds } },
+      { title: 1, photo: 1 }
+    );
+
+    return res.status(200).json({
+      jobDetails: categories, // keeping same response key for frontend
+      message: "Job categories fetched successfully",
+    });
+  } catch (error) {
+    console.error("Error fetching job categories:", error);
+    return res
+      .status(500)
+      .json({ message: "An error occurred. Please try again later." });
   }
-  catch(error){
-    return res.status(500).json({ message: "An error occurred. Please try again later." });  
-  }
-}
+};
+
 
 
 const getUserJobListByCategory = async (req, res) => {

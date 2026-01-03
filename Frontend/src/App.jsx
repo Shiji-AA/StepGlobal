@@ -64,10 +64,8 @@ function App() {
       {/* UserSide   */}
       <Route path="/" element={<WelcomePage/>} />
       <Route path="educationportal" element={<EducationLandingPage/>} />
-
       <Route path="/architectureportal" element={<ArchitectureLanding/>} />
-
-     <Route path="/jobportal" element={<LandingPage/>} />
+      <Route path="/jobportal" element={<LandingPage/>} />
      
      <Route path="/register" element={<Register/>} />
      <Route path="/login" element={<Login/>} />

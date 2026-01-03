@@ -12,9 +12,9 @@ function CategoryListing() {
     setLoading(true);
     axiosInstance
       .get("/userjoblist")
-      .then((response) => {
-  
+      .then((response) => {  
         const jobs = response.data?.jobDetails || [];
+        console.log(jobs,"ListedJobs from Category listing page")
         setJobDetails(jobs);
       })
       .catch((error) => {
@@ -41,20 +41,20 @@ function CategoryListing() {
                 key={item._id}
                 className="bg-gray-100 overflow-hidden p-6 shadow-lg rounded-lg hover:shadow-xl transition-transform duration-300 hover:scale-105"
               >
-               <Link to={`/findjobsbycategory/${item.category?._id}`}>
+               <Link to={`/findjobsbycategory/${item._id}`}>
                   <div className=" font-custom font-weight-normal w-full h-48 overflow-hidden rounded-t-lg">
                     <img
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                      src={item.category?.photo}
-                      alt={item.category?.title}
+                      src={item.photo}
+                      alt={item.title}
                       onError={(e) => (e.target.src = "/fallback-image.jpg")} // Optional: Fallback image
                     />
                   </div>
                 </Link>
                 <div className="text-start mt-4">
                   <div className="bg-tealLight font-custom  text-white py-1 px-4 inline-block rounded-md">
-                    {typeof item.category?.title === "string"
-                      ? item.category?.title
+                    {typeof item.title === "string"
+                      ? item.title
                       : "Unknown Category"}
                   </div>
                 </div>

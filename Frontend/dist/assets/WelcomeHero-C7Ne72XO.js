@@ -1,4 +1,4 @@
-import{r as n,j as r}from"./index-DSUCgnRO.js";import{g as i,S as y}from"./ScrollTrigger-CKx49QUS.js";const j="/assets/hero6-BZzD1j78.jpg";/*!
+import{r as n,j as r}from"./index-didBwkfD.js";import{g as i,S as y}from"./ScrollTrigger-CKx49QUS.js";const j="/assets/hero6-BZzD1j78.jpg";/*!
  * @gsap/react 2.1.2
  * https://gsap.com
  *
